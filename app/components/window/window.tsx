@@ -1,6 +1,6 @@
 import TitleBar from './components/title-bar'
 
-import './window.module.scss'
+import './window.scss'
 
 export default function Window() {
   return (
