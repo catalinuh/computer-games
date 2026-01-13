@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon -L",
-    "build": "next build",
-    "start": "next start",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
     "lint": "eslint"
   },
   "dependencies": {
