@@ -1,6 +1,21 @@
 .taskbar {
-  width: 100%;
+  // TODO: Figure out how to make this 100% without cutting off taskbar
+  width: 96%;
   position: fixed;
   bottom: 0;
   left: 0;
+  background-color: #9447ed;
+  border: 2px solid #25374d;
+  border-radius: 5px;
+  padding: 6px;
+  margin: 6px;
+
+  &__start-btn {
+    background-color: #9447ed;
+    color: #ffffff;
+    border: 2px solid #25374d;
+    border-radius: 5px;
+    padding: 6px 8px 6px 8px;
+    width: fit-content;
+  }
 }

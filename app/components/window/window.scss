@@ -1,2 +1,7 @@
 .window {
+  width: 600px;
+
+  &__msg {
+    padding: 14px;
+  }
 }
