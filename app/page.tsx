@@ -1,3 +1,10 @@
+import Window from './components/window/window'
+
+// desktop
 export default function Home() {
-  return <div>Hello!!! bitch</div>
+  return (
+    <div>
+      <Window />
+    </div>
+  )
 }

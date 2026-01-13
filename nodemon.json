@@ -1,6 +1,6 @@
 {
-  "watch": ["./"],
+  "watch": ["*.*"],
   "ext": "js,jsx,ts,tsx,json,env",
   "ignore": ["node_modules", ".next"],
-  "exec": "CHOKIDAR_USEPOLLING=true next dev"
+  "exec": "next dev"
 }
