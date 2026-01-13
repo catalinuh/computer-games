@@ -1,6 +1,6 @@
 {
   "watch": ["*.*"],
-  "ext": "js,jsx,ts,tsx,json,env",
+  "ext": "js,jsx,ts,tsx,json,env,css,scss",
   "ignore": ["node_modules", ".next"],
-  "exec": "next dev"
+  "exec": "next dev --turbo"
 }
