@@ -1,19 +1,24 @@
-import TitleBar from './components/title-bar'
+import { useRef } from 'react'
+import Draggable from 'react-draggable'
 
+import TitleBar from './components/title-bar'
 import './window.scss'
 
 export default function Window() {
+  const nodeRef = useRef(null)
   return (
-    <div className="window">
-      <div className="window__inner">
-        <TitleBar />
-        <div className="window__msg">
-          Mesmerizing birds. Roll on the floor purring your whiskers off cough
-          hairball, eat toilet paper chill on the couch table. Scratch destroy
-          dog cough furball and that box? i can fit in that box, do doodoo in
-          the litter-box, clickityclack on the piano, be frumpygrumpy.
+    <Draggable nodeRef={nodeRef}>
+      <div className="window" ref={nodeRef}>
+        <div className="window__inner">
+          <TitleBar />
+          <div className="window__msg">
+            Mesmerizing birds. Roll on the floor purring your whiskers off cough
+            hairball, eat toilet paper chill on the couch table. Scratch destroy
+            dog cough furball and that box? i can fit in that box, do doodoo in
+            the litter-box, clickityclack on the piano, be frumpygrumpy.
+          </div>
         </div>
       </div>
-    </div>
+    </Draggable>
   )
 }

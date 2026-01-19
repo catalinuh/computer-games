@@ -1,5 +1,4 @@
-// TODO: fix this
-// import Draggable from 'react-draggable'
+'use client'
 
 import Taskbar from './components/taskbar/taskbar'
 import Window from './components/window/window'
@@ -8,9 +7,7 @@ import Window from './components/window/window'
 export default function Home() {
   return (
     <div className="desktop">
-      {/* <Draggable> */}
       <Window />
-      {/* </Draggable> */}
       <Taskbar />
     </div>
   )
