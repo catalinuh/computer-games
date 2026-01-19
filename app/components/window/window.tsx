@@ -1,22 +1,30 @@
-import { useRef } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
 import Draggable from 'react-draggable'
 
 import TitleBar from './components/title-bar'
 import './window.scss'
 
-export default function Window() {
+interface WindowProps {
+  children?: ReactNode
+  icon: ReactNode
+  setOpenWindow: Dispatch<SetStateAction<string>>
+  title: string
+}
+
+export default function Window({
+  icon,
+  setOpenWindow,
+  title,
+  children,
+}: WindowProps) {
   const nodeRef = useRef(null)
+
   return (
     <Draggable nodeRef={nodeRef}>
-      <div className="window" ref={nodeRef}>
+      <div className={`window`} ref={nodeRef}>
         <div className="window__inner">
-          <TitleBar />
-          <div className="window__msg">
-            Mesmerizing birds. Roll on the floor purring your whiskers off cough
-            hairball, eat toilet paper chill on the couch table. Scratch destroy
-            dog cough furball and that box? i can fit in that box, do doodoo in
-            the litter-box, clickityclack on the piano, be frumpygrumpy.
-          </div>
+          <TitleBar setOpenWindow={setOpenWindow} title={title} icon={icon} />
+          <div className="window__content">{children}</div>
         </div>
       </div>
     </Draggable>

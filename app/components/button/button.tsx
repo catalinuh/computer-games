@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 import './button.scss'
 
@@ -6,11 +6,17 @@ interface ButtonProps {
   children?: ReactNode
   onClick?: () => void
   x?: boolean
+  setOpenWindow?: Dispatch<SetStateAction<string>>
 }
 
-export default function Button({ children, onClick, x }: ButtonProps) {
+export default function Button({
+  children,
+  onClick,
+  x,
+  setOpenWindow,
+}: ButtonProps) {
   const handleClick = () => {
-    console.log('handling click')
+    if (x && setOpenWindow) setOpenWindow('')
   }
 
   return (

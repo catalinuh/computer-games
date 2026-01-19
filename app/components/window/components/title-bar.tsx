@@ -1,14 +1,27 @@
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 import Button from '../../button/button'
 import './title-bar.scss'
 
-export default function TitleBar() {
+interface TitleBarProps {
+  icon: ReactNode
+  setOpenWindow: Dispatch<SetStateAction<string>>
+  title: string
+}
+
+export default function TitleBar({
+  icon,
+  setOpenWindow,
+  title,
+}: TitleBarProps) {
   return (
     <div className="title-bar">
       <div className="title-bar__icon-title">
-        <div className="title-bar__icon">F</div>
-        <div className="title-bar__title">Figma</div>
+        {icon}
+        <div className="title-bar__title">{title}</div>
       </div>
-      <Button x={true}>X</Button>
+      <Button x={true} setOpenWindow={setOpenWindow}>
+        X
+      </Button>
     </div>
   )
 }
