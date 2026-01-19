@@ -1,8 +1,11 @@
-$title-bar-padding: 6px;
+$title-bar-padding: 4px;
+$title-bar-margin-right: 2px;
 
 .title-bar {
   padding: $title-bar-padding;
-  width: calc(100% - (2 * $title-bar-padding));
+  width: calc(
+    100% - (2 * $title-bar-padding) - (0.5 * $title-bar-margin-right)
+  );
   height: fit-content;
   max-height: 32px;
   background-color: #02007f;
@@ -12,6 +15,7 @@ $title-bar-padding: 6px;
   align-items: center;
   gap: 5px;
   color: #ffffff;
+  margin-right: $title-bar-margin-right;
 
   &__icon-title {
     display: flex;
