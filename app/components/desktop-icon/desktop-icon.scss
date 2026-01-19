@@ -3,4 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // TODO: remove this if this doesn't help with the bounds
+  position: absolute;
+
+  &__name {
+    color: #ffffff;
+  }
 }
