@@ -1,3 +1,4 @@
+// TODO: fix this
 // import Draggable from 'react-draggable'
 
 import Taskbar from './components/taskbar/taskbar'
