@@ -9,11 +9,10 @@
 }
 
 body {
-  font-family: 'W95FA', Arial, Helvetica, sans-serif;
-  color: black;
   -webkit-text-stroke-width: 0.3px;
   -webkit-text-stroke-color: black;
-  font-size: 26px;
+  font-family: 'W95FA', Arial, Helvetica, sans-serif;
+  color: black;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
