@@ -5,6 +5,10 @@
   "testLibrary": "Testing Library",
   "component": {
     "default": {
+      "customTemplates": {
+        "component": "templates/template-name.tsx",
+        "style": "templates/template-name.scss"
+      },
       "path": "app/components",
       "withLazy": false,
       "withStory": false,
