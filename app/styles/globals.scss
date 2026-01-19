@@ -8,8 +8,11 @@
   font-display: swap;
 }
 
-body {
+* {
   font-family: 'W95FA', Arial, Helvetica, sans-serif;
+}
+
+body {
   color: black;
   font-style: normal;
   font-weight: 400;
@@ -19,5 +22,4 @@ body {
   margin: 0;
   padding: 0;
   background: #008282;
-  color: #000000;
 }

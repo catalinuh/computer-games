@@ -1,16 +1,15 @@
 import WindowIcon from '@mui/icons-material/Window'
 
+import Button from '../button/button'
 import './taskbar.scss'
 
 export default function Taskbar() {
   return (
     <div className="taskbar">
-      <button className="taskbar__start-btn">
-        <div>
-          <WindowIcon fontSize="inherit" />
-          Start
-        </div>
-      </button>
+      <Button>
+        <WindowIcon fontSize="inherit" />
+        <span>Start</span>
+      </Button>
     </div>
   )
 }
