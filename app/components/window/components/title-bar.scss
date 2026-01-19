@@ -1,13 +1,15 @@
+$title-bar-padding: 6px;
+
 .title-bar {
-  width: 100%;
-  height: 66px;
-  background-color: #c3c3c3;
-  border: 2px outset #c3c3c3;
-  padding: 6px;
-  margin: 6px;
+  padding: $title-bar-padding;
+  width: calc(100% - (2 * $title-bar-padding));
+  height: fit-content;
+  max-height: 32px;
+  background-color: #02007f;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   gap: 5px;
   color: #ffffff;
 

@@ -1,10 +1,19 @@
 .window {
   width: 600px;
-  border: 2px solid #25374d;
-  border-radius: 5px;
-  display: flex;
+  border-top: 1px solid #f0f0f0;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+
+  &__inner {
+    border-top: 1px solid #c3c3c3;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #7e7e7e;
+    border-bottom: 1px solid #7e7e7e;
+  }
 
   &__msg {
     padding: 14px;
+    background-color: #c3c3c3;
   }
 }
