@@ -17,4 +17,14 @@
     border-bottom: 1px solid #7e7e7e;
     border-left: 1px solid #b1b1b1;
   }
+
+  .x {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.125em !important;
+    width: 1em;
+    height: 1em;
+  }
 }

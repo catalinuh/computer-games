@@ -1,3 +1,4 @@
+import Button from '../../button/button'
 import './title-bar.scss'
 
 export default function TitleBar() {
@@ -7,7 +8,7 @@ export default function TitleBar() {
         <div className="title-bar__icon">F</div>
         <div className="title-bar__title">Figma</div>
       </div>
-      <div className="title-bar__x">X</div>
+      <Button x={true}>X</Button>
     </div>
   )
 }
