@@ -1,5 +1,8 @@
 .window {
   width: 600px;
+  border: 2px solid #25374d;
+  border-radius: 5px;
+  display: flex;
 
   &__msg {
     padding: 14px;
