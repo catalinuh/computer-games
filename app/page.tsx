@@ -1,4 +1,5 @@
-import Draggable from 'react-draggable'
+// import Draggable from 'react-draggable'
+
 import Taskbar from './components/taskbar/taskbar'
 import Window from './components/window/window'
 
@@ -6,9 +7,9 @@ import Window from './components/window/window'
 export default function Home() {
   return (
     <div>
-      <Draggable>
-        <Window />
-      </Draggable>
+      {/* <Draggable> */}
+      <Window />
+      {/* </Draggable> */}
       <Taskbar />
     </div>
   )
