@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import CalculateIcon from '@mui/icons-material/Calculate'
+import Image from 'next/image'
 
 import { DesktopIcon, Taskbar, Window } from './components'
 
@@ -13,7 +13,14 @@ export default function Home() {
       <div className="desktop__icons">
         <DesktopIcon
           setOpenWindow={setOpenWindow}
-          icon={<CalculateIcon fontSize="large" />}
+          icon={
+            <Image
+              src="/assets/icons/calculator.png"
+              alt="+/-"
+              width={64}
+              height={64}
+            />
+          }
           name={'Calculator'}
         />
       </div>
@@ -21,8 +28,15 @@ export default function Home() {
       {openWindow !== '' ? (
         <Window
           setOpenWindow={setOpenWindow}
-          title={openWindow}
-          icon={<CalculateIcon fontSize="inherit" />}
+          title={'Calculator'}
+          icon={
+            <Image
+              src="/assets/icons/calculator.png"
+              alt="+/-"
+              width={32}
+              height={32}
+            />
+          }
         >
           {openWindow === 'calculator' ? <> 9 + 10 = 21</> : <></>}
         </Window>

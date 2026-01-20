@@ -2,7 +2,8 @@ $title-bar-padding: 4px;
 $title-bar-margin-right: 2px;
 
 .title-bar {
-  padding: $title-bar-padding;
+  padding-left: $title-bar-padding;
+  padding-right: $title-bar-padding;
   width: calc(
     100% - (2 * $title-bar-padding) - (0.5 * $title-bar-margin-right)
   );
@@ -21,5 +22,12 @@ $title-bar-margin-right: 2px;
     display: flex;
     flex-direction: row;
     gap: 5px;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 3px;
   }
 }
