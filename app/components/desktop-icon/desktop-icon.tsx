@@ -34,7 +34,13 @@ export default function DesktopIcon({
         left: 0,
       }}
     >
-      <div className="desktop-icon" onDoubleClick={handleClick} ref={nodeRef}>
+      <div
+        className="desktop-icon"
+        onDoubleClick={handleClick}
+        // for mobile device
+        onTouchEndCapture={handleClick}
+        ref={nodeRef}
+      >
         {icon}
         <div className="desktop-icon__name">{name}</div>
       </div>
