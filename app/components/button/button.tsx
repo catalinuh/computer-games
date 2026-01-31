@@ -8,7 +8,7 @@ interface ButtonProps {
   x?: boolean
   setOpenWindow?: Dispatch<SetStateAction<string>>
 }
-// TODO: Remove
+
 export default function Button({
   children,
   onClick,
