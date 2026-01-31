@@ -19,6 +19,7 @@ export default function Home() {
               alt="+/-"
               width={64}
               height={64}
+              unoptimized
             />
           }
           name={'Calculator'}
@@ -35,6 +36,7 @@ export default function Home() {
               alt="+/-"
               width={32}
               height={32}
+              unoptimized
             />
           }
         >
