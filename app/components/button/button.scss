@@ -1,15 +1,35 @@
+$border-1: 2px solid #f0f0f0;
+$border-2: 2px solid #262626;
+$border-3: 2px solid #b1b1b1;
+$border-4: 2px solid #7e7e7e;
+$border-5: 2px solid #ffffff;
+
 @mixin border-outer {
-  border-top: 2px solid #f0f0f0;
-  border-right: 2px solid #262626;
-  border-bottom: 2px solid #262626;
-  border-left: 2px solid #f0f0f0;
+  border-top: $border-1;
+  border-right: $border-2;
+  border-bottom: $border-2;
+  border-left: $border-1;
 }
 
 @mixin border-inner {
-  border-top: 2px solid #b1b1b1;
-  border-right: 2px solid #7e7e7e;
-  border-bottom: 2px solid #7e7e7e;
-  border-left: 2px solid #b1b1b1;
+  border-top: $border-3;
+  border-right: $border-4;
+  border-bottom: $border-4;
+  border-left: $border-3;
+}
+
+@mixin active-border-outer {
+  border-top: $border-2;
+  border-right: $border-1;
+  border-bottom: $border-1;
+  border-left: $border-2;
+}
+
+@mixin active-border-inner {
+  border-top: $border-4;
+  border-right: $border-3;
+  border-bottom: $border-3;
+  border-left: $border-4;
 }
 
 .button {
@@ -17,6 +37,20 @@
   width: fit-content;
   padding: 0;
   @include border-outer;
+
+  &.active {
+    @include active-border-outer;
+
+    .button__container {
+      @include active-border-inner;
+      padding: 0;
+
+      span {
+        border-top: $border-5;
+        padding: 4px 8px 6px 8px;
+      }
+    }
+  }
 
   &__container {
     display: flex;

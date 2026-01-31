@@ -7,6 +7,7 @@ interface ButtonProps {
   onClick?: () => void
   x?: boolean
   setOpenWindow?: Dispatch<SetStateAction<string>>
+  className?: string
 }
 
 export default function Button({
@@ -14,6 +15,7 @@ export default function Button({
   onClick,
   x,
   setOpenWindow,
+  className,
 }: ButtonProps) {
   const handleClick = () => {
     if (x && setOpenWindow) setOpenWindow('')
@@ -21,7 +23,7 @@ export default function Button({
 
   return (
     <button
-      className="button"
+      className={`button${' ' + className}`}
       onClick={onClick || handleClick}
       // for mobile device
       onTouchEndCapture={onClick || handleClick}
