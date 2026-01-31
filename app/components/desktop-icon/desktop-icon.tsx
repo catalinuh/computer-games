@@ -4,7 +4,7 @@ import Draggable from 'react-draggable'
 
 import useWindowSize from '../../../app/hooks/useWindowSize'
 import './desktop-icon.scss'
-
+// test
 interface DesktopIconProps {
   icon: ReactNode
   setOpenWindow: Dispatch<SetStateAction<string>>
