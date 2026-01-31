@@ -9,7 +9,7 @@
         "component": "templates/template-name.tsx",
         "style": "templates/template-name.scss"
       },
-      "path": "app/components",
+      "path": "app/pages",
       "withLazy": false,
       "withStory": false,
       "withStyle": true,
