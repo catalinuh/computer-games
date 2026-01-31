@@ -7,8 +7,7 @@ export default function Taskbar() {
   return (
     <div className="taskbar">
       <Button>
-        <WindowIcon fontSize="inherit" />
-        <span>Start</span>
+        <span>𝓒𝓜 Catalina McQuade</span>
       </Button>
     </div>
   )
