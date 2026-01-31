@@ -7,27 +7,28 @@ $title-bar-margin-right: 2px;
   width: calc(
     100% - (2 * $title-bar-padding) - (0.5 * $title-bar-margin-right)
   );
-  height: fit-content;
+  height: 32px;
   max-height: 32px;
   background-color: #02007f;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
   color: #ffffff;
   margin-right: $title-bar-margin-right;
 
   &__icon-title {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 8px;
   }
 
   &__title {
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     padding-bottom: 3px;
+    padding-top: 7px;
   }
 }

@@ -3,19 +3,19 @@
   width: fit-content;
   min-width: 350px;
   max-width: 600px;
-  border-top: 1px solid #f0f0f0;
-  border-left: 1px solid #f0f0f0;
-  border-right: 1px solid #262626;
-  border-bottom: 1px solid #262626;
+  border-top: 2px solid #f0f0f0;
+  border-left: 2px solid #f0f0f0;
+  border-right: 2px solid #262626;
+  border-bottom: 2px solid #262626;
   position: absolute;
-  top: 25vh;
-  left: 50vw;
+  top: 33vh;
+  left: calc(50vw - (350px / 2));
 
   &__inner {
-    border-top: 1px solid #c3c3c3;
-    border-left: 1px solid #c3c3c3;
-    border-right: 1px solid #7e7e7e;
-    border-bottom: 1px solid #7e7e7e;
+    border-top: 2px solid #c3c3c3;
+    border-left: 2px solid #c3c3c3;
+    border-right: 2px solid #7e7e7e;
+    border-bottom: 2px solid #7e7e7e;
   }
 
   &__content {
