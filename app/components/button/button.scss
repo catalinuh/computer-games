@@ -1,3 +1,5 @@
+$bg-color-1: #c3c3c3;
+$bg-color-2: #e3e3e3;
 $border-1: 2px solid #f0f0f0;
 $border-2: 2px solid #262626;
 $border-3: 2px solid #b1b1b1;
@@ -33,21 +35,25 @@ $border-5: 2px solid #ffffff;
 }
 
 .button {
-  background-color: #c3c3c3;
+  @include border-outer;
+  background-color: $bg-color-1;
   width: fit-content;
   padding: 0;
-  @include border-outer;
 
-  &.active {
+  &.active,
+  &:active {
+    background-color: $bg-color-2;
     @include active-border-outer;
 
     .button__container {
       @include active-border-inner;
-      padding: 0;
 
-      span {
+      &--wrapper {
         border-top: $border-5;
-        padding: 4px 8px 6px 8px;
+
+        div {
+          border: 1px dashed #000000;
+        }
       }
     }
   }
@@ -56,8 +62,18 @@ $border-5: 2px solid #ffffff;
     display: flex;
     justify-content: flex-start;
     gap: 11;
-    padding: 6px 8px 6px 8px;
+    padding: 0;
     @include border-inner;
+
+    &--wrapper {
+      border-top: 2px solid $bg-color-1;
+
+      div {
+        margin: 2px;
+        border: 1px solid $bg-color-1;
+        padding: 2px 2px 0 2px;
+      }
+    }
   }
 
   .x {
@@ -65,7 +81,8 @@ $border-5: 2px solid #ffffff;
     justify-content: center;
     align-items: center;
     gap: 0.5em;
-    padding: 0.125em !important;
+    // TODO: Figure out how to get padding around X
+    // padding: 0.125em !important;
     width: 1em;
     height: 1em;
     font-size: 13px;

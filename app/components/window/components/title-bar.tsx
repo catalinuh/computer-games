@@ -19,7 +19,7 @@ export default function TitleBar({
         {icon}
         <div className="title-bar__title">{title}</div>
       </div>
-      <Button x={true} setOpenWindow={setOpenWindow}>
+      <Button x={true} setOpenWindow={setOpenWindow} fontSize='17px'>
         X
       </Button>
     </div>

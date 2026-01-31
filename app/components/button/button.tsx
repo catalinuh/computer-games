@@ -8,6 +8,7 @@ interface ButtonProps {
   x?: boolean
   setOpenWindow?: Dispatch<SetStateAction<string>>
   className?: string
+  fontSize?: string
 }
 
 export default function Button({
@@ -16,6 +17,7 @@ export default function Button({
   x,
   setOpenWindow,
   className,
+  fontSize,
 }: ButtonProps) {
   const handleClick = () => {
     if (x && setOpenWindow) setOpenWindow('')
@@ -28,7 +30,14 @@ export default function Button({
       // for mobile device
       onTouchEndCapture={onClick || handleClick}
     >
-      <div className={`button__container${x ? ' x' : ''}`}>{children}</div>
+      <div className={`button__container${x ? ' x' : ''}`}>
+        <div
+          className={`button__container--wrapper`}
+          style={{ fontSize: fontSize }}
+        >
+          {children}
+        </div>
+      </div>
     </button>
   )
 }
