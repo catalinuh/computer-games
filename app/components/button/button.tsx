@@ -20,8 +20,13 @@ export default function Button({
   }
 
   return (
-    <button className="button" onClick={onClick || handleClick}>
-      <div className={`button${x ? ' x' : ''}`}>{children}</div>
+    <button
+      className="button"
+      onClick={onClick || handleClick}
+      // for mobile device
+      onTouchEndCapture={onClick || handleClick}
+    >
+      <div className={`button__container${x ? ' x' : ''}`}>{children}</div>
     </button>
   )
 }
