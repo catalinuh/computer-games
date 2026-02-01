@@ -14,6 +14,7 @@ $desktop-padding: 33px;
   font-family: 'W95FA', Arial, Helvetica, sans-serif;
   image-rendering: pixelated;
   -webkit-font-smoothing: none;
+  box-sizing: border-box;
 }
 
 body {

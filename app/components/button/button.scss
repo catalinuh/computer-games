@@ -34,11 +34,26 @@ $border-5: 2px solid #ffffff;
   border-left: $border-4;
 }
 
-.button {
+button.button {
   @include border-outer;
   background-color: $bg-color-1;
   width: fit-content;
-  padding: 0;
+
+  &.x {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    width: 32px;
+    height: 32px;
+
+    .button__container {
+      &--wrapper {
+        border: none;
+      }
+    }
+  }
 
   &.active,
   &:active {
@@ -74,17 +89,5 @@ $border-5: 2px solid #ffffff;
         padding: 2px 2px 0 2px;
       }
     }
-  }
-
-  .x {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-    // TODO: Figure out how to get padding around X
-    // padding: 0.125em !important;
-    width: 1em;
-    height: 1em;
-    font-size: 13px;
   }
 }

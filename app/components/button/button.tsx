@@ -25,14 +25,14 @@ export default function Button({
 
   return (
     <button
-      className={`button${' ' + className}`}
+      className={`button${x ? ' x' : ''}${className ? ` ${className}` : ''}`}
       onClick={onClick || handleClick}
       // for mobile device
       onTouchEndCapture={onClick || handleClick}
     >
-      <div className={`button__container${x ? ' x' : ''}`}>
+      <div className="button__container">
         <div
-          className={`button__container--wrapper`}
+          className="button__container--wrapper"
           style={{ fontSize: fontSize }}
         >
           {children}
