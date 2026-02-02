@@ -13,7 +13,7 @@ export default function Taskbar() {
 
   return (
     <div className="taskbar">
-      <Button onClick={handleClick} className={className}>
+      <Button onClick={handleClick} className={className} fontSize="24px">
         <div className="taskbar__start-btn-label">𝓒𝓜 Catalina McQuade</div>
       </Button>
     </div>

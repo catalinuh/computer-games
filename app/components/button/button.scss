@@ -34,44 +34,11 @@ $border-5: 2px solid #ffffff;
   border-left: $border-4;
 }
 
-button.button {
+.button {
   @include border-outer;
   background-color: $bg-color-1;
   width: fit-content;
-
-  &.x {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-    width: 32px;
-    height: 32px;
-
-    .button__container {
-      &--wrapper {
-        border: none;
-      }
-    }
-  }
-
-  &.active,
-  &:active {
-    background-color: $bg-color-2;
-    @include active-border-outer;
-
-    .button__container {
-      @include active-border-inner;
-
-      &--wrapper {
-        border-top: $border-5;
-
-        div {
-          border: 1px dashed #000000;
-        }
-      }
-    }
-  }
+  padding: 0;
 
   &__container {
     display: flex;
@@ -87,6 +54,44 @@ button.button {
         margin: 2px;
         border: 1px solid $bg-color-1;
         padding: 2px 2px 0 2px;
+      }
+    }
+  }
+
+  &.active {
+    background-color: $bg-color-2;
+  }
+
+  &.active,
+  &:active {
+    @include active-border-outer;
+
+    .button__container {
+      @include active-border-inner;
+
+      &--wrapper {
+        border-top: $border-5;
+
+        div {
+          border: 1px dashed #000000;
+        }
+      }
+    }
+  }
+
+  &.x {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    width: 32px;
+    height: 32px;
+
+    .button__container {
+      border: none;
+      &--wrapper {
+        border: none;
       }
     }
   }

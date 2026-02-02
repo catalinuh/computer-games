@@ -25,7 +25,7 @@ export default function Button({
 
   return (
     <button
-      className={`button${x ? ' x' : ''}${className ? ` ${className}` : ''}`}
+      className={`button${x ? ' x' : ''}${className?.length ? ` ${className}` : ''}`}
       onClick={onClick || handleClick}
       // for mobile device
       onTouchEndCapture={onClick || handleClick}
