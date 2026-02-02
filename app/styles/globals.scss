@@ -45,3 +45,40 @@ body {
     }
   }
 }
+
+// variables and mixins
+$bg-color-1: #c3c3c3;
+$bg-color-2: #e3e3e3;
+$border-1: 2px solid #f0f0f0;
+$border-2: 2px solid #262626;
+$border-3: 2px solid #b1b1b1;
+$border-4: 2px solid #7e7e7e;
+$border-5: 2px solid #ffffff;
+
+@mixin border-outer {
+  border-top: $border-1;
+  border-right: $border-2;
+  border-bottom: $border-2;
+  border-left: $border-1;
+}
+
+@mixin border-inner {
+  border-top: $border-3;
+  border-right: $border-4;
+  border-bottom: $border-4;
+  border-left: $border-3;
+}
+
+@mixin active-border-outer {
+  border-top: $border-2;
+  border-right: $border-1;
+  border-bottom: $border-1;
+  border-left: $border-2;
+}
+
+@mixin active-border-inner {
+  border-top: $border-4;
+  border-right: $border-3;
+  border-bottom: $border-3;
+  border-left: $border-4;
+}

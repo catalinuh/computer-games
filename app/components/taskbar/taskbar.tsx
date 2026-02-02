@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import Button from '../button/button'
+import { Button, StartMenu } from '../../components'
 import './taskbar.scss'
 
 export default function Taskbar() {
@@ -13,6 +13,7 @@ export default function Taskbar() {
 
   return (
     <div className="taskbar">
+      {menuIsOpen ? <StartMenu /> : null}
       <Button onClick={handleClick} className={className} fontSize="24px">
         <div className="taskbar__start-btn-label">𝓒𝓜 Catalina McQuade</div>
       </Button>
