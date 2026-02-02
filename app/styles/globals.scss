@@ -14,14 +14,18 @@ $desktop-padding: 33px;
   font-family: 'W95FA', Arial, Helvetica, sans-serif;
   image-rendering: pixelated;
   -webkit-font-smoothing: none;
-  box-sizing: border-box;
-}
-
-body {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
   color: black;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  font-size: 24px;
+}
+
+body {
   width: 100%;
   height: 100vh;
   margin: 0;
