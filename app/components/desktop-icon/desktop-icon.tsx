@@ -33,7 +33,6 @@ export default function DesktopIcon({
   }
 
   const handleOutsideClick = () => {
-    console.log('outside click')
     setActiveIcon('')
   }
 
