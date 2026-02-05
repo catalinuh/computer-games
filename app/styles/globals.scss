@@ -87,7 +87,7 @@ $border-5: 2px solid #ffffff;
   @include border-outer;
   background-color: $bg-color-1;
 
-  div {
+  > div {
     @include border-inner;
   }
 }
