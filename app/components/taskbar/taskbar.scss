@@ -1,3 +1,5 @@
+@use '../../styles/globals.scss' as *;
+
 .taskbar {
   width: 100%;
   height: fit-content;
@@ -6,8 +8,8 @@
   left: 0;
   background-color: #c3c3c3;
   padding: 6px;
-  border-top: 2px solid #f0f0f0;
-  border-left: 2px solid #f0f0f0;
+  border-top: $border-1;
+  border-left: $border-1;
 
   &__start-btn-label {
     line-height: 0.9;
