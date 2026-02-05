@@ -1,9 +1,8 @@
 @use '../../styles/globals.scss' as *;
 
 .start-menu {
-  @include border-outer;
+  @include gray-box;
   position: absolute;
   bottom: 52px;
-  left: -1px;
-  background-color: #c3c3c3;
+  left: 0;
 }

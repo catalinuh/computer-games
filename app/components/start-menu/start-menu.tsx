@@ -7,5 +7,9 @@ interface StartMenuProps {
 }
 
 export default function StartMenu({ children }: StartMenuProps) {
-  return <div className="start-menu">Start Menu</div>
+  return (
+    <div className="start-menu">
+      <div>Start Menu</div>
+    </div>
+  )
 }

@@ -14,7 +14,10 @@
     @include border-inner;
 
     &--wrapper {
+      height: fit-content;
       border-top: 2px solid $bg-color-1;
+      display: flex;
+      align-items: center;
 
       div {
         margin: 2px;
