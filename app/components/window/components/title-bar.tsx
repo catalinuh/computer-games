@@ -1,5 +1,8 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react'
+import Image from 'next/image'
+
 import Button from '../../button/button'
+import X from '../../../../public/assets/icons/x.svg'
 import './title-bar.scss'
 
 interface TitleBarProps {
@@ -20,7 +23,7 @@ export default function TitleBar({
         <div className="title-bar__title">{title}</div>
       </div>
       <Button x={true} setOpenWindow={setOpenWindow}>
-        X
+        <Image src={X} width={17} height={17} alt="X" />
       </Button>
     </div>
   )

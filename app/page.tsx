@@ -7,6 +7,7 @@ import { DesktopIcon, Taskbar, Window } from './components'
 // desktop
 export default function Home() {
   const [openWindow, setOpenWindow] = useState<string>('')
+  const [activeIcon, setActiveIcon] = useState('')
 
   return (
     <div className="desktop">
@@ -20,8 +21,11 @@ export default function Home() {
               width={64}
               height={64}
               unoptimized
+              draggable={false}
             />
           }
+          isSelected={activeIcon === 'calculator'}
+          setActiveIcon={setActiveIcon}
           name={'Calculator'}
         />
       </div>
@@ -37,6 +41,7 @@ export default function Home() {
               width={32}
               height={32}
               unoptimized
+              draggable={false}
             />
           }
         >

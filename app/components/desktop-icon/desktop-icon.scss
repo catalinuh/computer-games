@@ -3,10 +3,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // TODO: remove this if this doesn't help with the bounds
-  position: absolute;
+  box-sizing: border-box;
 
   &__name {
+    padding: 1px;
     color: #ffffff;
+    // transparent border to keep div size consistent when toggling active
+    border: 1px solid rgba(255, 255, 255, 0);
+    width: 100%;
+  }
+
+  &.active {
+    .desktop-icon__name {
+      background-color: #000080;
+      border: 1px dashed #ffffff;
+    }
   }
 }
