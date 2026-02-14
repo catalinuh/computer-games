@@ -17,6 +17,7 @@ export default function Taskbar() {
       <Button onClick={handleClick} className={className} fontSize="24px">
         <div className="taskbar__start-btn-label">𝓒𝓜 Catalina McQuade</div>
       </Button>
+      <div className="taskbar__time">12:00 PM</div>
     </div>
   )
 }

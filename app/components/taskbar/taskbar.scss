@@ -1,17 +1,38 @@
 @use '../../styles/globals.scss' as *;
 
 .taskbar {
-  width: 100%;
+  box-sizing: border-box;
+  width: 100vw;
   height: fit-content;
   position: fixed;
   bottom: 0;
   left: 0;
   background-color: #c3c3c3;
-  padding: 6px;
+  padding: 1px;
   border-top: $border-1;
   border-left: $border-1;
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    margin: 1px;
+  }
 
   &__start-btn-label {
+    padding: 0 !important;
     line-height: 0.9;
+  }
+
+  &__time {
+    border-top: $border-4;
+    border-right: $border-1;
+    border-bottom: $border-1;
+    border-left: $border-4;
+    margin: 1px;
+    padding: 1px;
+    display: flex;
+    // TODO: If adding more icons, change to justify-content: space-between
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 }
