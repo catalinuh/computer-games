@@ -4,8 +4,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import './styles/globals.scss'
 
 export const metadata: Metadata = {
-  title: 'Computer Games',
-  description: 'A place to play computer games',
+  title: 'Catalina McQuade',
+  description: 'A personal portfolio website built with Next.js and MUI',
 }
 
 export default function RootLayout({
