@@ -1,8 +1,7 @@
 @use '../../styles/globals.scss' as *;
 
 .window {
-  @include border-outer;
-  background-color: #c3c3c3;
+  box-sizing: border-box;
   width: fit-content;
   min-width: 350px;
   max-width: 600px;
@@ -10,11 +9,15 @@
   top: 33vh;
   left: calc(50vw - (350px / 2));
 
-  &__inner {
-    @include border-inner;
+  .title-bar {
+    padding-top: 2px;
+    padding-bottom: 2px;
   }
 
-  &__content {
-    padding: 14px;
+  .title-bar-text {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    font-weight: 400;
   }
 }

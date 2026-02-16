@@ -1,8 +1,8 @@
 import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
 import Draggable from 'react-draggable'
 
-import TitleBar from './components/title-bar'
 import './window.scss'
+import '98.css'
 
 interface WindowProps {
   children?: ReactNode
@@ -19,13 +19,24 @@ export default function Window({
 }: WindowProps) {
   const nodeRef = useRef(null)
 
+  const handleClose = () => {
+    setOpenWindow('')
+  }
   return (
     <Draggable nodeRef={nodeRef}>
-      <div className={`window`} ref={nodeRef}>
-        <div className="window__inner">
-          <TitleBar setOpenWindow={setOpenWindow} title={title} icon={icon} />
-          <div className="window__content">{children}</div>
+      <div className="window" ref={nodeRef}>
+        <div className="title-bar">
+          <div className="title-bar-text">
+            {icon}
+            {title}
+          </div>
+          <div className="title-bar-controls">
+            <button aria-label="Minimize" />
+            <button aria-label="Maximize" />
+            <button aria-label="Close" onClick={handleClose} />
+          </div>
         </div>
+        <div className="window-body">{children}</div>
       </div>
     </Draggable>
   )
