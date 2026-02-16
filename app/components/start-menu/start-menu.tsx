@@ -8,8 +8,8 @@ interface StartMenuProps {
 
 export default function StartMenu({}: StartMenuProps) {
   return (
-    <div className="start-menu">
-      <div>Start Menu</div>
+    <div className="window start-menu">
+      <div className="window-body">Start Menu</div>
     </div>
   )
 }

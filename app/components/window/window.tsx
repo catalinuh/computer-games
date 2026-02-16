@@ -7,7 +7,7 @@ import '98.css'
 interface WindowProps {
   children?: ReactNode
   icon: ReactNode
-  setOpenWindow: Dispatch<SetStateAction<string>>
+  setOpenWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
   title: string
 }
 
@@ -24,7 +24,7 @@ export default function Window({
   }
   return (
     <Draggable nodeRef={nodeRef}>
-      <div className="window" ref={nodeRef}>
+      <div className="window window-popup" ref={nodeRef}>
         <div className="title-bar">
           <div className="title-bar-text">
             {icon}
