@@ -82,12 +82,3 @@ $border-5: 2px solid #ffffff;
   border-bottom: $border-3;
   border-left: $border-4;
 }
-
-@mixin gray-box {
-  @include border-outer;
-  background-color: $bg-color-1;
-
-  > div {
-    @include border-inner;
-  }
-}

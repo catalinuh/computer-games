@@ -1,7 +1,6 @@
 @use '../../styles/globals.scss' as *;
 
 .start-menu {
-  @include gray-box;
   position: absolute;
   bottom: 52px;
   left: 0;
