@@ -4,10 +4,20 @@ import Image from 'next/image'
 
 import { DesktopIcon, Taskbar, Window } from './components'
 
+const imageMap = {
+  Calculator: 'calculator',
+  'About Me': 'notepad',
+  '': '',
+}
+
 // desktop
 export default function Home() {
-  const [openWindow, setOpenWindow] = useState<string>('')
-  const [activeIcon, setActiveIcon] = useState('')
+  const [openWindow, setOpenWindow] = useState<'' | 'Calculator' | 'About Me'>(
+    ''
+  )
+  const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
+    ''
+  )
 
   return (
     <div className="desktop">
@@ -24,19 +34,36 @@ export default function Home() {
               draggable={false}
             />
           }
-          isSelected={activeIcon === 'calculator'}
+          isSelected={activeIcon === 'Calculator'}
           setActiveIcon={setActiveIcon}
           name={'Calculator'}
         />
-      </div>
 
-      {openWindow !== '' ? (
-        <Window
+        <DesktopIcon
           setOpenWindow={setOpenWindow}
-          title={'Calculator'}
           icon={
             <Image
-              src="/assets/icons/calculator-sm.png"
+              src="/assets/icons/notepad.png"
+              alt="+/-"
+              width={64}
+              height={64}
+              unoptimized
+              draggable={false}
+            />
+          }
+          isSelected={activeIcon === 'About Me'}
+          setActiveIcon={setActiveIcon}
+          name={'About Me'}
+        />
+      </div>
+
+      {openWindow.length ? (
+        <Window
+          setOpenWindow={setOpenWindow}
+          title={openWindow}
+          icon={
+            <Image
+              src={`/assets/icons/${imageMap[openWindow]}-sm.png`}
               alt="+/-"
               width={16}
               height={16}
@@ -45,7 +72,7 @@ export default function Home() {
             />
           }
         >
-          {openWindow === 'calculator' ? <> 9 + 10 = 21</> : <></>}
+          {openWindow === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
         </Window>
       ) : (
         <></>
