@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import dayjs from 'dayjs'
 
-import { Button, StartMenu } from '../../components'
+import { StartMenu } from '../../components'
 import './taskbar.scss'
+import '98.css'
 
 export default function Taskbar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -14,10 +16,10 @@ export default function Taskbar() {
   return (
     <div className="taskbar">
       {menuIsOpen ? <StartMenu /> : null}
-      <Button onClick={handleClick} className={className} fontSize="24px">
-        <div className="taskbar__start-btn-label">𝓒𝓜 Catalina McQuade</div>
-      </Button>
-      <div className="taskbar__time">12:00 PM</div>
+      <button onClick={handleClick} className={className}>
+        𝓒𝓜 Catalina McQuade
+      </button>
+      <div className="taskbar__time">{dayjs().format('hh:mm A')}</div>
     </div>
   )
 }
