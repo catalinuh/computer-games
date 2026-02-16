@@ -6,7 +6,7 @@ interface StartMenuProps {
   children?: ReactNode
 }
 
-export default function StartMenu({ children }: StartMenuProps) {
+export default function StartMenu({}: StartMenuProps) {
   return (
     <div className="start-menu">
       <div>Start Menu</div>
