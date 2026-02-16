@@ -14,7 +14,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Credits
 
-- Most designs and icons are from this [Unofficial Windows '98 UI Kit](https://www.figma.com/files/team/1020877116345235776/resources/community/file/1375838701187289600/unofficial-windows-98-ui-kit?fuid=1020877111582015531) in Figma
+- Lots of designs and icons are from this [Unofficial Windows '98 UI Kit](https://www.figma.com/files/team/1020877116345235776/resources/community/file/1375838701187289600/unofficial-windows-98-ui-kit?fuid=1020877111582015531) in Figma
+
+- Lots of CSS from [https://jdan.github.io/98.css/](https://jdan.github.io/98.css/)
 
 - Some designs are from [https://98.js.org/](https://98.js.org/)
 
