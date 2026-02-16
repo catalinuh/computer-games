@@ -2,7 +2,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-import { DesktopIcon, Taskbar, Window } from './components'
+import { DesktopIcon, Taskbar, TextFile, Window } from './components'
+import { aboutMe } from './pages/about-me'
 
 const imageMap = {
   Calculator: 'calculator',
@@ -71,8 +72,10 @@ export default function Home() {
               draggable={false}
             />
           }
+          className={openWindow === 'About Me' ? 'text-file' : ''}
         >
           {openWindow === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
+          {openWindow === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
         </Window>
       ) : (
         <></>
