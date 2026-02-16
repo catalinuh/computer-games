@@ -9,6 +9,8 @@ interface WindowProps {
   icon: ReactNode
   setOpenWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
   title: string
+  // TODO: see if i still need className when finished with text file styling
+  className?: string
 }
 
 export default function Window({
@@ -16,6 +18,7 @@ export default function Window({
   setOpenWindow,
   title,
   children,
+  className,
 }: WindowProps) {
   const nodeRef = useRef(null)
 
@@ -36,7 +39,7 @@ export default function Window({
             <button aria-label="Close" onClick={handleClose} />
           </div>
         </div>
-        <div className="window-body">{children}</div>
+        <div className={`window-body ${className}`}>{children}</div>
       </div>
     </Draggable>
   )
