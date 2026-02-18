@@ -1,11 +1,36 @@
+@use '../../styles/globals.scss' as *;
+
 .taskbar {
-  width: 100%;
+  box-sizing: border-box;
+  width: 100vw;
   height: fit-content;
   position: fixed;
   bottom: 0;
   left: 0;
   background-color: #c3c3c3;
-  padding: 6px;
-  border-top: 1px solid #f0f0f0;
-  border-left: 1px solid #f0f0f0;
+  padding: 1px;
+  border-top: $border-1;
+  border-left: $border-1;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    min-height: fit-content;
+  }
+
+  button.active {
+    // TODO: Grab style from 98.css/style.css for button:focus and button:active?
+  }
+
+  &__time {
+    box-shadow:
+      inset -1px -1px #f0f0f0,
+      inset 1px 1px #7e7e7e;
+    // margin: 1px;
+    padding: 5px;
+    display: flex;
+    // TODO: If adding more icons, change to justify-content: space-between
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
 }

@@ -2,17 +2,29 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-import { DesktopIcon, Taskbar, Window } from './components'
+import { DesktopIcon, Taskbar, TextFile, Window } from './components'
+import { aboutMe } from './pages/about-me'
+
+const imageMap = {
+  Calculator: 'calculator',
+  'About Me': 'notepad',
+  '': '',
+}
 
 // desktop
 export default function Home() {
-  const [openWindow, setOpenWindow] = useState<string>('')
+  const [openWindows, setOpenWindows] = useState<
+    ('' | 'Calculator' | 'About Me')[]
+  >([])
+  const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
+    ''
+  )
 
   return (
     <div className="desktop">
       <div className="desktop__icons">
         <DesktopIcon
-          setOpenWindow={setOpenWindow}
+          setOpenWindow={setOpenWindows}
           icon={
             <Image
               src="/assets/icons/calculator.png"
@@ -20,27 +32,50 @@ export default function Home() {
               width={64}
               height={64}
               unoptimized
+              draggable={false}
             />
           }
+          isSelected={activeIcon === 'Calculator'}
+          setActiveIcon={setActiveIcon}
           name={'Calculator'}
+        />
+
+        <DesktopIcon
+          setOpenWindows={setOpenWindows}
+          icon={
+            <Image
+              src="/assets/icons/notepad.png"
+              alt="+/-"
+              width={64}
+              height={64}
+              unoptimized
+              draggable={false}
+            />
+          }
+          isSelected={activeIcon === 'About Me'}
+          setActiveIcon={setActiveIcon}
+          name={'About Me'}
         />
       </div>
 
-      {openWindow !== '' ? (
+      {openWindows.length ? (
         <Window
-          setOpenWindow={setOpenWindow}
-          title={'Calculator'}
+          setOpenWindow={setOpenWindows}
+          title={openWindows}
           icon={
             <Image
-              src="/assets/icons/calculator.png"
+              src={`/assets/icons/${imageMap[openWindows]}-sm.png`}
               alt="+/-"
-              width={32}
-              height={32}
+              width={16}
+              height={16}
               unoptimized
+              draggable={false}
             />
           }
+          className={openWindows === 'About Me' ? 'text-file' : ''}
         >
-          {openWindow === 'calculator' ? <> 9 + 10 = 21</> : <></>}
+          {openWindows === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
+          {openWindows === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
         </Window>
       ) : (
         <></>

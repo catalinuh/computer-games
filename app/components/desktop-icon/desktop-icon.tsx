@@ -2,47 +2,56 @@
 import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
 import Draggable from 'react-draggable'
 
-import useWindowSize from '../../../app/hooks/useWindowSize'
+import useOutsideClick from '../../hooks/useOutsideClick'
 import './desktop-icon.scss'
 
 interface DesktopIconProps {
   icon: ReactNode
-  setOpenWindow: Dispatch<SetStateAction<string>>
-  name: string
+  setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
+  name: '' | 'Calculator' | 'About Me'
+  isSelected: boolean
+  setActiveIcon: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
 }
 
 export default function DesktopIcon({
   icon,
-  setOpenWindow,
+  setOpenWindows,
   name,
+  isSelected,
+  setActiveIcon,
 }: DesktopIconProps) {
   const nodeRef = useRef(null)
-  const { width, height } = useWindowSize()
+  const className = isSelected ? 'active' : ''
 
-  const handleClick = () => {
-    setOpenWindow('calculator')
+  const handleDoubleClick = () => {
+    setOpenWindows((prevOpenWindows) => [...prevOpenWindows, name])
+    setActiveIcon('')
   }
 
+  const handleClick = () => {
+    setActiveIcon(name)
+  }
+
+  const handleOutsideClick = () => {
+    setActiveIcon('')
+  }
+
+  const outsideRef = useOutsideClick(handleOutsideClick)
+
   return (
-    <Draggable
-      nodeRef={nodeRef}
-      bounds={{
-        top: 0,
-        // TODO: Fix these 2 measurements
-        right: width ? width - 20 : undefined,
-        bottom: height ? height - 20 : undefined,
-        left: 0,
-      }}
-    >
-      <div
-        className="desktop-icon"
-        onDoubleClick={handleClick}
-        // for mobile device
-        onTouchEndCapture={handleClick}
-        ref={nodeRef}
-      >
-        {icon}
-        <div className="desktop-icon__name">{name}</div>
+    <Draggable nodeRef={nodeRef} bounds={'parent'}>
+      <div ref={nodeRef}>
+        <div
+          className={`desktop-icon${className?.length ? ` ${className}` : ''}`}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          // for mobile device
+          onTouchEndCapture={handleDoubleClick}
+          ref={outsideRef}
+        >
+          {icon}
+          <div className="desktop-icon__name">{name}</div>
+        </div>
       </div>
     </Draggable>
   )
