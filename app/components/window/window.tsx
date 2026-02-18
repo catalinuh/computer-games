@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Draggable from 'react-draggable'
 
+import useOutsideClick from '../../hooks/useOutsideClick'
 import './window.scss'
 import '98.css'
 
@@ -33,10 +34,19 @@ export default function Window({
   const handleClickDown = (e: MouseEvent) => {
     // bring the window to the front when clicked
     setIsWindowActive(true)
-    if ((e.target as HTMLElement).className.includes('text-file'))
+    if ((e.target as HTMLElement).className === 'text-file')
       setIsClickingText(true)
     else setIsClickingText(false)
   }
+
+  const handleOutsideClick = () => {
+    console.log('clicking outside window', title)
+
+    setIsWindowActive(false)
+  }
+
+  // TODO: fix clicking outside the window
+  const outsideRef = useOutsideClick(handleOutsideClick)
 
   return (
     <Draggable

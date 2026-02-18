@@ -2,6 +2,7 @@ import { RefObject, useEffect, useRef } from 'react'
 
 // TODO: Fix type errors
 function useOutsideClick(callback: () => void) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref: RefObject<any> = useRef(null)
 
   useEffect(() => {
