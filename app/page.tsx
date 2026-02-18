@@ -24,7 +24,7 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons">
         <DesktopIcon
-          setOpenWindow={setOpenWindows}
+          setOpenWindows={setOpenWindows}
           icon={
             <Image
               src="/assets/icons/calculator.png"
@@ -58,13 +58,14 @@ export default function Home() {
         />
       </div>
 
-      {openWindows.length ? (
+      {openWindows?.map((window) => (
         <Window
-          setOpenWindow={setOpenWindows}
-          title={openWindows}
+          key={window}
+          setOpenWindows={setOpenWindows}
+          title={window}
           icon={
             <Image
-              src={`/assets/icons/${imageMap[openWindows]}-sm.png`}
+              src={`/assets/icons/${imageMap[window]}-sm.png`}
               alt="+/-"
               width={16}
               height={16}
@@ -72,14 +73,13 @@ export default function Home() {
               draggable={false}
             />
           }
-          className={openWindows === 'About Me' ? 'text-file' : ''}
+          className={window === 'About Me' ? 'text-file' : ''}
         >
-          {openWindows === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
-          {openWindows === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
+          {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
+          {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
         </Window>
-      ) : (
-        <></>
-      )}
+      ))}
+
       <Taskbar />
     </div>
   )
