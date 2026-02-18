@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
 import './text-file.scss'
 
@@ -7,5 +7,17 @@ interface TextFileProps {
 }
 
 export default function TextFile({ children }: TextFileProps) {
-  return <div className="text-file">{children}</div>
+  const divRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.focus()
+    }
+  }, [])
+
+  return (
+    <div className="text-file" ref={divRef}>
+      {children}
+    </div>
+  )
 }
