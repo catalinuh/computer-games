@@ -7,7 +7,7 @@ import './desktop-icon.scss'
 
 interface DesktopIconProps {
   icon: ReactNode
-  setOpenWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
+  setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
   name: '' | 'Calculator' | 'About Me'
   isSelected: boolean
   setActiveIcon: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
@@ -15,7 +15,7 @@ interface DesktopIconProps {
 
 export default function DesktopIcon({
   icon,
-  setOpenWindow,
+  setOpenWindows,
   name,
   isSelected,
   setActiveIcon,
@@ -24,7 +24,7 @@ export default function DesktopIcon({
   const className = isSelected ? 'active' : ''
 
   const handleDoubleClick = () => {
-    setOpenWindow(name)
+    setOpenWindows((prevOpenWindows) => [...prevOpenWindows, name])
     setActiveIcon('')
   }
 

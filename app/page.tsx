@@ -13,9 +13,9 @@ const imageMap = {
 
 // desktop
 export default function Home() {
-  const [openWindow, setOpenWindow] = useState<'' | 'Calculator' | 'About Me'>(
-    ''
-  )
+  const [openWindows, setOpenWindows] = useState<
+    ('' | 'Calculator' | 'About Me')[]
+  >([])
   const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
     ''
   )
@@ -24,7 +24,7 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons">
         <DesktopIcon
-          setOpenWindow={setOpenWindow}
+          setOpenWindow={setOpenWindows}
           icon={
             <Image
               src="/assets/icons/calculator.png"
@@ -41,7 +41,7 @@ export default function Home() {
         />
 
         <DesktopIcon
-          setOpenWindow={setOpenWindow}
+          setOpenWindows={setOpenWindows}
           icon={
             <Image
               src="/assets/icons/notepad.png"
@@ -58,13 +58,13 @@ export default function Home() {
         />
       </div>
 
-      {openWindow.length ? (
+      {openWindows.length ? (
         <Window
-          setOpenWindow={setOpenWindow}
-          title={openWindow}
+          setOpenWindow={setOpenWindows}
+          title={openWindows}
           icon={
             <Image
-              src={`/assets/icons/${imageMap[openWindow]}-sm.png`}
+              src={`/assets/icons/${imageMap[openWindows]}-sm.png`}
               alt="+/-"
               width={16}
               height={16}
@@ -72,10 +72,10 @@ export default function Home() {
               draggable={false}
             />
           }
-          className={openWindow === 'About Me' ? 'text-file' : ''}
+          className={openWindows === 'About Me' ? 'text-file' : ''}
         >
-          {openWindow === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
-          {openWindow === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
+          {openWindows === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
+          {openWindows === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
         </Window>
       ) : (
         <></>
