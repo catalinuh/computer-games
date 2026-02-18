@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 
 const useMinuteTimer = () => {
   const [currentTime, setCurrentTime] = useState(dayjs())
+  // TODO: Find real type to replace any
   // Ref to store the interval ID for cleanup
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const intervalIdRef = useRef<any>(null)
