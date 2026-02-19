@@ -26,12 +26,12 @@ export default function Home() {
   const icons: ReactNode[] = openWindows.map((window) => (
     <Image
       key={window}
-      src={`/assets/icons/${imageMap[window]}-sm.png`}
       alt={imageMap[window]}
-      width={16}
-      height={16}
-      unoptimized
       draggable={false}
+      height={16}
+      src={`/assets/icons/${imageMap[window]}-sm.png`}
+      unoptimized
+      width={16}
     />
   ))
 
@@ -50,12 +50,12 @@ export default function Home() {
           setOpenWindows={setOpenWindows}
           icon={
             <Image
-              src="/assets/icons/calculator.png"
-              alt="+/-"
-              width={64}
-              height={64}
-              unoptimized
+              alt="calculator"
               draggable={false}
+              height={64}
+              src="/assets/icons/calculator.png"
+              unoptimized
+              width={64}
             />
           }
           isSelected={activeIcon === 'Calculator'}
@@ -67,12 +67,12 @@ export default function Home() {
           setOpenWindows={setOpenWindows}
           icon={
             <Image
-              src="/assets/icons/notepad.png"
-              alt="+/-"
-              width={64}
-              height={64}
-              unoptimized
+              alt="notepad"
               draggable={false}
+              height={64}
+              src="/assets/icons/notepad.png"
+              unoptimized
+              width={64}
             />
           }
           isSelected={activeIcon === 'About Me'}
@@ -84,21 +84,21 @@ export default function Home() {
       {openWindows?.map((window) => (
         <Window
           key={window}
-          setOpenWindows={setOpenWindows}
-          title={window}
+          activeWindow={activeWindow}
+          className={window === 'About Me' ? 'text-file' : ''}
           icon={
             <Image
-              src={`/assets/icons/${imageMap[window]}-sm.png`}
-              alt="+/-"
-              width={16}
-              height={16}
-              unoptimized
+              alt={window}
               draggable={false}
+              height={16}
+              src={`/assets/icons/${imageMap[window]}-sm.png`}
+              unoptimized
+              width={16}
             />
           }
-          className={window === 'About Me' ? 'text-file' : ''}
-          activeWindow={activeWindow}
           setActiveWindow={setActiveWindow}
+          setOpenWindows={setOpenWindows}
+          title={window}
         >
           {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
@@ -106,9 +106,9 @@ export default function Home() {
       ))}
 
       <Taskbar
+        activeWindow={activeWindow}
         icons={icons}
         openWindows={openWindows}
-        activeWindow={activeWindow}
         setActiveWindow={setActiveWindow}
       />
     </div>

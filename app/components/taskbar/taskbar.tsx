@@ -6,17 +6,17 @@ import './taskbar.scss'
 import '98.css'
 
 interface TaskbarProps {
+  activeWindow: '' | 'Calculator' | 'About Me'
   icons: React.ReactNode[]
   openWindows: ('' | 'Calculator' | 'About Me')[]
-  activeWindow: '' | 'Calculator' | 'About Me'
   setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
 }
 
 export default function Taskbar({
-  openWindows,
   activeWindow,
-  setActiveWindow,
   icons,
+  openWindows,
+  setActiveWindow,
 }: TaskbarProps) {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const className = menuIsOpen ? 'active' : ''

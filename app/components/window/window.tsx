@@ -6,23 +6,23 @@ import './window.scss'
 import '98.css'
 
 interface WindowProps {
+  activeWindow: '' | 'Calculator' | 'About Me'
   children?: ReactNode
+  className?: string
   icon: ReactNode
+  setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
   setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
   title: '' | 'Calculator' | 'About Me'
-  className?: string
-  activeWindow: '' | 'Calculator' | 'About Me'
-  setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
 }
 
 export default function Window({
-  icon,
-  setOpenWindows,
-  title,
+  activeWindow,
   children,
   className,
-  activeWindow,
+  icon,
   setActiveWindow,
+  setOpenWindows,
+  title,
 }: WindowProps) {
   const nodeRef = useRef(null)
   const [isClickingText, setIsClickingText] = useState(false)
