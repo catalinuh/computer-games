@@ -2,14 +2,15 @@ import { Dispatch, SetStateAction, useState } from 'react'
 
 import { StartMenu } from '../../components'
 import useMinuteTimer from '../../hooks/useMinuteTimer'
+import { WindowType } from '../../page'
 import './taskbar.scss'
 import '98.css'
 
 interface TaskbarProps {
-  activeWindow: '' | 'Calculator' | 'About Me'
+  activeWindow: WindowType
   icons: React.ReactNode[]
-  openWindows: ('' | 'Calculator' | 'About Me')[]
-  setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
+  openWindows: WindowType[]
+  setActiveWindow: Dispatch<SetStateAction<WindowType>>
 }
 
 export default function Taskbar({

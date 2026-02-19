@@ -5,7 +5,11 @@ import Image from 'next/image'
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-const imageMap = {
+export type WindowType = '' | 'Calculator' | 'About Me'
+
+const imageMap: {
+  [K in WindowType]: string
+} = {
   Calculator: 'calculator',
   'About Me': 'notepad',
   '': '',
@@ -13,15 +17,9 @@ const imageMap = {
 
 // desktop
 export default function Home() {
-  const [openWindows, setOpenWindows] = useState<
-    ('' | 'Calculator' | 'About Me')[]
-  >([])
-  const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
-    ''
-  )
-  const [activeWindow, setActiveWindow] = useState<
-    '' | 'Calculator' | 'About Me'
-  >('')
+  const [openWindows, setOpenWindows] = useState<WindowType[]>([])
+  const [activeIcon, setActiveIcon] = useState<WindowType>('')
+  const [activeWindow, setActiveWindow] = useState<WindowType>('')
 
   const icons: ReactNode[] = openWindows.map((window) => (
     <Image

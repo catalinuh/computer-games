@@ -2,17 +2,18 @@ import { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Draggable from 'react-draggable'
 
 import useOutsideClick from '../../hooks/useOutsideClick'
+import { WindowType } from '../../page'
 import './window.scss'
 import '98.css'
 
 interface WindowProps {
-  activeWindow: '' | 'Calculator' | 'About Me'
+  activeWindow: WindowType
   children?: ReactNode
   className?: string
   icon: ReactNode
-  setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
-  setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
-  title: '' | 'Calculator' | 'About Me'
+  setActiveWindow: Dispatch<SetStateAction<WindowType>>
+  setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
+  title: WindowType
 }
 
 export default function Window({
