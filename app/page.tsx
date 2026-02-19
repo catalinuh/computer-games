@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
@@ -19,10 +19,33 @@ export default function Home() {
   const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
     ''
   )
+  const [activeWindow, setActiveWindow] = useState<
+    '' | 'Calculator' | 'About Me'
+  >('')
+
+  const icons: ReactNode[] = openWindows.map((window) => (
+    <Image
+      key={window}
+      src={`/assets/icons/${imageMap[window]}-sm.png`}
+      alt={imageMap[window]}
+      width={16}
+      height={16}
+      unoptimized
+      draggable={false}
+    />
+  ))
+
+  const handleDesktopClick = (e: MouseEvent) => {
+    console.log('click to desktop')
+    // setActiveIcon('')
+    setActiveWindow('')
+    if ((e.target as HTMLDivElement).className === 'desktop-icon')
+      console.log('clicked desktop icon')
+  }
 
   return (
     <div className="desktop">
-      <div className="desktop__icons">
+      <div className="desktop__icons" onClick={() => handleDesktopClick}>
         <DesktopIcon
           setOpenWindows={setOpenWindows}
           icon={
@@ -74,13 +97,20 @@ export default function Home() {
             />
           }
           className={window === 'About Me' ? 'text-file' : ''}
+          activeWindow={activeWindow}
+          setActiveWindow={setActiveWindow}
         >
           {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
         </Window>
       ))}
 
-      <Taskbar />
+      <Taskbar
+        icons={icons}
+        openWindows={openWindows}
+        activeWindow={activeWindow}
+        setActiveWindow={setActiveWindow}
+      />
     </div>
   )
 }
