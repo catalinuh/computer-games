@@ -15,11 +15,24 @@
   justify-content: space-between;
 
   button {
-    min-height: fit-content;
+    height: 100%;
+    font-weight: 700;
+    font-size: 12px;
   }
 
   button.active {
     // TODO: Grab style from 98.css/style.css for button:focus and button:active?
+  }
+
+  &__start-btn-and-windows {
+    display: flex;
+    gap: 4px;
+
+    &--window-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &__time {

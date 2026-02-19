@@ -20,4 +20,12 @@
     align-items: flex-end;
     font-weight: 400;
   }
+
+  &.active {
+    z-index: 100;
+  }
+
+  .window-body.text-file {
+    margin: 0;
+  }
 }

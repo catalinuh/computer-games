@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
@@ -19,20 +19,43 @@ export default function Home() {
   const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
     ''
   )
+  const [activeWindow, setActiveWindow] = useState<
+    '' | 'Calculator' | 'About Me'
+  >('')
+
+  const icons: ReactNode[] = openWindows.map((window) => (
+    <Image
+      key={window}
+      alt={imageMap[window]}
+      draggable={false}
+      height={16}
+      src={`/assets/icons/${imageMap[window]}-sm.png`}
+      unoptimized
+      width={16}
+    />
+  ))
+
+  const handleDesktopClick = (e: MouseEvent) => {
+    console.log('click to desktop')
+    // setActiveIcon('')
+    setActiveWindow('')
+    if ((e.target as HTMLDivElement).className === 'desktop-icon')
+      console.log('clicked desktop icon')
+  }
 
   return (
     <div className="desktop">
-      <div className="desktop__icons">
+      <div className="desktop__icons" onClick={() => handleDesktopClick}>
         <DesktopIcon
-          setOpenWindow={setOpenWindows}
+          setOpenWindows={setOpenWindows}
           icon={
             <Image
-              src="/assets/icons/calculator.png"
-              alt="+/-"
-              width={64}
-              height={64}
-              unoptimized
+              alt="calculator"
               draggable={false}
+              height={64}
+              src="/assets/icons/calculator.png"
+              unoptimized
+              width={64}
             />
           }
           isSelected={activeIcon === 'Calculator'}
@@ -44,12 +67,12 @@ export default function Home() {
           setOpenWindows={setOpenWindows}
           icon={
             <Image
-              src="/assets/icons/notepad.png"
-              alt="+/-"
-              width={64}
-              height={64}
-              unoptimized
+              alt="notepad"
               draggable={false}
+              height={64}
+              src="/assets/icons/notepad.png"
+              unoptimized
+              width={64}
             />
           }
           isSelected={activeIcon === 'About Me'}
@@ -58,29 +81,36 @@ export default function Home() {
         />
       </div>
 
-      {openWindows.length ? (
+      {openWindows?.map((window) => (
         <Window
-          setOpenWindow={setOpenWindows}
-          title={openWindows}
+          key={window}
+          activeWindow={activeWindow}
+          className={window === 'About Me' ? 'text-file' : ''}
           icon={
             <Image
-              src={`/assets/icons/${imageMap[openWindows]}-sm.png`}
-              alt="+/-"
-              width={16}
-              height={16}
-              unoptimized
+              alt={window}
               draggable={false}
+              height={16}
+              src={`/assets/icons/${imageMap[window]}-sm.png`}
+              unoptimized
+              width={16}
             />
           }
-          className={openWindows === 'About Me' ? 'text-file' : ''}
+          setActiveWindow={setActiveWindow}
+          setOpenWindows={setOpenWindows}
+          title={window}
         >
-          {openWindows === 'Calculator' ? <> 9 + 10 = 21</> : <></>}
-          {openWindows === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
+          {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
+          {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
         </Window>
-      ) : (
-        <></>
-      )}
-      <Taskbar />
+      ))}
+
+      <Taskbar
+        activeWindow={activeWindow}
+        icons={icons}
+        openWindows={openWindows}
+        setActiveWindow={setActiveWindow}
+      />
     </div>
   )
 }

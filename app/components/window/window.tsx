@@ -1,34 +1,67 @@
-import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Draggable from 'react-draggable'
 
+import useOutsideClick from '../../hooks/useOutsideClick'
 import './window.scss'
 import '98.css'
 
 interface WindowProps {
+  activeWindow: '' | 'Calculator' | 'About Me'
   children?: ReactNode
-  icon: ReactNode
-  setOpenWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
-  title: string
-  // TODO: see if i still need className when finished with text file styling
   className?: string
+  icon: ReactNode
+  setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
+  setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
+  title: '' | 'Calculator' | 'About Me'
 }
 
 export default function Window({
-  icon,
-  setOpenWindow,
-  title,
+  activeWindow,
   children,
   className,
+  icon,
+  setActiveWindow,
+  setOpenWindows,
+  title,
 }: WindowProps) {
   const nodeRef = useRef(null)
+  const [isClickingText, setIsClickingText] = useState(false)
 
   const handleClose = () => {
-    setOpenWindow('')
+    setOpenWindows((prevOpenWindows) =>
+      prevOpenWindows.filter((window) => window !== title)
+    )
   }
+
+  const handleClickDown = (e: MouseEvent) => {
+    // bring the window to the front when clicked
+    setActiveWindow(title)
+    if ((e.target as HTMLElement).className === 'text-file')
+      setIsClickingText(true)
+    else setIsClickingText(false)
+  }
+
+  const handleOutsideClick = () => {
+    // console.log('clicking outside window', title)
+
+    setActiveWindow('')
+  }
+
+  // TODO: fix clicking outside the window
+  const outsideRef = useOutsideClick(handleOutsideClick)
+
   return (
-    <Draggable nodeRef={nodeRef}>
-      <div className="window window-popup" ref={nodeRef}>
-        <div className="title-bar">
+    <Draggable
+      nodeRef={nodeRef}
+      bounds={'parent'}
+      disabled={isClickingText}
+      onMouseDown={handleClickDown}
+    >
+      <div
+        className={`window window-popup${activeWindow === title ? ' active' : ''}`}
+        ref={nodeRef}
+      >
+        <div className="title-bar" ref={outsideRef}>
           <div className="title-bar-text">
             {icon}
             {title}
