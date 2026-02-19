@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-export type WindowType = '' | 'Calculator' | 'About Me'
+export type WindowType = '' | 'About Me' | 'Calculator'
 
 const imageMap: {
   [K in WindowType]: string
