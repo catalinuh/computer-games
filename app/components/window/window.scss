@@ -24,4 +24,8 @@
   &.active {
     z-index: 100;
   }
+
+  .window-body.text-file {
+    margin: 0;
+  }
 }

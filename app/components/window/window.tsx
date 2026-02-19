@@ -10,8 +10,9 @@ interface WindowProps {
   icon: ReactNode
   setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
   title: '' | 'Calculator' | 'About Me'
-  // TODO: see if i still need className when finished with text file styling
   className?: string
+  activeWindow: '' | 'Calculator' | 'About Me'
+  setActiveWindow: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
 }
 
 export default function Window({
@@ -20,9 +21,10 @@ export default function Window({
   title,
   children,
   className,
+  activeWindow,
+  setActiveWindow,
 }: WindowProps) {
   const nodeRef = useRef(null)
-  const [isWindowActive, setIsWindowActive] = useState(false)
   const [isClickingText, setIsClickingText] = useState(false)
 
   const handleClose = () => {
@@ -33,16 +35,16 @@ export default function Window({
 
   const handleClickDown = (e: MouseEvent) => {
     // bring the window to the front when clicked
-    setIsWindowActive(true)
+    setActiveWindow(title)
     if ((e.target as HTMLElement).className === 'text-file')
       setIsClickingText(true)
     else setIsClickingText(false)
   }
 
   const handleOutsideClick = () => {
-    console.log('clicking outside window', title)
+    // console.log('clicking outside window', title)
 
-    setIsWindowActive(false)
+    setActiveWindow('')
   }
 
   // TODO: fix clicking outside the window
@@ -56,10 +58,10 @@ export default function Window({
       onMouseDown={handleClickDown}
     >
       <div
-        className={`window window-popup${isWindowActive ? ' active' : ''}`}
+        className={`window window-popup${activeWindow === title ? ' active' : ''}`}
         ref={nodeRef}
       >
-        <div className="title-bar">
+        <div className="title-bar" ref={outsideRef}>
           <div className="title-bar-text">
             {icon}
             {title}
