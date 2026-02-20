@@ -12,6 +12,16 @@
   .title-bar {
     padding-top: 2px;
     padding-bottom: 2px;
+    // TODO: Fix this
+    filter: grayscale(100%);
+    color: --GradientInactiveTitle;
+    // .os-window:not(.active) .window-titlebar {
+    // background: darkgray;
+    // background: linear-gradient(to right, rgb(128, 128, 128) 0%, rgb(181, 181, 181) 100%);
+    // background: linear-gradient(to right, var(--InactiveTitle) 0%, var(--GradientInactiveTitle) 100%);
+    // color: rgb(192, 192, 192);
+    // color: var(--InactiveTitleText);
+    // }
   }
 
   .title-bar-text {
@@ -23,6 +33,10 @@
 
   &.active {
     z-index: 100;
+
+    .title-bar {
+      filter: none;
+    }
   }
 
   .window-body.text-file {
