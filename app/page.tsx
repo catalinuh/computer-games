@@ -33,17 +33,21 @@ export default function Home() {
     />
   ))
 
-  const handleDesktopClick = (e: MouseEvent) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDesktopClick = (e: any) => {
+    // TODO: Fix this
     console.log('click to desktop')
     // setActiveIcon('')
     setActiveWindow('')
+    console.log((e.target as HTMLDivElement).className)
     if ((e.target as HTMLDivElement).className === 'desktop-icon')
       console.log('clicked desktop icon')
   }
 
   return (
     <div className="desktop">
-      <div className="desktop__icons" onClick={() => handleDesktopClick}>
+      {/* TODO: Fix this */}
+      <div className="desktop__icons" onClick={handleDesktopClick}>
         <DesktopIcon
           setOpenWindows={setOpenWindows}
           icon={
@@ -59,6 +63,7 @@ export default function Home() {
           isSelected={activeIcon === 'Calculator'}
           setActiveIcon={setActiveIcon}
           name={'Calculator'}
+          setActiveWindow={setActiveWindow}
         />
 
         <DesktopIcon
@@ -76,6 +81,7 @@ export default function Home() {
           isSelected={activeIcon === 'About Me'}
           setActiveIcon={setActiveIcon}
           name={'About Me'}
+          setActiveWindow={setActiveWindow}
         />
       </div>
 

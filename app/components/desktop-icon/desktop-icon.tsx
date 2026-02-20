@@ -12,6 +12,7 @@ interface DesktopIconProps {
   name: WindowType
   setActiveIcon: Dispatch<SetStateAction<WindowType>>
   setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
+  setActiveWindow: Dispatch<SetStateAction<WindowType>>
 }
 
 export default function DesktopIcon({
@@ -20,12 +21,14 @@ export default function DesktopIcon({
   name,
   setActiveIcon,
   setOpenWindows,
+  setActiveWindow,
 }: DesktopIconProps) {
   const nodeRef = useRef(null)
   const className = isSelected ? 'active' : ''
 
   const handleDoubleClick = () => {
     setActiveIcon('')
+    setActiveWindow(name)
     setOpenWindows((prevOpenWindows) => {
       const windowAlreadyOpen = prevOpenWindows.includes(name)
       return windowAlreadyOpen ? prevOpenWindows : [...prevOpenWindows, name]
