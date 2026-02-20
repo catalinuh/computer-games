@@ -21,3 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Some designs are from [https://98.js.org/](https://98.js.org/)
 
 - Some icons are from [https://win98icons.alexmeub.com/](https://win98icons.alexmeub.com/)
+
+- Fixedsys Excelsior font from [https://github.com/kika/fixedsys](https://github.com/kika/fixedsys)
+
+- W95FA font from [https://www.dafont.com/w95fa.font](https://www.dafont.com/w95fa.font)
