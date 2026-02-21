@@ -50,7 +50,6 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <DesktopIcon
-          setOpenWindows={setOpenWindows}
           icon={
             <Image
               alt="calculator"
@@ -62,13 +61,14 @@ export default function Home() {
             />
           }
           isSelected={activeIcon === 'Calculator'}
-          setActiveIcon={setActiveIcon}
           name={'Calculator'}
+          setActiveIcon={setActiveIcon}
           setActiveWindow={setActiveWindow}
+          setMinimizedWindows={setMinimizedWindows}
+          setOpenWindows={setOpenWindows}
         />
 
         <DesktopIcon
-          setOpenWindows={setOpenWindows}
           icon={
             <Image
               alt="notepad"
@@ -80,9 +80,11 @@ export default function Home() {
             />
           }
           isSelected={activeIcon === 'About Me'}
-          setActiveIcon={setActiveIcon}
           name={'About Me'}
+          setActiveIcon={setActiveIcon}
           setActiveWindow={setActiveWindow}
+          setMinimizedWindows={setMinimizedWindows}
+          setOpenWindows={setOpenWindows}
         />
       </div>
 
