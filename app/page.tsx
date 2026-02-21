@@ -35,13 +35,11 @@ export default function Home() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDesktopClick = (e: any) => {
-    // TODO: Fix this
-    console.log('click to desktop')
-    // setActiveIcon('')
+    // TODO: Fix this any ^
     setActiveWindow('')
-    console.log((e.target as HTMLDivElement).className)
-    if ((e.target as HTMLDivElement).className === 'desktop-icon')
-      console.log('clicked desktop icon')
+    if ((e.target as HTMLDivElement).className === 'desktop__icons') {
+      setActiveIcon('')
+    }
   }
 
   return (

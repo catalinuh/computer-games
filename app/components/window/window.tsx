@@ -1,7 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Draggable from 'react-draggable'
 
-import useOutsideClick from '../../hooks/useOutsideClick'
 import { WindowType } from '../../page'
 import './window.scss'
 import '98.css'
@@ -37,19 +36,11 @@ export default function Window({
   const handleClickDown = (e: MouseEvent) => {
     // bring the window to the front when clicked
     setActiveWindow(title)
+    // TODO: Change this to if mouse is in text area of window, don't drag
     if ((e.target as HTMLElement).className === 'text-file')
       setIsClickingText(true)
     else setIsClickingText(false)
   }
-
-  const handleOutsideClick = () => {
-    // console.log('clicking outside window', title)
-
-    setActiveWindow('')
-  }
-
-  // TODO: fix clicking outside the window
-  const outsideRef = useOutsideClick(handleOutsideClick)
 
   return (
     <Draggable
@@ -62,7 +53,9 @@ export default function Window({
         className={`window window-popup${activeWindow === title ? ' active' : ''}`}
         ref={nodeRef}
       >
-        <div className="title-bar" ref={outsideRef}>
+        <div
+          className={`title-bar ${activeWindow !== title ? 'inactive' : ''}`}
+        >
           <div className="title-bar-text">
             {icon}
             {title}
