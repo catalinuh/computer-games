@@ -5,7 +5,11 @@ import Image from 'next/image'
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-const imageMap = {
+export type WindowType = '' | 'About Me' | 'Calculator'
+
+const imageMap: {
+  [K in WindowType]: string
+} = {
   Calculator: 'calculator',
   'About Me': 'notepad',
   '': '',
@@ -13,15 +17,13 @@ const imageMap = {
 
 // desktop
 export default function Home() {
-  const [openWindows, setOpenWindows] = useState<
-    ('' | 'Calculator' | 'About Me')[]
-  >([])
-  const [activeIcon, setActiveIcon] = useState<'' | 'Calculator' | 'About Me'>(
-    ''
+  const [openWindows, setOpenWindows] = useState<WindowType[]>([])
+  const [activeIcon, setActiveIcon] = useState<WindowType>('')
+  const [activeWindow, setActiveWindow] = useState<WindowType>('')
+  const [minimizedWindows, setMinimizedWindows] = useState<WindowType[]>([])
+  const filteredOpenWindows = openWindows.filter(
+    (window) => !minimizedWindows.includes(window)
   )
-  const [activeWindow, setActiveWindow] = useState<
-    '' | 'Calculator' | 'About Me'
-  >('')
 
   const icons: ReactNode[] = openWindows.map((window) => (
     <Image
@@ -35,17 +37,18 @@ export default function Home() {
     />
   ))
 
-  const handleDesktopClick = (e: MouseEvent) => {
-    console.log('click to desktop')
-    // setActiveIcon('')
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDesktopClick = (e: any) => {
+    // TODO: Fix this any ^
     setActiveWindow('')
-    if ((e.target as HTMLDivElement).className === 'desktop-icon')
-      console.log('clicked desktop icon')
+    if ((e.target as HTMLDivElement).className === 'desktop__icons') {
+      setActiveIcon('')
+    }
   }
 
   return (
     <div className="desktop">
-      <div className="desktop__icons" onClick={() => handleDesktopClick}>
+      <div className="desktop__icons" onClick={handleDesktopClick}>
         <DesktopIcon
           setOpenWindows={setOpenWindows}
           icon={
@@ -61,6 +64,7 @@ export default function Home() {
           isSelected={activeIcon === 'Calculator'}
           setActiveIcon={setActiveIcon}
           name={'Calculator'}
+          setActiveWindow={setActiveWindow}
         />
 
         <DesktopIcon
@@ -78,10 +82,11 @@ export default function Home() {
           isSelected={activeIcon === 'About Me'}
           setActiveIcon={setActiveIcon}
           name={'About Me'}
+          setActiveWindow={setActiveWindow}
         />
       </div>
 
-      {openWindows?.map((window) => (
+      {filteredOpenWindows?.map((window) => (
         <Window
           key={window}
           activeWindow={activeWindow}
@@ -96,7 +101,9 @@ export default function Home() {
               width={16}
             />
           }
+          setActiveIcon={setActiveIcon}
           setActiveWindow={setActiveWindow}
+          setMinimizedWindows={setMinimizedWindows}
           setOpenWindows={setOpenWindows}
           title={window}
         >
@@ -110,6 +117,7 @@ export default function Home() {
         icons={icons}
         openWindows={openWindows}
         setActiveWindow={setActiveWindow}
+        setMinimizedWindows={setMinimizedWindows}
       />
     </div>
   )

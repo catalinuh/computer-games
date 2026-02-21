@@ -3,14 +3,16 @@ import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
 import Draggable from 'react-draggable'
 
 import useOutsideClick from '../../hooks/useOutsideClick'
+import { WindowType } from '../../page'
 import './desktop-icon.scss'
 
 interface DesktopIconProps {
   icon: ReactNode
   isSelected: boolean
-  name: '' | 'Calculator' | 'About Me'
-  setActiveIcon: Dispatch<SetStateAction<'' | 'Calculator' | 'About Me'>>
-  setOpenWindows: Dispatch<SetStateAction<('' | 'Calculator' | 'About Me')[]>>
+  name: WindowType
+  setActiveIcon: Dispatch<SetStateAction<WindowType>>
+  setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
+  setActiveWindow: Dispatch<SetStateAction<WindowType>>
 }
 
 export default function DesktopIcon({
@@ -19,12 +21,14 @@ export default function DesktopIcon({
   name,
   setActiveIcon,
   setOpenWindows,
+  setActiveWindow,
 }: DesktopIconProps) {
   const nodeRef = useRef(null)
   const className = isSelected ? 'active' : ''
 
   const handleDoubleClick = () => {
     setActiveIcon('')
+    setActiveWindow(name)
     setOpenWindows((prevOpenWindows) => {
       const windowAlreadyOpen = prevOpenWindows.includes(name)
       return windowAlreadyOpen ? prevOpenWindows : [...prevOpenWindows, name]

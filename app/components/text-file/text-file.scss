@@ -1,6 +1,19 @@
+@font-face {
+  font-family: 'Fixedsys Excelsior';
+  src:
+    url('../../../public/assets/fonts/fixedsys.ttf') format('truetype'),
+    url('../../../public/assets/fonts/fixedsys-alt.ttf') format('truetype'); // optional fallback
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 div.text-file {
+  font-family: 'Fixedsys Excelsior', 'FixedSys', monospace;
+  font-size: 16px;
   background-color: #ffffff;
   white-space: pre-wrap;
   margin: 0;
+  padding: 2px;
   user-select: text;
 }

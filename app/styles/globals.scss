@@ -27,18 +27,20 @@ $desktop-padding: 33px;
 
 body {
   width: 100%;
-  height: calc(100vh - 104px);
+  height: 100vh;
   margin: 0;
   padding: 0;
   background: #008282;
 
   div.desktop {
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     &__icons {
+      box-sizing: border-box;
       padding: $desktop-padding;
-      height: 100%;
+      padding-bottom: 0;
+      height: calc(100% - 30px); // subtract taskbar height
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
