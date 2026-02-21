@@ -98,6 +98,7 @@ export default function Home() {
               width={16}
             />
           }
+          setActiveIcon={setActiveIcon}
           setActiveWindow={setActiveWindow}
           setOpenWindows={setOpenWindows}
           title={window}

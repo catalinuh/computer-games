@@ -27,6 +27,11 @@ export default function Taskbar({
     setMenuIsOpen((prevIsOpen) => !prevIsOpen)
   }
 
+  const handleToggleWindow = (window: WindowType) => {
+    if (activeWindow === window) setActiveWindow('')
+    else setActiveWindow(window)
+  }
+
   return (
     <div className="taskbar">
       {menuIsOpen ? <StartMenu /> : null}
@@ -39,6 +44,7 @@ export default function Taskbar({
             <button
               key={window}
               className="taskbar__start-btn-and-windows--window-btn"
+              onClick={() => handleToggleWindow(window)}
             >
               <span>{icons[index]}</span>
               <span>{window}</span>

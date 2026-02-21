@@ -10,6 +10,7 @@ interface WindowProps {
   children?: ReactNode
   className?: string
   icon: ReactNode
+  setActiveIcon: Dispatch<SetStateAction<WindowType>>
   setActiveWindow: Dispatch<SetStateAction<WindowType>>
   setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
   title: WindowType
@@ -20,6 +21,7 @@ export default function Window({
   children,
   className,
   icon,
+  setActiveIcon,
   setActiveWindow,
   setOpenWindows,
   title,
@@ -36,6 +38,7 @@ export default function Window({
   const handleClickDown = (e: MouseEvent) => {
     // bring the window to the front when clicked
     setActiveWindow(title)
+    setActiveIcon('')
     // TODO: Change this to if mouse is in text area of window, don't drag
     if ((e.target as HTMLElement).className === 'text-file')
       setIsClickingText(true)
