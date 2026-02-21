@@ -11,8 +11,9 @@ interface DesktopIconProps {
   isSelected: boolean
   name: WindowType
   setActiveIcon: Dispatch<SetStateAction<WindowType>>
-  setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
   setActiveWindow: Dispatch<SetStateAction<WindowType>>
+  setMinimizedWindows: Dispatch<SetStateAction<WindowType[]>>
+  setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
 }
 
 export default function DesktopIcon({
@@ -20,8 +21,9 @@ export default function DesktopIcon({
   isSelected,
   name,
   setActiveIcon,
-  setOpenWindows,
   setActiveWindow,
+  setMinimizedWindows,
+  setOpenWindows,
 }: DesktopIconProps) {
   const nodeRef = useRef(null)
   const className = isSelected ? 'active' : ''
@@ -29,6 +31,9 @@ export default function DesktopIcon({
   const handleDoubleClick = () => {
     setActiveIcon('')
     setActiveWindow(name)
+    setMinimizedWindows((prevMinimizedWins) =>
+      prevMinimizedWins.filter((window) => window !== name)
+    )
     setOpenWindows((prevOpenWindows) => {
       const windowAlreadyOpen = prevOpenWindows.includes(name)
       return windowAlreadyOpen ? prevOpenWindows : [...prevOpenWindows, name]
