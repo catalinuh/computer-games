@@ -20,6 +20,10 @@ export default function Home() {
   const [openWindows, setOpenWindows] = useState<WindowType[]>([])
   const [activeIcon, setActiveIcon] = useState<WindowType>('')
   const [activeWindow, setActiveWindow] = useState<WindowType>('')
+  const [minimizedWindows, setMinimizedWindows] = useState<WindowType[]>([])
+  const filteredOpenWindows = openWindows.filter(
+    (window) => !minimizedWindows.includes(window)
+  )
 
   const icons: ReactNode[] = openWindows.map((window) => (
     <Image
@@ -44,7 +48,6 @@ export default function Home() {
 
   return (
     <div className="desktop">
-      {/* TODO: Fix this */}
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <DesktopIcon
           setOpenWindows={setOpenWindows}
@@ -83,7 +86,7 @@ export default function Home() {
         />
       </div>
 
-      {openWindows?.map((window) => (
+      {filteredOpenWindows?.map((window) => (
         <Window
           key={window}
           activeWindow={activeWindow}
@@ -100,6 +103,7 @@ export default function Home() {
           }
           setActiveIcon={setActiveIcon}
           setActiveWindow={setActiveWindow}
+          setMinimizedWindows={setMinimizedWindows}
           setOpenWindows={setOpenWindows}
           title={window}
         >
@@ -113,6 +117,7 @@ export default function Home() {
         icons={icons}
         openWindows={openWindows}
         setActiveWindow={setActiveWindow}
+        setMinimizedWindows={setMinimizedWindows}
       />
     </div>
   )

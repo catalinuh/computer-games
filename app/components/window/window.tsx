@@ -12,6 +12,7 @@ interface WindowProps {
   icon: ReactNode
   setActiveIcon: Dispatch<SetStateAction<WindowType>>
   setActiveWindow: Dispatch<SetStateAction<WindowType>>
+  setMinimizedWindows: Dispatch<SetStateAction<WindowType[]>>
   setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
   title: WindowType
 }
@@ -23,6 +24,7 @@ export default function Window({
   icon,
   setActiveIcon,
   setActiveWindow,
+  setMinimizedWindows,
   setOpenWindows,
   title,
 }: WindowProps) {
@@ -64,7 +66,15 @@ export default function Window({
             {title}
           </div>
           <div className="title-bar-controls">
-            <button aria-label="Minimize" />
+            <button
+              aria-label="Minimize"
+              onClick={() =>
+                setMinimizedWindows((prevMinimizedWins) => [
+                  ...prevMinimizedWins,
+                  title,
+                ])
+              }
+            />
             <button aria-label="Maximize" />
             <button aria-label="Close" onClick={handleClose} />
           </div>

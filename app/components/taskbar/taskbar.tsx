@@ -11,6 +11,7 @@ interface TaskbarProps {
   icons: React.ReactNode[]
   openWindows: WindowType[]
   setActiveWindow: Dispatch<SetStateAction<WindowType>>
+  setMinimizedWindows: Dispatch<SetStateAction<WindowType[]>>
 }
 
 export default function Taskbar({
@@ -18,6 +19,7 @@ export default function Taskbar({
   icons,
   openWindows,
   setActiveWindow,
+  setMinimizedWindows,
 }: TaskbarProps) {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const className = menuIsOpen ? 'active' : ''
@@ -28,8 +30,18 @@ export default function Taskbar({
   }
 
   const handleToggleWindow = (window: WindowType) => {
-    if (activeWindow === window) setActiveWindow('')
-    else setActiveWindow(window)
+    if (activeWindow === window) {
+      setActiveWindow('')
+      setMinimizedWindows((prevMinimizedWindows) => [
+        ...prevMinimizedWindows,
+        window,
+      ])
+    } else {
+      setActiveWindow(window)
+      setMinimizedWindows((prevMinimizedWindows) =>
+        prevMinimizedWindows.filter((w) => w !== window)
+      )
+    }
   }
 
   return (
