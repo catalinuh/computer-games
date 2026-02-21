@@ -5,10 +5,6 @@ const nextConfig: NextConfig = {
   sassOptions: {
     implementation: 'sass-embedded',
   },
-  turbopack: (config) => {
-    config.cache.compression = 'brotli'
-    return config
-  },
 }
 
 export default nextConfig
