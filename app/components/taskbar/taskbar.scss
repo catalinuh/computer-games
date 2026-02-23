@@ -27,22 +27,30 @@
     padding: 2px 4px;
   }
 
-  // TODO: Fix active state for buttons
-  button.active,
-  button:not(:disabled):not(.taskbar__start-btn):active {
-    font-weight: 700;
-  }
-
   &__start-btn-and-windows {
     display: flex;
     gap: 4px;
+  }
+
+  &__start-btn {
+    &.active {
+      // TODO: Figure out why font-weight: 700 isn't working even with !important
+      // TODO: Make button look like it's pressed in when active
+    }
+  }
+
+  &__window-btn {
+    &.active {
+      // TODO: Figure out why font-weight: 700 isn't working even with !important
+      // TODO: Make button look like it's pressed in when active
+      font-weight: 700 !important;
+    }
   }
 
   &__time {
     box-shadow:
       inset -1px -1px #f0f0f0,
       inset 1px 1px #7e7e7e;
-    // margin: 1px;
     padding: 5px;
     display: flex;
     // TODO: If adding more icons, change to justify-content: space-between

@@ -59,7 +59,7 @@ export default function Taskbar({
             <button
               key={window}
               onClick={() => handleToggleWindow(window)}
-              className={`taskbar__window-btn ${className}`}
+              className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
             >
               <span>{icons[index]}</span>
               <span>{window}</span>
