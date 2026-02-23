@@ -1,6 +1,7 @@
 @use '../../styles/globals.scss' as *;
 
 .taskbar {
+  z-index: 5000;
   box-sizing: border-box;
   width: 100vw;
   height: fit-content;
@@ -15,24 +16,26 @@
   justify-content: space-between;
 
   button {
-    height: 100%;
+    min-width: 150px;
+    height: fit-content;
     font-weight: 700;
     font-size: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
   }
 
-  button.active {
-    // TODO: Grab style from 98.css/style.css for button:focus and button:active?
+  // TODO: Fix active state for buttons
+  button.active,
+  button:not(:disabled):not(.taskbar__start-btn):active {
+    font-weight: 700;
   }
 
   &__start-btn-and-windows {
     display: flex;
     gap: 4px;
-
-    &--window-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   }
 
   &__time {

@@ -48,15 +48,18 @@ export default function Taskbar({
     <div className="taskbar">
       {menuIsOpen ? <StartMenu /> : null}
       <div className="taskbar__start-btn-and-windows">
-        <button onClick={handleToggleStartMenu} className={className}>
+        <button
+          onClick={handleToggleStartMenu}
+          className={`taskbar__start-btn ${className}`}
+        >
           𝓒𝓜 Catalina McQuade
         </button>
         {openWindows.map(
           (window: '' | 'Calculator' | 'About Me', index: number) => (
             <button
               key={window}
-              className="taskbar__start-btn-and-windows--window-btn"
               onClick={() => handleToggleWindow(window)}
+              className={`taskbar__window-btn ${className}`}
             >
               <span>{icons[index]}</span>
               <span>{window}</span>
