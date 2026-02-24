@@ -54,18 +54,16 @@ export default function Taskbar({
         >
           𝓒𝓜 Catalina McQuade
         </button>
-        {openWindows.map(
-          (window: '' | 'Calculator' | 'About Me', index: number) => (
-            <button
-              key={window}
-              onClick={() => handleToggleWindow(window)}
-              className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
-            >
-              <span>{icons[index]}</span>
-              <span>{window}</span>
-            </button>
-          )
-        )}
+        {openWindows.map((window: WindowType, index: number) => (
+          <button
+            key={window}
+            onClick={() => handleToggleWindow(window)}
+            className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
+          >
+            <span>{icons[index]}</span>
+            <span>{window}</span>
+          </button>
+        ))}
       </div>
       <div className="taskbar__time">
         <span>{currentTime.format('hh:mm A')}</span>
