@@ -47,6 +47,11 @@ export default function Window({
     else setIsClickingText(false)
   }
 
+  const handleMinimize = () => {
+    setActiveWindow('')
+    setMinimizedWindows((prevMinimizedWins) => [...prevMinimizedWins, title])
+  }
+
   return (
     <Draggable
       nodeRef={nodeRef}
@@ -66,15 +71,7 @@ export default function Window({
             {title}
           </div>
           <div className="title-bar-controls">
-            <button
-              aria-label="Minimize"
-              onClick={() =>
-                setMinimizedWindows((prevMinimizedWins) => [
-                  ...prevMinimizedWins,
-                  title,
-                ])
-              }
-            />
+            <button aria-label="Minimize" onClick={handleMinimize} />
             <button aria-label="Maximize" />
             <button aria-label="Close" onClick={handleClose} />
           </div>
