@@ -49,6 +49,11 @@
   }
 
   &__window-btn {
+    span {
+      display: flex;
+      align-items: center;
+    }
+
     &:focus {
       outline: none;
     }
@@ -64,7 +69,6 @@
       image-rendering: pixelated;
       box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
     }
-
     &--label.active {
       color: transparent;
       font-weight: bold !important;
