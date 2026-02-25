@@ -18,7 +18,8 @@
   bottom: 0;
   left: 0;
   background-color: #c3c3c3;
-  padding: 2px;
+  // TODO: Figure out if I want this to be 2px or 3px
+  padding: 3px;
   border-top: $border-1;
   border-left: $border-1;
   display: flex;
@@ -74,6 +75,11 @@
       font-weight: bold !important;
       text-shadow: 1px 1px var(--text-color);
     }
+  }
+
+  &__divider {
+    border-left: 1px solid var(--button-shadow);
+    border-right: 1px solid var(--button-highlight);
   }
 
   &__time {

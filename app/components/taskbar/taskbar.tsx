@@ -54,6 +54,7 @@ export default function Taskbar({
         >
           𝓒𝓜 Catalina McQuade
         </button>
+        <div className="taskbar__divider"></div>
         {openWindows.map((window: WindowType, index: number) => (
           <button
             key={window}
