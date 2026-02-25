@@ -52,16 +52,23 @@
     &:focus {
       outline: none;
     }
+    &:active {
+      span {
+        color: transparent !important;
+        font-weight: bold !important;
+      }
+    }
 
     &.active {
       background: url('../../../public/assets/images/checker.png') repeat !important;
       image-rendering: pixelated;
       box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
-      text-shadow: 1px 1px var(--text-color);
     }
 
     &--label.active {
+      color: transparent;
       font-weight: bold !important;
+      text-shadow: 1px 1px var(--text-color);
     }
   }
 
