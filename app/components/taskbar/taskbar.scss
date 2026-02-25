@@ -1,6 +1,15 @@
 @use '../../styles/globals.scss' as *;
 
 .taskbar {
+  --window-frame: #0a0a0a;
+  --button-highlight: #ffffff;
+  --button-face: #dfdfdf;
+  --button-shadow: #808080;
+  --text-color: #222222;
+  --border-sunken-outer:
+    inset -1px -1px var(--button-highlight), inset 1px 1px var(--window-frame);
+  --border-sunken-inner:
+    inset -2px -2px var(--button-face), inset 2px 2px var(--button-shadow);
   z-index: 5000;
   box-sizing: border-box;
   width: 100vw;
@@ -14,12 +23,6 @@
   border-left: $border-1;
   display: flex;
   justify-content: space-between;
-
-  button:focus,
-  input[type='reset']:focus,
-  input[type='submit']:focus {
-    outline: none;
-  }
 
   button {
     min-width: 150px;
@@ -40,15 +43,21 @@
 
   &__start-btn {
     &.active {
-      // TODO: Figure out why font-weight: 700 isn't working even with !important
-      // TODO: Make button look like it's pressed in when active
+      box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+      text-shadow: 1px 1px var(--text-color);
     }
   }
 
   &__window-btn {
+    &:focus {
+      outline: none;
+    }
+
     &.active {
       background: url('../../../public/assets/images/checker.png') repeat !important;
       image-rendering: pixelated;
+      box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+      text-shadow: 1px 1px var(--text-color);
     }
 
     &--label.active {
