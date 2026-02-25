@@ -61,7 +61,11 @@ export default function Taskbar({
             className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
           >
             <span>{icons[index]}</span>
-            <span>{window}</span>
+            <span
+              className={`taskbar__window-btn--label ${activeWindow === window ? 'active' : ''}`}
+            >
+              {window}
+            </span>
           </button>
         ))}
       </div>
