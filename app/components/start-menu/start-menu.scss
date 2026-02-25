@@ -1,8 +1,5 @@
 @use '../../styles/globals.scss' as *;
 
 .start-menu {
-  position: absolute;
-  bottom: 24px;
-  left: 0;
-  z-index: 1000;
+  width: fit-content;
 }
