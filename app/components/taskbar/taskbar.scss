@@ -1,45 +1,96 @@
 @use '../../styles/globals.scss' as *;
 
 .taskbar {
-  box-sizing: border-box;
-  width: 100vw;
-  height: fit-content;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  --window-frame: #0a0a0a;
+  --button-highlight: #ffffff;
+  --button-face: #dfdfdf;
+  --button-shadow: #808080;
+  --text-color: #222222;
+  --border-sunken-outer:
+    inset -1px -1px var(--button-highlight), inset 1px 1px var(--window-frame);
+  --border-sunken-inner:
+    inset -2px -2px var(--button-face), inset 2px 2px var(--button-shadow);
   background-color: #c3c3c3;
-  padding: 2px;
+  // TODO: Figure out if I want this to be 2px or 3px
+  padding: 3px;
   border-top: $border-1;
   border-left: $border-1;
   display: flex;
   justify-content: space-between;
 
-  button {
-    height: 100%;
-    font-weight: 700;
-    font-size: 12px;
+  &__container {
+    z-index: 5000;
+    box-sizing: border-box;
+    width: 100vw;
+    height: fit-content;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
   }
 
-  button.active {
-    // TODO: Grab style from 98.css/style.css for button:focus and button:active?
+  button {
+    min-width: 150px;
+    height: fit-content;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
   }
 
   &__start-btn-and-windows {
     display: flex;
     gap: 4px;
+  }
 
-    &--window-btn {
+  &__start-btn {
+    &.active {
+      box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+      text-shadow: 1px 1px var(--text-color);
+    }
+  }
+
+  &__window-btn {
+    span {
       display: flex;
-      justify-content: center;
       align-items: center;
     }
+
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      span {
+        color: transparent !important;
+        font-weight: bold !important;
+      }
+    }
+
+    &.active {
+      background: url('../../../public/assets/images/checker.png') repeat !important;
+      image-rendering: pixelated;
+      box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    }
+    &--label.active {
+      color: transparent;
+      font-weight: bold !important;
+      text-shadow: 1px 1px var(--text-color);
+    }
+  }
+
+  &__divider {
+    border-left: 1px solid var(--button-shadow);
+    border-right: 1px solid var(--button-highlight);
   }
 
   &__time {
     box-shadow:
       inset -1px -1px #f0f0f0,
       inset 1px 1px #7e7e7e;
-    // margin: 1px;
     padding: 5px;
     display: flex;
     // TODO: If adding more icons, change to justify-content: space-between

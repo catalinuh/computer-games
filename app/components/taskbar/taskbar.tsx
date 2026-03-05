@@ -45,27 +45,35 @@ export default function Taskbar({
   }
 
   return (
-    <div className="taskbar">
+    <div className="taskbar__container">
       {menuIsOpen ? <StartMenu /> : null}
-      <div className="taskbar__start-btn-and-windows">
-        <button onClick={handleToggleStartMenu} className={className}>
-          𝓒𝓜 Catalina McQuade
-        </button>
-        {openWindows.map(
-          (window: '' | 'Calculator' | 'About Me', index: number) => (
+      <div className="taskbar">
+        <div className="taskbar__start-btn-and-windows">
+          <button
+            onClick={handleToggleStartMenu}
+            className={`taskbar__start-btn ${className}`}
+          >
+            𝓒𝓜 Catalina McQuade
+          </button>
+          <div className="taskbar__divider"></div>
+          {openWindows.map((window: WindowType, index: number) => (
             <button
               key={window}
-              className="taskbar__start-btn-and-windows--window-btn"
               onClick={() => handleToggleWindow(window)}
+              className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
             >
               <span>{icons[index]}</span>
-              <span>{window}</span>
+              <span
+                className={`taskbar__window-btn--label ${activeWindow === window ? 'active' : ''}`}
+              >
+                {window}
+              </span>
             </button>
-          )
-        )}
-      </div>
-      <div className="taskbar__time">
-        <span>{currentTime.format('hh:mm A')}</span>
+          ))}
+        </div>
+        <div className="taskbar__time">
+          <span>{currentTime.format('hh:mm A')}</span>
+        </div>
       </div>
     </div>
   )
