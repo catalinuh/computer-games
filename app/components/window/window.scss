@@ -21,6 +21,26 @@
     font-weight: 400;
   }
 
+  .menus {
+    background: #c0c0c0;
+    color: #000000;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .menu-button {
+    box-sizing: border-box;
+    height: 18px;
+    line-height: 1;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 2px 5px;
+    outline: 0;
+    background: rgb(192, 192, 192);
+    background: var(--Menu);
+  }
+
   &.active {
     z-index: 100;
   }
