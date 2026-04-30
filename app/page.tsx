@@ -5,13 +5,14 @@ import Image from 'next/image'
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-export type WindowType = '' | 'About Me' | 'Calculator'
+export type WindowType = '' | 'About Me' | 'Calculator' | 'Theme'
 
 const imageMap: {
   [K in WindowType]: string
 } = {
   Calculator: 'calculator',
   'About Me': 'notepad',
+  Theme: 'paint',
   '': '',
 }
 
@@ -49,38 +50,59 @@ export default function Home() {
   return (
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
-        <DesktopIcon
-          icon={
-            <Image
-              alt="calculator"
-              draggable={false}
-              height={64}
-              src="/assets/icons/calculator.png"
-              unoptimized
-              width={64}
-            />
-          }
-          isSelected={activeIcon === 'Calculator'}
-          name={'Calculator'}
-          setActiveIcon={setActiveIcon}
-          setActiveWindow={setActiveWindow}
-          setMinimizedWindows={setMinimizedWindows}
-          setOpenWindows={setOpenWindows}
-        />
+        <div>
+          <DesktopIcon
+            icon={
+              <Image
+                alt="calculator"
+                draggable={false}
+                height={64}
+                src="/assets/icons/calculator.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Calculator'}
+            name={'Calculator'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="notepad"
+                draggable={false}
+                height={64}
+                src="/assets/icons/notepad.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'About Me'}
+            name={'About Me'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+        </div>
 
         <DesktopIcon
           icon={
             <Image
-              alt="notepad"
+              alt="paint"
               draggable={false}
               height={64}
-              src="/assets/icons/notepad.png"
+              src="/assets/icons/paint.png"
               unoptimized
               width={64}
             />
           }
-          isSelected={activeIcon === 'About Me'}
-          name={'About Me'}
+          isSelected={activeIcon === 'Theme'}
+          name={'Theme'}
           setActiveIcon={setActiveIcon}
           setActiveWindow={setActiveWindow}
           setMinimizedWindows={setMinimizedWindows}
@@ -111,6 +133,7 @@ export default function Home() {
         >
           {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
+          {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
         </Window>
       ))}
 
