@@ -76,7 +76,8 @@ export default function Window({
           </div>
         </div>
 
-        {className === 'text-file' ? (
+        {/* TODO: show this for folder view as well */}
+        {className === 'text-file' || className === 'folder' ? (
           <div className="menus" role="menubar" style={{ touchAction: 'none' }}>
             <div className="menu-button file-menu-button" role="menuitem">
               <span>
@@ -103,8 +104,7 @@ export default function Window({
           <></>
         )}
 
-        {/* TODO: See if i need className here */}
-        <div className={`window-body ${className}`}>{children}</div>
+        <div className={`window-body ${className}-container`}>{children}</div>
       </div>
     </Draggable>
   )

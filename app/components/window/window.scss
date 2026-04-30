@@ -18,7 +18,7 @@ $window-bg: #c0c0c0;
 
   .title-bar-text {
     display: flex;
-    gap: 2px;
+    gap: 5px;
     align-items: flex-end;
     font-weight: 400;
   }
@@ -45,7 +45,7 @@ $window-bg: #c0c0c0;
     z-index: 100;
   }
 
-  .window-body.text-file {
+  .window-body.text-file-container {
     margin: 0;
   }
 }

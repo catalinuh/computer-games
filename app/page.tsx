@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-export type WindowType = '' | 'About Me' | 'Calculator' | 'Theme'
+export type WindowType = '' | 'About Me' | 'Calculator' | 'Theme' | 'Projects'
 
 const imageMap: {
   [K in WindowType]: string
@@ -13,6 +13,7 @@ const imageMap: {
   Calculator: 'calculator',
   'About Me': 'notepad',
   Theme: 'paint',
+  Projects: 'folder',
   '': '',
 }
 
@@ -88,6 +89,25 @@ export default function Home() {
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
           />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="folder"
+                draggable={false}
+                height={64}
+                src="/assets/icons/folder.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Projects'}
+            name={'Projects'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
         </div>
 
         <DesktopIcon
@@ -114,7 +134,14 @@ export default function Home() {
         <Window
           key={window}
           activeWindow={activeWindow}
-          className={window === 'About Me' ? 'text-file' : ''}
+          // TODO: change this to if window is text file or folder, add text-file or folder class respectively
+          className={
+            window === 'About Me'
+              ? 'text-file'
+              : window === 'Projects'
+                ? 'folder'
+                : ''
+          }
           icon={
             <Image
               alt={window}
@@ -134,6 +161,7 @@ export default function Home() {
           {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
+          {window === 'Projects' ? <>Project list coming soon!</> : <></>}
         </Window>
       ))}
 
