@@ -76,7 +76,6 @@ export default function Window({
           </div>
         </div>
 
-        {/* TODO: show this for folder view as well */}
         {className === 'text-file' || className === 'folder' ? (
           <div className="menus" role="menubar" style={{ touchAction: 'none' }}>
             <div className="menu-button file-menu-button" role="menuitem">
