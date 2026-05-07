@@ -4,7 +4,6 @@ import { StartMenu } from '../../components'
 import useMinuteTimer from '../../hooks/useMinuteTimer'
 import { WindowType } from '../../page'
 import './taskbar.scss'
-import '98.css'
 
 interface TaskbarProps {
   activeWindow: WindowType

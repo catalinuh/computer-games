@@ -1,5 +1,7 @@
 @use '../../styles/globals.scss' as *;
 
+$window-bg: #c0c0c0;
+
 .window-popup {
   box-sizing: border-box;
   width: fit-content;
@@ -16,16 +18,34 @@
 
   .title-bar-text {
     display: flex;
-    gap: 2px;
+    gap: 5px;
     align-items: flex-end;
     font-weight: 400;
+  }
+
+  .menus {
+    background: $window-bg;
+    color: #000000;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .menu-button {
+    box-sizing: border-box;
+    padding: 5px 7px;
+    background: $window-bg;
+  }
+
+  .menu-hotkey {
+    text-decoration: underline;
   }
 
   &.active {
     z-index: 100;
   }
 
-  .window-body.text-file {
+  .window-body.text-file-container {
     margin: 0;
   }
 }
