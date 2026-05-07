@@ -134,7 +134,7 @@ export default function Home() {
         <Window
           key={window}
           activeWindow={activeWindow}
-          // TODO: change this to if window is text file or folder, add text-file or folder class respectively
+          // TODO: fix this so that it doesn't just check if the window is "About Me" or "Projects"
           className={
             window === 'About Me'
               ? 'text-file'
