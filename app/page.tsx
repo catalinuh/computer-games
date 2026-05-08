@@ -59,7 +59,8 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <div>
-          <DesktopIcon
+          {/* TODO: Put this back in when you create a misc. program folder or something */}
+          {/* <DesktopIcon
             icon={
               <Image
                 alt="calculator"
@@ -76,7 +77,7 @@ export default function Home() {
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
-          />
+          /> */}
 
           <DesktopIcon
             icon={
