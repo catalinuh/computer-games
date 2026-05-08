@@ -76,7 +76,9 @@ export default function Window({
           </div>
         </div>
 
-        {className === 'text-file' || className === 'folder' ? (
+        {className === 'text-file' ||
+        className === 'folder' ||
+        className === 'skills' ? (
           <div className="menus" role="menubar" style={{ touchAction: 'none' }}>
             <div className="menu-button file-menu-button" role="menuitem">
               <span>

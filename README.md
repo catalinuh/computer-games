@@ -16,11 +16,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Lots of CSS from [https://jdan.github.io/98.css/](https://jdan.github.io/98.css/)
 
+- Lots of icons are from [https://win98icons.alexmeub.com/](https://win98icons.alexmeub.com/)
+
+- Some designs and CSS are from [https://98.js.org/](https://98.js.org/)
+
 - Some designs and icons are from this [Unofficial Windows '98 UI Kit](https://www.figma.com/files/team/1020877116345235776/resources/community/file/1375838701187289600/unofficial-windows-98-ui-kit?fuid=1020877111582015531) in Figma
-
-- Some designs are from [https://98.js.org/](https://98.js.org/)
-
-- Some icons are from [https://win98icons.alexmeub.com/](https://win98icons.alexmeub.com/)
 
 - Fixedsys Excelsior font from [https://github.com/kika/fixedsys](https://github.com/kika/fixedsys)
 

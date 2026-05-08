@@ -2,10 +2,16 @@
 import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
-import { DesktopIcon, Taskbar, TextFile, Window } from './components'
+import { DesktopIcon, Skills, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-export type WindowType = '' | 'About Me' | 'Calculator' | 'Theme' | 'Projects'
+export type WindowType =
+  | ''
+  | 'About Me'
+  | 'Calculator'
+  | 'Theme'
+  | 'Projects'
+  | 'Skills'
 
 const imageMap: {
   [K in WindowType]: string
@@ -14,6 +20,7 @@ const imageMap: {
   'About Me': 'notepad',
   Theme: 'paint',
   Projects: 'folder',
+  Skills: 'skills',
   '': '',
 }
 
@@ -52,7 +59,8 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <div>
-          <DesktopIcon
+          {/* TODO: Put this back in when you create a misc. program folder or something */}
+          {/* <DesktopIcon
             icon={
               <Image
                 alt="calculator"
@@ -69,7 +77,7 @@ export default function Home() {
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
-          />
+          /> */}
 
           <DesktopIcon
             icon={
@@ -84,6 +92,25 @@ export default function Home() {
             }
             isSelected={activeIcon === 'About Me'}
             name={'About Me'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="notepad"
+                draggable={false}
+                height={64}
+                src="/assets/icons/skills.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Skills'}
+            name={'Skills'}
             setActiveIcon={setActiveIcon}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
@@ -140,7 +167,9 @@ export default function Home() {
               ? 'text-file'
               : window === 'Projects'
                 ? 'folder'
-                : ''
+                : window === 'Skills'
+                  ? 'skills'
+                  : ''
           }
           icon={
             <Image
@@ -162,6 +191,7 @@ export default function Home() {
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
+          {window === 'Skills' ? <Skills /> : <></>}
         </Window>
       ))}
 
