@@ -5,7 +5,13 @@ import Image from 'next/image'
 import { DesktopIcon, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
-export type WindowType = '' | 'About Me' | 'Calculator' | 'Theme' | 'Projects'
+export type WindowType =
+  | ''
+  | 'About Me'
+  | 'Calculator'
+  | 'Theme'
+  | 'Projects'
+  | 'Skills'
 
 const imageMap: {
   [K in WindowType]: string
@@ -14,6 +20,7 @@ const imageMap: {
   'About Me': 'notepad',
   Theme: 'paint',
   Projects: 'folder',
+  Skills: 'skills',
   '': '',
 }
 
@@ -93,6 +100,25 @@ export default function Home() {
           <DesktopIcon
             icon={
               <Image
+                alt="notepad"
+                draggable={false}
+                height={64}
+                src="/assets/icons/skills.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Skills'}
+            name={'Skills'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+
+          <DesktopIcon
+            icon={
+              <Image
                 alt="folder"
                 draggable={false}
                 height={64}
@@ -162,6 +188,7 @@ export default function Home() {
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
+          {window === 'Skills' ? <>Skill list coming soon!</> : <></>}
         </Window>
       ))}
 
