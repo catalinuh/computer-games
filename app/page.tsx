@@ -2,25 +2,34 @@
 import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
-import { DesktopIcon, Skills, Taskbar, TextFile, Window } from './components'
+import {
+  DesktopIcon,
+  Experience,
+  Skills,
+  Taskbar,
+  TextFile,
+  Window,
+} from './components'
 import { aboutMe } from './pages/about-me'
 
 export type WindowType =
   | ''
   | 'About Me'
   | 'Calculator'
-  | 'Theme'
+  | 'Experience'
   | 'Projects'
   | 'Skills'
+  | 'Theme'
 
 const imageMap: {
   [K in WindowType]: string
 } = {
-  Calculator: 'calculator',
   'About Me': 'notepad',
-  Theme: 'paint',
+  Experience: 'briefcase',
+  Calculator: 'calculator',
   Projects: 'folder',
   Skills: 'skills',
+  Theme: 'paint',
   '': '',
 }
 
@@ -101,7 +110,7 @@ export default function Home() {
           <DesktopIcon
             icon={
               <Image
-                alt="notepad"
+                alt="skills"
                 draggable={false}
                 height={64}
                 src="/assets/icons/skills.png"
@@ -111,6 +120,25 @@ export default function Home() {
             }
             isSelected={activeIcon === 'Skills'}
             name={'Skills'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="experience"
+                draggable={false}
+                height={64}
+                src="/assets/icons/briefcase.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Experience'}
+            name={'Experience'}
             setActiveIcon={setActiveIcon}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
@@ -192,6 +220,7 @@ export default function Home() {
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
           {window === 'Skills' ? <Skills /> : <></>}
+          {window === 'Experience' ? <Experience /> : <></>}
         </Window>
       ))}
 
