@@ -36,6 +36,7 @@ export default function Skills() {
                     <li>Prisma</li>
                     <li>NestJS</li>
                     <li>Liquibase</li>
+                    <li>PostgreSQL</li>
                     <li>SQL</li>
                     <li>Webpack</li>
                     <li>Babel.js</li>
