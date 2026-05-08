@@ -36,7 +36,33 @@ export default function Experience() {
 
         <div className="window" role="tabpanel">
           <div className="window-body">
-            <p>the tab content</p>
+            <fieldset>
+              <legend>Charter Communications</legend>
+              <p>Software Engineer III | April 2022 - December 2025</p>
+              {/* This is all ai slop */}
+              <ul>
+                <li>
+                  Led the development of a new internal tool that streamlined
+                  the process of managing customer accounts, resulting in a 30%
+                  reduction in time spent on account management tasks.
+                </li>
+                <li>
+                  Implemented a new feature that allowed customers to easily
+                  track their service usage and billing information, resulting
+                  in a 20% increase in customer satisfaction.
+                </li>
+                <li>
+                  Collaborated with cross-functional teams to design and
+                  implement a new system for handling customer support requests,
+                  resulting in a 25% reduction in response time.
+                </li>
+                <li>
+                  Mentored junior developers and provided guidance on best
+                  practices for software development, resulting in a 15%
+                  increase in team productivity.
+                </li>
+              </ul>
+            </fieldset>
           </div>
         </div>
       </div>
