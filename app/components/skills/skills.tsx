@@ -88,6 +88,7 @@ export default function Skills() {
               <li>GitHub</li>
               <li>GitLab</li>
               <li>VS Code</li>
+              <li>NetBeans</li>
               <li>Adobe Photoshop</li>
               <li>Adobe Illustrator</li>
             </ul>
