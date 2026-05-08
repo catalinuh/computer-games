@@ -2,7 +2,7 @@
 import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
-import { DesktopIcon, Taskbar, TextFile, Window } from './components'
+import { DesktopIcon, Skills, Taskbar, TextFile, Window } from './components'
 import { aboutMe } from './pages/about-me'
 
 export type WindowType =
@@ -166,7 +166,9 @@ export default function Home() {
               ? 'text-file'
               : window === 'Projects'
                 ? 'folder'
-                : ''
+                : window === 'Skills'
+                  ? 'skills'
+                  : ''
           }
           icon={
             <Image
@@ -188,7 +190,7 @@ export default function Home() {
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
-          {window === 'Skills' ? <>Skill list coming soon!</> : <></>}
+          {window === 'Skills' ? <Skills /> : <></>}
         </Window>
       ))}
 

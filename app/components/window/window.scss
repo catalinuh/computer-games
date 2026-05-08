@@ -45,7 +45,8 @@ $window-bg: #c0c0c0;
     z-index: 100;
   }
 
-  .window-body.text-file-container {
+  .window-body.text-file-container,
+  .window-body.skills-container {
     margin: 0;
   }
 }
