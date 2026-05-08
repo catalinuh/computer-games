@@ -72,20 +72,27 @@ export default function Skills() {
           </details>
         </li>
 
-        <li>HTML/HTML5</li>
-        <li>CSS/SCSS</li>
-        <li>Python</li>
-        <li>Java</li>
-        <li>C#</li>
-        <li>C++</li>
-        <li>Canva</li>
-        <li>Figma</li>
-        <li>Git</li>
-        <li>GitHub</li>
-        <li>GitLab</li>
-        <li>VS Code</li>
-        <li>Adobe Photoshop</li>
-        <li>Adobe Illustrator</li>
+        <li>
+          <details>
+            <summary>Other</summary>
+            <ul>
+              <li>HTML/HTML5</li>
+              <li>CSS/SCSS</li>
+              <li>Python</li>
+              <li>Java</li>
+              <li>C#</li>
+              <li>C++</li>
+              <li>Canva</li>
+              <li>Figma</li>
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>GitLab</li>
+              <li>VS Code</li>
+              <li>Adobe Photoshop</li>
+              <li>Adobe Illustrator</li>
+            </ul>
+          </details>
+        </li>
       </ul>
     </div>
   )
