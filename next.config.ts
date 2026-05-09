@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   sassOptions: {
     implementation: 'sass-embedded',
   },
+  output: 'export', // see if this fix page title and favicon not showing in catalinamcquade.com
 }
 
 export default nextConfig
