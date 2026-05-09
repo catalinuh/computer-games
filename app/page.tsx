@@ -12,6 +12,7 @@ export type WindowType =
   | 'Theme'
   | 'Projects'
   | 'Skills'
+  | 'Font Size'
 
 const imageMap: {
   [K in WindowType]: string
@@ -21,6 +22,7 @@ const imageMap: {
   Theme: 'paint',
   Projects: 'folder',
   Skills: 'skills',
+  'Font Size': 'font-size',
   '': '',
 }
 
@@ -137,24 +139,45 @@ export default function Home() {
           />
         </div>
 
-        <DesktopIcon
-          icon={
-            <Image
-              alt="paint"
-              draggable={false}
-              height={64}
-              src="/assets/icons/paint.png"
-              unoptimized
-              width={64}
-            />
-          }
-          isSelected={activeIcon === 'Theme'}
-          name={'Theme'}
-          setActiveIcon={setActiveIcon}
-          setActiveWindow={setActiveWindow}
-          setMinimizedWindows={setMinimizedWindows}
-          setOpenWindows={setOpenWindows}
-        />
+        <div>
+          <DesktopIcon
+            icon={
+              <Image
+                alt="font-size"
+                draggable={false}
+                height={64}
+                src="/assets/icons/font-size.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Font Size'}
+            name={'Font Size'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="paint"
+                draggable={false}
+                height={64}
+                src="/assets/icons/paint.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Theme'}
+            name={'Theme'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+        </div>
       </div>
 
       {filteredOpenWindows?.map((window) => (
@@ -192,6 +215,11 @@ export default function Home() {
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
           {window === 'Skills' ? <Skills /> : <></>}
+          {window === 'Font Size' ? (
+            <>Font size settings coming soon!</>
+          ) : (
+            <></>
+          )}
         </Window>
       ))}
 
