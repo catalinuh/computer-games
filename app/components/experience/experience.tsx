@@ -1,68 +1,63 @@
+import { useState } from 'react'
+
+import { experienceMap, experienceType } from '../../pages'
+
 import './experience.scss'
 
 export default function Experience() {
-  // To render a tab list, use a menu element with the [role=tablist] attribute. The children of this menu (li elements), should get a [role=tab] attribute.
-  // Tabs should be managed by adding custom javascript code. All you need is to add the [aria-selected=true] attribute to the active tab.
-
+  const [activeYear, setActiveYear] = useState(2026)
   // TODO: Add keyboard navigation support (left and right arrow keys to navigate between tabs, and the Enter or Space key to activate a tab). (suggestion from AI but interesting one)
-  // TODO: Make tabs work by adding state to track the active tab and conditionally rendering the content based on the selected tab.
+
+  const handleTabClick = (year: number) => {
+    setActiveYear(year)
+  }
 
   return (
     <div className="experience">
       <div className="window-body">
         <menu role="tablist" className="multirows">
-          <li role="tab">
-            <a href="#tabs">2020</a>
+          <li role="tab" aria-selected={activeYear === 2020}>
+            <a onClick={() => handleTabClick(2020)}>2020</a>
           </li>
-          <li role="tab">
-            <a href="#tabs">2021</a>
+          <li role="tab" aria-selected={activeYear === 2021}>
+            <a onClick={() => handleTabClick(2021)}>2021</a>
           </li>
-          <li role="tab">
-            <a href="#tabs">2022</a>
+          <li role="tab" aria-selected={activeYear === 2022}>
+            <a onClick={() => handleTabClick(2022)}>2022</a>
           </li>
-          <li role="tab">
-            <a href="#tabs">2023</a>
+          <li role="tab" aria-selected={activeYear === 2023}>
+            <a onClick={() => handleTabClick(2023)}>2023</a>
           </li>
-          <li role="tab">
-            <a href="#tabs">2024</a>
+          <li role="tab" aria-selected={activeYear === 2024}>
+            <a onClick={() => handleTabClick(2024)}>2024</a>
           </li>
-          <li role="tab">
-            <a href="#tabs">2025</a>
+          <li role="tab" aria-selected={activeYear === 2025}>
+            <a onClick={() => handleTabClick(2025)}>2025</a>
           </li>
-          <li role="tab" aria-selected>
-            <a href="#tabs">2026</a>
+          <li role="tab" aria-selected={activeYear === 2026}>
+            <a onClick={() => handleTabClick(2026)}>2026</a>
           </li>
         </menu>
 
         <div className="window" role="tabpanel">
           <div className="window-body">
-            <fieldset>
-              <legend>Charter Communications</legend>
-              <p>Software Engineer III | April 2022 - December 2025</p>
-              {/* This is all ai slop */}
-              <ul>
-                <li>
-                  Led the development of a new internal tool that streamlined
-                  the process of managing customer accounts, resulting in a 30%
-                  reduction in time spent on account management tasks.
-                </li>
-                <li>
-                  Implemented a new feature that allowed customers to easily
-                  track their service usage and billing information, resulting
-                  in a 20% increase in customer satisfaction.
-                </li>
-                <li>
-                  Collaborated with cross-functional teams to design and
-                  implement a new system for handling customer support requests,
-                  resulting in a 25% reduction in response time.
-                </li>
-                <li>
-                  Mentored junior developers and provided guidance on best
-                  practices for software development, resulting in a 15%
-                  increase in team productivity.
-                </li>
-              </ul>
-            </fieldset>
+            {experienceMap[activeYear as keyof typeof experienceMap].map(
+              (experience: experienceType) => (
+                <fieldset key={experience.company}>
+                  <legend>{experience.company}</legend>
+                  <p>
+                    {experience.role} | {experience.duration}
+                  </p>
+                  <ul>
+                    {experience.description?.map(
+                      (desc: string, index: number) => (
+                        <li key={index}>{desc}</li>
+                      )
+                    )}
+                  </ul>
+                </fieldset>
+              )
+            )}
           </div>
         </div>
       </div>
