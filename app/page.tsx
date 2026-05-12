@@ -10,7 +10,7 @@ import {
   TextFile,
   Window,
 } from './components'
-import { aboutMe } from './pages/about-me'
+import { aboutMe } from './components/text-file/data/about-me'
 
 export type WindowType =
   | ''
