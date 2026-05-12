@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
 import {
+  Contact,
   DesktopIcon,
   Experience,
   Skills,
@@ -70,26 +71,6 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <div>
-          {/* TODO: Put this back in when you create a misc. program folder or something */}
-          {/* <DesktopIcon
-            icon={
-              <Image
-                alt="calculator"
-                draggable={false}
-                height={64}
-                src="/assets/icons/calculator.png"
-                unoptimized
-                width={64}
-              />
-            }
-            isSelected={activeIcon === 'Calculator'}
-            name={'Calculator'}
-            setActiveIcon={setActiveIcon}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          /> */}
-
           <DesktopIcon
             icon={
               <Image
@@ -242,7 +223,7 @@ export default function Home() {
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
           {window === 'Skills' ? <Skills /> : <></>}
           {window === 'Experience' ? <Experience /> : <></>}
-          {window === 'Contact' ? <>Contact information coming soon!</> : <></>}
+          {window === 'Contact' ? <Contact /> : <></>}
         </Window>
       ))}
 
