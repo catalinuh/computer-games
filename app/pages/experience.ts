@@ -5,14 +5,15 @@ export type experienceType = {
   description?: string[]
 }
 
+// TODO: Create this list of experience objects without duplicating the experience objects for each year. Maybe create a list of experience objects and then create the experienceMap by mapping over the list and grouping by year or something??
 export const experienceMap: { [key: number]: experienceType[] } = {
   2020: [
     {
-      company: 'Avante Gardner',
+      company: 'Avant Gardner',
       role: 'Full Stack Software Engineer',
       duration: 'November 2020 - June 2021',
       description: [
-        ' Worked on the front-end of an internal Event Management Software to assist those in charge of organizing and planning events at the venue, Avante Gardner',
+        ' Worked on the front-end of an internal Event Management Software to assist those in charge of organizing and planning events at the venue, Avant Gardner',
         'Created an accessibility-friendly user interface using practices like semantic HTML and Aria labeling in accordance with ADA compliance',
         'Used Node.js and Express for making calls (GET, POST, PUT, DELETE) to trigger or fetch data from Restful APIs provided by the other team',
         'Used Postman to test API and used Git as a version control tool',
