@@ -16,6 +16,7 @@ export type WindowType =
   | ''
   | 'About Me'
   | 'Calculator'
+  | 'Contact'
   | 'Experience'
   | 'Projects'
   | 'Skills'
@@ -26,6 +27,7 @@ const imageMap: {
 } = {
   'About Me': 'notepad',
   Calculator: 'calculator',
+  Contact: 'phone',
   Experience: 'briefcase',
   Projects: 'folder',
   Skills: 'skills',
@@ -163,6 +165,25 @@ export default function Home() {
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
           />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="contact-me"
+                draggable={false}
+                height={64}
+                src="/assets/icons/phone.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Contact'}
+            name={'Contact'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
         </div>
 
         <DesktopIcon
@@ -221,6 +242,7 @@ export default function Home() {
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
           {window === 'Skills' ? <Skills /> : <></>}
           {window === 'Experience' ? <Experience /> : <></>}
+          {window === 'Contact' ? <>Contact information coming soon!</> : <></>}
         </Window>
       ))}
 
