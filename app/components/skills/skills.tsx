@@ -1,4 +1,4 @@
-import { skills } from '../../pages'
+import { skills } from './data/skills'
 
 import './skills.scss'
 
