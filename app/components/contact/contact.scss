@@ -1,0 +1,52 @@
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+
+  h4 {
+    margin: 5px 0;
+  }
+
+  &__icons {
+    display: flex;
+    gap: 16px;
+
+    &--btn {
+      min-width: fit-content;
+      width: fit-content;
+      padding: 4px;
+      border-radius: 20px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    &--field {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+
+      input {
+        height: fit-content;
+        line-height: normal;
+      }
+
+      input,
+      textarea {
+        padding: 8px;
+        width: 300px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+    }
+  }
+}

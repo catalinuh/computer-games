@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
 import {
+  Contact,
   DesktopIcon,
   Experience,
   Skills,
@@ -10,12 +11,13 @@ import {
   TextFile,
   Window,
 } from './components'
-import { aboutMe } from './pages/about-me'
+import { aboutMe } from './components/text-file/data/about-me'
 
 export type WindowType =
   | ''
   | 'About Me'
   | 'Calculator'
+  | 'Contact'
   | 'Experience'
   | 'Projects'
   | 'Skills'
@@ -26,6 +28,7 @@ const imageMap: {
 } = {
   'About Me': 'notepad',
   Calculator: 'calculator',
+  Contact: 'phone',
   Experience: 'briefcase',
   Projects: 'folder',
   Skills: 'skills',
@@ -68,26 +71,6 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <div>
-          {/* TODO: Put this back in when you create a misc. program folder or something */}
-          {/* <DesktopIcon
-            icon={
-              <Image
-                alt="calculator"
-                draggable={false}
-                height={64}
-                src="/assets/icons/calculator.png"
-                unoptimized
-                width={64}
-              />
-            }
-            isSelected={activeIcon === 'Calculator'}
-            name={'Calculator'}
-            setActiveIcon={setActiveIcon}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          /> */}
-
           <DesktopIcon
             icon={
               <Image
@@ -163,6 +146,25 @@ export default function Home() {
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
           />
+
+          <DesktopIcon
+            icon={
+              <Image
+                alt="contact-me"
+                draggable={false}
+                height={64}
+                src="/assets/icons/phone.png"
+                unoptimized
+                width={64}
+              />
+            }
+            isSelected={activeIcon === 'Contact'}
+            name={'Contact'}
+            setActiveIcon={setActiveIcon}
+            setActiveWindow={setActiveWindow}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
         </div>
 
         <DesktopIcon
@@ -221,6 +223,7 @@ export default function Home() {
           {window === 'Projects' ? <>Project list coming soon!</> : <></>}
           {window === 'Skills' ? <Skills /> : <></>}
           {window === 'Experience' ? <Experience /> : <></>}
+          {window === 'Contact' ? <Contact /> : <></>}
         </Window>
       ))}
 

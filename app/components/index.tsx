@@ -1,3 +1,4 @@
+import Contact from './contact/contact'
 import DesktopIcon from './desktop-icon/desktop-icon'
 import Experience from './experience/experience'
 import Skills from './skills/skills'
@@ -6,4 +7,13 @@ import Taskbar from './taskbar/taskbar'
 import TextFile from './text-file/text-file'
 import Window from './window/window'
 
-export { DesktopIcon, Experience, Skills, StartMenu, Taskbar, TextFile, Window }
+export {
+  Contact,
+  DesktopIcon,
+  Experience,
+  Skills,
+  StartMenu,
+  Taskbar,
+  TextFile,
+  Window,
+}
