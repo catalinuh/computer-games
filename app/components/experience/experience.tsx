@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { experienceMap, experienceType } from '../../pages'
+import { experienceMap, experienceType } from './data/experience'
 
 import './experience.scss'
 
