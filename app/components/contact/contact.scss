@@ -12,7 +12,7 @@
     display: flex;
     gap: 16px;
 
-    button.contact__icons--btn {
+    &--btn {
       min-width: fit-content;
       width: fit-content;
       padding: 4px;

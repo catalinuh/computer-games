@@ -33,7 +33,7 @@ export default function Contact() {
             <input
               id="subject"
               name="subject"
-              placeholder="Your Subject"
+              placeholder="Subject"
               type="text"
             />
           </div>
@@ -43,7 +43,7 @@ export default function Contact() {
             <textarea
               id="message"
               name="message"
-              placeholder="Your Message"
+              placeholder="Message"
               rows={5}
             />
           </div>
