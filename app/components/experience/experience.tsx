@@ -16,27 +16,19 @@ export default function Experience() {
     <div className="experience">
       <div className="window-body">
         <menu role="tablist" className="multirows">
-          <li role="tab" aria-selected={activeYear === 2020}>
-            <a onClick={() => handleTabClick(2020)}>2020</a>
-          </li>
-          <li role="tab" aria-selected={activeYear === 2021}>
-            <a onClick={() => handleTabClick(2021)}>2021</a>
-          </li>
-          <li role="tab" aria-selected={activeYear === 2022}>
-            <a onClick={() => handleTabClick(2022)}>2022</a>
-          </li>
-          <li role="tab" aria-selected={activeYear === 2023}>
-            <a onClick={() => handleTabClick(2023)}>2023</a>
-          </li>
-          <li role="tab" aria-selected={activeYear === 2024}>
-            <a onClick={() => handleTabClick(2024)}>2024</a>
-          </li>
-          <li role="tab" aria-selected={activeYear === 2025}>
-            <a onClick={() => handleTabClick(2025)}>2025</a>
-          </li>
-          <li role="tab" aria-selected={activeYear === 2026}>
-            <a onClick={() => handleTabClick(2026)}>2026</a>
-          </li>
+          {Object.entries(experienceMap).map(([year]) => {
+            const yearNumber = Number(year)
+
+            return (
+              <li
+                key={year}
+                role="tab"
+                aria-selected={activeYear === yearNumber}
+              >
+                <a onClick={() => handleTabClick(yearNumber)}>{year}</a>
+              </li>
+            )
+          })}
         </menu>
 
         <div className="window" role="tabpanel">
