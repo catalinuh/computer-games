@@ -25,8 +25,8 @@ const imageMap: {
   [K in WindowType]: string
 } = {
   'About Me': 'notepad',
-  Experience: 'briefcase',
   Calculator: 'calculator',
+  Experience: 'briefcase',
   Projects: 'folder',
   Skills: 'skills',
   Theme: 'paint',
