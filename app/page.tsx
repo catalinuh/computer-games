@@ -167,7 +167,7 @@ export default function Home() {
           />
         </div>
 
-        <DesktopIcon
+        {/* <DesktopIcon
           icon={
             <Image
               alt="paint"
@@ -184,7 +184,7 @@ export default function Home() {
           setActiveWindow={setActiveWindow}
           setMinimizedWindows={setMinimizedWindows}
           setOpenWindows={setOpenWindows}
-        />
+        /> */}
       </div>
 
       {filteredOpenWindows?.map((window) => (
