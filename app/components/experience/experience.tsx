@@ -25,7 +25,13 @@ export default function Experience() {
                 role="tab"
                 aria-selected={activeYear === yearNumber}
               >
-                <a onClick={() => handleTabClick(yearNumber)}>{year}</a>
+                <a
+                  onClick={() => handleTabClick(yearNumber)}
+                  // for mobile device
+                  onTouchEndCapture={() => handleTabClick(yearNumber)}
+                >
+                  {year}
+                </a>
               </li>
             )
           })}
