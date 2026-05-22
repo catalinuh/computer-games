@@ -8,8 +8,8 @@ $window-bg: #c0c0c0;
   min-width: 350px;
   max-width: 600px;
   position: absolute;
-  top: 33vh;
-  left: calc(50vw - (350px / 2));
+  top: 15vh;
+  left: 5vw;
 
   .title-bar {
     padding-top: 2px;
@@ -45,7 +45,22 @@ $window-bg: #c0c0c0;
     z-index: 100;
   }
 
-  .window-body.text-file-container,
+  > .window-body {
+    // TODO: Change this when maximize functionality is implemented
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+
+  .window-body.notepad-container {
+    overflow: scroll;
+  }
+
+  .window-body.phone-container {
+    width: fit-content;
+  }
+
+  .window-body.notepad-container,
+  .window-body.briefcase-container,
   .window-body.skills-container {
     margin: 0;
   }

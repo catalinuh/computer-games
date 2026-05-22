@@ -57,6 +57,7 @@ export default function Window({
       bounds={'parent'}
       disabled={isClickingText}
       onMouseDown={handleClickDown}
+      handle=".title-bar"
     >
       <div
         className={`window window-popup${activeWindow === title ? ' active' : ''}`}
@@ -70,13 +71,24 @@ export default function Window({
             {title}
           </div>
           <div className="title-bar-controls">
-            <button aria-label="Minimize" onClick={handleMinimize} />
-            <button aria-label="Maximize" />
-            <button aria-label="Close" onClick={handleClose} />
+            <button
+              aria-label="Minimize"
+              onClick={handleMinimize}
+              // for mobile devices
+              onTouchEndCapture={handleMinimize}
+            />
+            {/* TODO: Enable when maximize functionality is implemented */}
+            <button aria-label="Maximize" disabled />
+            <button
+              aria-label="Close"
+              onClick={handleClose}
+              // for mobile devices
+              onTouchEndCapture={handleClose}
+            />
           </div>
         </div>
 
-        {className === 'text-file' ||
+        {className === 'notepad' ||
         className === 'folder' ||
         className === 'skills' ? (
           <div className="menus" role="menubar" style={{ touchAction: 'none' }}>

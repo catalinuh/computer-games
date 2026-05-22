@@ -70,7 +70,7 @@ export default function Home() {
   return (
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
-        <div>
+        <div className="desktop__icons--container">
           <DesktopIcon
             icon={
               <Image
@@ -167,7 +167,7 @@ export default function Home() {
           />
         </div>
 
-        <DesktopIcon
+        {/* <DesktopIcon
           icon={
             <Image
               alt="paint"
@@ -184,23 +184,14 @@ export default function Home() {
           setActiveWindow={setActiveWindow}
           setMinimizedWindows={setMinimizedWindows}
           setOpenWindows={setOpenWindows}
-        />
+        /> */}
       </div>
 
       {filteredOpenWindows?.map((window) => (
         <Window
           key={window}
           activeWindow={activeWindow}
-          // TODO: fix this so that it doesn't just check if the window is "About Me" or "Projects"
-          className={
-            window === 'About Me'
-              ? 'text-file'
-              : window === 'Projects'
-                ? 'folder'
-                : window === 'Skills'
-                  ? 'skills'
-                  : ''
-          }
+          className={imageMap[window]}
           icon={
             <Image
               alt={window}

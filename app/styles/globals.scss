@@ -22,33 +22,38 @@ $desktop-padding: 33px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 body {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   padding: 0;
   background: #008282;
+  box-sizing: border-box;
+  overflow: hidden;
 
   div.desktop {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
     &__icons {
+      width: 100vw;
       box-sizing: border-box;
       padding: $desktop-padding;
       padding-bottom: 0;
-      height: calc(100% - 30px); // subtract taskbar height
+      height: 100%;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 20px;
+      overflow: hidden;
 
-      > div {
+      &--container {
         display: flex;
         gap: 20px;
+        flex-wrap: wrap;
       }
     }
   }

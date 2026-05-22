@@ -1,8 +1,26 @@
-import { skills } from './data/skills'
+import { useState } from 'react'
+
+import { skills, skillsTypeMenuOpen } from './data/skills'
 
 import './skills.scss'
 
 export default function Skills() {
+  const [isOpen, setIsOpen] = useState(skillsTypeMenuOpen)
+
+  const handleDetailClick = (
+    e:
+      | React.MouseEvent<HTMLDetailsElement>
+      | React.TouchEvent<HTMLDetailsElement>,
+    category: string
+  ) => {
+    e.stopPropagation() // Stops the parent detail's onClick from firing when a child detail is clicked
+
+    setIsOpen((prevIsOpen) => ({
+      ...prevIsOpen,
+      [category]: !prevIsOpen[category],
+    }))
+  }
+
   return (
     <div className="skills">
       <ul className="tree-view">
@@ -13,7 +31,13 @@ export default function Skills() {
             const skillSubCategory = skill[skillGroup]
 
             return (
-              <details key={index} open>
+              <details
+                key={index}
+                open={isOpen[skillGroup]}
+                onClick={(e) => handleDetailClick(e, skillGroup)}
+                // for mobile
+                onTouchEndCapture={(e) => handleDetailClick(e, skillGroup)}
+              >
                 <summary>{skillGroup}</summary>
 
                 {typeof skillSubCategory === 'object' &&
@@ -22,7 +46,15 @@ export default function Skills() {
                     {Object.entries(skillSubCategory).map(
                       ([category, skills], idx) => (
                         <li key={idx}>
-                          <details key={idx} open>
+                          <details
+                            key={idx}
+                            open={isOpen[category]}
+                            onClick={(e) => handleDetailClick(e, category)}
+                            // for mobile
+                            onTouchEndCapture={(e) =>
+                              handleDetailClick(e, category)
+                            }
+                          >
                             <summary>{category}</summary>
 
                             <ul>

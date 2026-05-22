@@ -17,11 +17,13 @@
   border-left: $border-1;
   display: flex;
   justify-content: space-between;
+  width: 100vw;
+  box-sizing: border-box;
 
   &__container {
     z-index: 5000;
     box-sizing: border-box;
-    width: 100vw;
+    width: 100%;
     height: fit-content;
     position: fixed;
     bottom: 0;
@@ -31,23 +33,26 @@
   }
 
   button {
-    min-width: 150px;
     height: fit-content;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 0.85rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 4px;
     padding: 2px 4px;
+    white-space: nowrap;
   }
 
   &__start-btn-and-windows {
+    width: 100%;
     display: flex;
     gap: 4px;
   }
 
   &__start-btn {
+    min-width: fit-content;
+
     &.active {
       box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
       text-shadow: 1px 1px var(--text-color);
@@ -55,6 +60,11 @@
   }
 
   &__window-btn {
+    flex-basis: 150px; /* Default starting width of each element */
+    flex-shrink: 1; /* Allows the element to shrink when space is limited */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     span {
       display: flex;
       align-items: center;
@@ -96,5 +106,6 @@
     // TODO: If adding more icons, change to justify-content: space-between
     justify-content: flex-end;
     align-items: flex-end;
+    white-space: nowrap;
   }
 }

@@ -6,6 +6,10 @@ export type skillsType = {
       }
 }
 
+export type skillsTypeMenuOpen = {
+  [key: string]: boolean
+}
+
 export const skills: skillsType[] = [
   {
     JavaScript: {
@@ -63,3 +67,12 @@ export const skills: skillsType[] = [
     ],
   },
 ]
+
+export const skillsTypeMenuOpen: skillsTypeMenuOpen = {
+  JavaScript: true,
+  Frontend: true,
+  Backend: true,
+  Testing: true,
+  'Misc.': true,
+  Other: true,
+}

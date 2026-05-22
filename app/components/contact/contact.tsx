@@ -74,12 +74,23 @@ export default function Contact() {
                 '_blank'
               )
             }
+            // for mobile
+            onTouchEndCapture={() =>
+              window.open(
+                'https://www.linkedin.com/in/catalina-mcquade/',
+                '_blank'
+              )
+            }
           >
             <LinkedInIcon />
           </button>
           <button
             className="contact__icons--btn"
             onClick={() =>
+              window.open('https://github.com/catalinuh', '_blank')
+            }
+            // for mobile
+            onTouchEndCapture={() =>
               window.open('https://github.com/catalinuh', '_blank')
             }
           >
