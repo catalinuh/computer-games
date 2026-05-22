@@ -4,6 +4,11 @@
   align-items: flex-start;
   gap: 32px;
 
+  /* only applies if screen is 950px wide or less */
+  @media screen and (max-width: 950px) {
+    flex-wrap: wrap;
+  }
+
   h4 {
     margin: 5px 0;
   }
