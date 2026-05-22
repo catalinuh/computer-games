@@ -1,14 +1,25 @@
 import { useState } from 'react'
 
-import { skills } from './data/skills'
+import { skills, skillsTypeMenuOpen } from './data/skills'
 
 import './skills.scss'
 
 export default function Skills() {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(skillsTypeMenuOpen)
 
-  const handleDetailClick = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen)
+  const handleDetailClick = (
+    e:
+      | React.MouseEvent<HTMLDetailsElement>
+      | React.TouchEvent<HTMLDetailsElement>,
+    category: string
+  ) => {
+    e.stopPropagation() // Stops the parent detail's onClick from firing when a child detail is clicked
+    console.log('handleDetailClick', category)
+
+    setIsOpen((prevIsOpen) => ({
+      ...prevIsOpen,
+      [category]: !prevIsOpen[category],
+    }))
   }
 
   return (
@@ -23,10 +34,10 @@ export default function Skills() {
             return (
               <details
                 key={index}
-                open={isOpen}
-                onClick={handleDetailClick}
+                open={isOpen[skillGroup]}
+                onClick={(e) => handleDetailClick(e, skillGroup)}
                 // for mobile
-                onTouchEndCapture={handleDetailClick}
+                onTouchEndCapture={(e) => handleDetailClick(e, skillGroup)}
               >
                 <summary>{skillGroup}</summary>
 
@@ -38,10 +49,12 @@ export default function Skills() {
                         <li key={idx}>
                           <details
                             key={idx}
-                            open={isOpen}
-                            onClick={handleDetailClick}
+                            open={isOpen[category]}
+                            onClick={(e) => handleDetailClick(e, category)}
                             // for mobile
-                            onTouchEndCapture={handleDetailClick}
+                            onTouchEndCapture={(e) =>
+                              handleDetailClick(e, category)
+                            }
                           >
                             <summary>{category}</summary>
 
