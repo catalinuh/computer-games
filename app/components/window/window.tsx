@@ -57,6 +57,7 @@ export default function Window({
       bounds={'parent'}
       disabled={isClickingText}
       onMouseDown={handleClickDown}
+      handle=".title-bar"
     >
       <div
         className={`window window-popup${activeWindow === title ? ' active' : ''}`}
@@ -87,7 +88,7 @@ export default function Window({
           </div>
         </div>
 
-        {className === 'text-file' ||
+        {className === 'notepad' ||
         className === 'folder' ||
         className === 'skills' ? (
           <div className="menus" role="menubar" style={{ touchAction: 'none' }}>
