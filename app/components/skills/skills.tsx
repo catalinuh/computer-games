@@ -14,7 +14,6 @@ export default function Skills() {
     category: string
   ) => {
     e.stopPropagation() // Stops the parent detail's onClick from firing when a child detail is clicked
-    console.log('handleDetailClick', category)
 
     setIsOpen((prevIsOpen) => ({
       ...prevIsOpen,
