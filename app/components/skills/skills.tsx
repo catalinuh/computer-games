@@ -1,8 +1,16 @@
+import { useState } from 'react'
+
 import { skills } from './data/skills'
 
 import './skills.scss'
 
 export default function Skills() {
+  const [isOpen, setIsOpen] = useState(true)
+
+  const handleDetailClick = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen)
+  }
+
   return (
     <div className="skills">
       <ul className="tree-view">
@@ -13,7 +21,13 @@ export default function Skills() {
             const skillSubCategory = skill[skillGroup]
 
             return (
-              <details key={index} open>
+              <details
+                key={index}
+                open={isOpen}
+                onClick={handleDetailClick}
+                // for mobile
+                onTouchEndCapture={handleDetailClick}
+              >
                 <summary>{skillGroup}</summary>
 
                 {typeof skillSubCategory === 'object' &&
@@ -22,7 +36,13 @@ export default function Skills() {
                     {Object.entries(skillSubCategory).map(
                       ([category, skills], idx) => (
                         <li key={idx}>
-                          <details key={idx} open>
+                          <details
+                            key={idx}
+                            open={isOpen}
+                            onClick={handleDetailClick}
+                            // for mobile
+                            onTouchEndCapture={handleDetailClick}
+                          >
                             <summary>{category}</summary>
 
                             <ul>
