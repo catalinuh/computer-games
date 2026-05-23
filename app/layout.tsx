@@ -20,6 +20,11 @@ export default function RootLayout({
       {/* TODO: See if this fixes title issue on deployed and pointed to site */}
       <Head>
         <title>Catalina McQuade</title>
+        <meta
+          name="description"
+          content="A personal portfolio website built with Next.js and MUI"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body>
         <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
