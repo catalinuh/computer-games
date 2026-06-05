@@ -14,6 +14,8 @@ import {
   Window,
 } from './components'
 import { aboutMe } from './components/text-file/data/about-me'
+import Project from './components/project/project'
+import { projectsList } from './components/projects/data/projects'
 
 export type WindowType =
   | ''
@@ -250,6 +252,18 @@ export default function Home() {
           {window === 'Skills' ? <Skills /> : <></>}
           {window === 'Experience' ? <Experience /> : <></>}
           {window === 'Contact' ? <Contact /> : <></>}
+          {window === 'Wanderlist' ||
+          window === 'Regex Spaceship' ||
+          window === 'My Blog' ||
+          window === 'Forgotten Forest' ? (
+            <Project
+              project={
+                projectsList.find((p) => p.name === window) || projectsList[0]
+              }
+            />
+          ) : (
+            <></>
+          )}
         </Window>
       ))}
 
