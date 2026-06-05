@@ -52,7 +52,7 @@ export default function DesktopIcon({
 
   return (
     // TODO: Fix bounds={false} to prevent dragging outside of the desktop
-    <Draggable nodeRef={nodeRef} bounds={'parent'}>
+    <Draggable nodeRef={nodeRef} bounds={false}>
       <div ref={nodeRef}>
         <div
           className={`desktop-icon${className?.length ? ` ${className}` : ''}`}
