@@ -1,5 +1,7 @@
-export type projectType = {
-  name: string
+import { ProjectNames } from '@/app/page'
+
+export type ProjectType = {
+  name: ProjectNames
   description: string
   technologies: string[]
   link?: string
@@ -7,7 +9,7 @@ export type projectType = {
   icon: string
 }
 
-export const projectsList: projectType[] = [
+export const projectsList: ProjectType[] = [
   {
     name: 'Wanderlist',
     description:
@@ -63,14 +65,14 @@ export const projectsList: projectType[] = [
     name: 'My Blog',
     description: 'A simple blog to share my thoughts and experiences.',
     technologies: [
-      'HTML',
       'CSS',
-      'JavaScript',
-      'Node.js',
+      'EJS',
       'Express',
+      'HTML',
+      'JavaScript',
       'MongoDB',
       'Mongoose',
-      'EJS',
+      'Node.js',
     ],
     link: '',
     images: ['/assets/screenshots/blog1.png', '/assets/screenshots/blog2.png'],
@@ -81,14 +83,12 @@ export const projectsList: projectType[] = [
     description:
       'A 2D adventure game where players explore a mysterious forest filled with hidden secrets and challenges.',
     technologies: [
-      'HTML',
-      'CSS',
-      'JavaScript',
-      'Node.js',
-      'Express',
-      'MongoDB',
-      'Mongoose',
-      'EJS',
+      'animate.css',
+      'Bootstrap',
+      'MUI',
+      'Phaser 3',
+      'React',
+      'SCSS',
     ],
     link: '',
     images: [

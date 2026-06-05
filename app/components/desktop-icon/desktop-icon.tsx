@@ -3,17 +3,17 @@ import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
 import Draggable from 'react-draggable'
 
 import useOutsideClick from '../../hooks/useOutsideClick'
-import { WindowType } from '../../page'
+import { ProjectNames, WindowType } from '../../page'
 import './desktop-icon.scss'
 
 interface DesktopIconProps {
   icon: ReactNode
   isSelected: boolean
-  name: WindowType
-  setActiveIcon: Dispatch<SetStateAction<WindowType>>
-  setActiveWindow: Dispatch<SetStateAction<WindowType>>
-  setMinimizedWindows: Dispatch<SetStateAction<WindowType[]>>
-  setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
+  name: WindowType | ProjectNames
+  setActiveIcon: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
+  setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
 }
 
 export default function DesktopIcon({
@@ -31,10 +31,10 @@ export default function DesktopIcon({
   const handleDoubleClick = () => {
     setActiveIcon('')
     setActiveWindow(name)
-    setMinimizedWindows((prevMinimizedWins) =>
+    setMinimizedWindows((prevMinimizedWins: (WindowType | ProjectNames)[]) =>
       prevMinimizedWins.filter((window) => window !== name)
     )
-    setOpenWindows((prevOpenWindows) => {
+    setOpenWindows((prevOpenWindows: (WindowType | ProjectNames)[]) => {
       const windowAlreadyOpen = prevOpenWindows.includes(name)
       return windowAlreadyOpen ? prevOpenWindows : [...prevOpenWindows, name]
     })
@@ -52,7 +52,7 @@ export default function DesktopIcon({
 
   return (
     // TODO: Fix bounds={false} to prevent dragging outside of the desktop
-    <Draggable nodeRef={nodeRef} bounds={false}>
+    <Draggable nodeRef={nodeRef} bounds={'parent'}>
       <div ref={nodeRef}>
         <div
           className={`desktop-icon${className?.length ? ` ${className}` : ''}`}

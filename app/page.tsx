@@ -25,8 +25,14 @@ export type WindowType =
   | 'Skills'
   | 'Theme'
 
+export type ProjectNames =
+  | 'Wanderlist'
+  | 'Regex Spaceship'
+  | 'My Blog'
+  | 'Forgotten Forest'
+
 const imageMap: {
-  [K in WindowType]: string
+  [K in WindowType | ProjectNames]: string
 } = {
   'About Me': 'notepad',
   Calculator: 'calculator',
@@ -35,15 +41,26 @@ const imageMap: {
   Projects: 'folder',
   Skills: 'skills',
   Theme: 'paint',
+  // projects only included for TS, these won't get used yet
+  Wanderlist: 'wanderlist',
+  'Regex Spaceship': 'regex-spaceship',
+  'My Blog': 'blog',
+  'Forgotten Forest': 'forgotten-forest',
   '': '',
 }
 
 // desktop
 export default function Home() {
-  const [openWindows, setOpenWindows] = useState<WindowType[]>([])
-  const [activeIcon, setActiveIcon] = useState<WindowType>('')
-  const [activeWindow, setActiveWindow] = useState<WindowType>('')
-  const [minimizedWindows, setMinimizedWindows] = useState<WindowType[]>([])
+  const [openWindows, setOpenWindows] = useState<(WindowType | ProjectNames)[]>(
+    []
+  )
+  const [activeIcon, setActiveIcon] = useState<WindowType | ProjectNames>('')
+  const [activeWindow, setActiveWindow] = useState<WindowType | ProjectNames>(
+    ''
+  )
+  const [minimizedWindows, setMinimizedWindows] = useState<
+    (WindowType | ProjectNames)[]
+  >([])
   const filteredOpenWindows = openWindows.filter(
     (window) => !minimizedWindows.includes(window)
   )
@@ -220,7 +237,12 @@ export default function Home() {
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
           {window === 'Projects' ? (
             <Folder>
-              <Projects />
+              <Projects
+                setActiveIcon={setActiveIcon}
+                setActiveWindow={setActiveWindow}
+                setMinimizedWindows={setMinimizedWindows}
+                setOpenWindows={setOpenWindows}
+              />
             </Folder>
           ) : (
             <></>
