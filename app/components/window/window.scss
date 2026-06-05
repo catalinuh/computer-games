@@ -62,7 +62,11 @@ $window-bg: #c0c0c0;
   .window-body.notepad-container,
   .window-body.briefcase-container,
   .window-body.skills-container,
-  .window-body.folder-container {
+  .window-body.folder-container,
+  .window-body.wanderlist-container,
+  .window-body.regex-spaceship-container,
+  .window-body.my-blog-container,
+  .window-body.forgotten-forest-container {
     margin: 0;
   }
 }
