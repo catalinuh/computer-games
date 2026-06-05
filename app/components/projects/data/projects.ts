@@ -90,7 +90,7 @@ export const projectsList: ProjectType[] = [
       'React',
       'SCSS',
     ],
-    link: '',
+    link: 'https://github.com/catalinuh/forgotten-forest',
     images: [
       '/assets/screenshots/Forestland1.png',
       '/assets/screenshots/Forestland2.png',
