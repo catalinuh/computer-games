@@ -6,6 +6,8 @@ import {
   Contact,
   DesktopIcon,
   Experience,
+  Folder,
+  Projects,
   Skills,
   Taskbar,
   TextFile,
@@ -80,6 +82,7 @@ export default function Home() {
                 src="/assets/icons/notepad.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'About Me'}
@@ -99,6 +102,7 @@ export default function Home() {
                 src="/assets/icons/skills.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Skills'}
@@ -118,6 +122,7 @@ export default function Home() {
                 src="/assets/icons/briefcase.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Experience'}
@@ -137,6 +142,7 @@ export default function Home() {
                 src="/assets/icons/folder.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Projects'}
@@ -156,6 +162,7 @@ export default function Home() {
                 src="/assets/icons/phone.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Contact'}
@@ -211,7 +218,13 @@ export default function Home() {
           {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
-          {window === 'Projects' ? <>Project list coming soon!</> : <></>}
+          {window === 'Projects' ? (
+            <Folder>
+              <Projects />
+            </Folder>
+          ) : (
+            <></>
+          )}
           {window === 'Skills' ? <Skills /> : <></>}
           {window === 'Experience' ? <Experience /> : <></>}
           {window === 'Contact' ? <Contact /> : <></>}
