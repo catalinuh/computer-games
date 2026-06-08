@@ -1,0 +1,13 @@
+.project {
+  .status-field-border {
+    padding: 8px;
+  }
+
+  &__images {
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 8px;
+    }
+  }
+}

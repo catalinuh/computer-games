@@ -2,15 +2,15 @@ import { Dispatch, SetStateAction, useState } from 'react'
 
 import { StartMenu } from '../../components'
 import useMinuteTimer from '../../hooks/useMinuteTimer'
-import { WindowType } from '../../page'
+import { ProjectNames, WindowType } from '../../page'
 import './taskbar.scss'
 
 interface TaskbarProps {
-  activeWindow: WindowType
+  activeWindow: WindowType | ProjectNames
   icons: React.ReactNode[]
-  openWindows: WindowType[]
-  setActiveWindow: Dispatch<SetStateAction<WindowType>>
-  setMinimizedWindows: Dispatch<SetStateAction<WindowType[]>>
+  openWindows: (WindowType | ProjectNames)[]
+  setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
 }
 
 export default function Taskbar({
@@ -28,7 +28,7 @@ export default function Taskbar({
     setMenuIsOpen((prevIsOpen) => !prevIsOpen)
   }
 
-  const handleToggleWindow = (window: WindowType) => {
+  const handleToggleWindow = (window: WindowType | ProjectNames) => {
     if (activeWindow === window) {
       setActiveWindow('')
       setMinimizedWindows((prevMinimizedWindows) => [
@@ -55,20 +55,22 @@ export default function Taskbar({
             𝓒𝓜 Catalina McQuade
           </button>
           <div className="taskbar__divider"></div>
-          {openWindows.map((window: WindowType, index: number) => (
-            <button
-              key={window}
-              onClick={() => handleToggleWindow(window)}
-              className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
-            >
-              <span>{icons[index]}</span>
-              <span
-                className={`taskbar__window-btn--label ${activeWindow === window ? 'active' : ''}`}
+          {openWindows.map(
+            (window: WindowType | ProjectNames, index: number) => (
+              <button
+                key={window}
+                onClick={() => handleToggleWindow(window)}
+                className={`taskbar__window-btn ${activeWindow === window ? 'active' : ''}`}
               >
-                {window}
-              </span>
-            </button>
-          ))}
+                <span>{icons[index]}</span>
+                <span
+                  className={`taskbar__window-btn--label ${activeWindow === window ? 'active' : ''}`}
+                >
+                  {window}
+                </span>
+              </button>
+            )
+          )}
         </div>
         <div className="taskbar__time">
           <span>{currentTime.format('hh:mm A')}</span>

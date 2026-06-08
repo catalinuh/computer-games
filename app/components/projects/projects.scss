@@ -1,0 +1,11 @@
+.projects {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 10px;
+
+  .desktop-icon > .desktop-icon__name {
+    color: #000;
+  }
+}

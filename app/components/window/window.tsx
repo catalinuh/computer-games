@@ -1,19 +1,19 @@
 import { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Draggable from 'react-draggable'
 
-import { WindowType } from '../../page'
+import { ProjectNames, WindowType } from '../../page'
 import './window.scss'
 
 interface WindowProps {
-  activeWindow: WindowType
+  activeWindow: WindowType | ProjectNames
   children?: ReactNode
   className?: string
   icon: ReactNode
-  setActiveIcon: Dispatch<SetStateAction<WindowType>>
-  setActiveWindow: Dispatch<SetStateAction<WindowType>>
-  setMinimizedWindows: Dispatch<SetStateAction<WindowType[]>>
-  setOpenWindows: Dispatch<SetStateAction<WindowType[]>>
-  title: WindowType
+  setActiveIcon: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
+  setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
+  title: WindowType | ProjectNames
 }
 
 export default function Window({

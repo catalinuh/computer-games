@@ -6,12 +6,16 @@ import {
   Contact,
   DesktopIcon,
   Experience,
+  Folder,
+  Projects,
   Skills,
   Taskbar,
   TextFile,
   Window,
 } from './components'
 import { aboutMe } from './components/text-file/data/about-me'
+import Project from './components/project/project'
+import { projectsList } from './components/projects/data/projects'
 
 export type WindowType =
   | ''
@@ -23,8 +27,14 @@ export type WindowType =
   | 'Skills'
   | 'Theme'
 
+export type ProjectNames =
+  | 'Wanderlist'
+  | 'Regex Spaceship'
+  | 'My Blog'
+  | 'Forgotten Forest'
+
 const imageMap: {
-  [K in WindowType]: string
+  [K in WindowType | ProjectNames]: string
 } = {
   'About Me': 'notepad',
   Calculator: 'calculator',
@@ -33,15 +43,26 @@ const imageMap: {
   Projects: 'folder',
   Skills: 'skills',
   Theme: 'paint',
+  // projects only included for TS, these won't get used yet
+  Wanderlist: 'wanderlist',
+  'Regex Spaceship': 'regex-spaceship',
+  'My Blog': 'blog',
+  'Forgotten Forest': 'forgotten-forest',
   '': '',
 }
 
 // desktop
 export default function Home() {
-  const [openWindows, setOpenWindows] = useState<WindowType[]>([])
-  const [activeIcon, setActiveIcon] = useState<WindowType>('')
-  const [activeWindow, setActiveWindow] = useState<WindowType>('')
-  const [minimizedWindows, setMinimizedWindows] = useState<WindowType[]>([])
+  const [openWindows, setOpenWindows] = useState<(WindowType | ProjectNames)[]>(
+    []
+  )
+  const [activeIcon, setActiveIcon] = useState<WindowType | ProjectNames>('')
+  const [activeWindow, setActiveWindow] = useState<WindowType | ProjectNames>(
+    ''
+  )
+  const [minimizedWindows, setMinimizedWindows] = useState<
+    (WindowType | ProjectNames)[]
+  >([])
   const filteredOpenWindows = openWindows.filter(
     (window) => !minimizedWindows.includes(window)
   )
@@ -80,6 +101,7 @@ export default function Home() {
                 src="/assets/icons/notepad.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'About Me'}
@@ -99,6 +121,7 @@ export default function Home() {
                 src="/assets/icons/skills.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Skills'}
@@ -118,6 +141,7 @@ export default function Home() {
                 src="/assets/icons/briefcase.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Experience'}
@@ -137,6 +161,7 @@ export default function Home() {
                 src="/assets/icons/folder.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Projects'}
@@ -156,6 +181,7 @@ export default function Home() {
                 src="/assets/icons/phone.png"
                 unoptimized
                 width={64}
+                loading="eager"
               />
             }
             isSelected={activeIcon === 'Contact'}
@@ -211,10 +237,33 @@ export default function Home() {
           {window === 'Calculator' ? <>2 + 2 = 4</> : <></>}
           {window === 'About Me' ? <TextFile>{aboutMe}</TextFile> : <></>}
           {window === 'Theme' ? <>Theme settings coming soon!</> : <></>}
-          {window === 'Projects' ? <>Project list coming soon!</> : <></>}
+          {window === 'Projects' ? (
+            <Folder>
+              <Projects
+                setActiveIcon={setActiveIcon}
+                setActiveWindow={setActiveWindow}
+                setMinimizedWindows={setMinimizedWindows}
+                setOpenWindows={setOpenWindows}
+              />
+            </Folder>
+          ) : (
+            <></>
+          )}
           {window === 'Skills' ? <Skills /> : <></>}
           {window === 'Experience' ? <Experience /> : <></>}
           {window === 'Contact' ? <Contact /> : <></>}
+          {window === 'Wanderlist' ||
+          window === 'Regex Spaceship' ||
+          window === 'My Blog' ||
+          window === 'Forgotten Forest' ? (
+            <Project
+              project={
+                projectsList.find((p) => p.name === window) || projectsList[0]
+              }
+            />
+          ) : (
+            <></>
+          )}
         </Window>
       ))}
 

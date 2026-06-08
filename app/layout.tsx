@@ -17,7 +17,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* TODO: See if this fixes title issue on deployed and pointed to site */}
       <Head>
         <title>Catalina McQuade</title>
         <meta
