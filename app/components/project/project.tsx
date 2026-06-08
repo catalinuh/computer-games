@@ -11,28 +11,38 @@ interface ProjectProps {
 export default function Project({ project }: ProjectProps) {
   return (
     <div className="project">
-      <h4>{project.name}</h4>
-      {project.images?.map((image, index) => (
-        <Image
-          key={index}
-          src={image}
-          alt={`${project.name} screenshot ${index + 1}`}
-          width={400}
-          height={300}
-        />
-      ))}
-      <p>{project.description}</p>
-      <h4>Technologies Used:</h4>
-      <ul>
-        {project.technologies.map((tech) => (
-          <li key={tech}>{tech}</li>
+      <div className="status-field-border project__name">
+        <h4>{project.name}</h4>
+      </div>
+      <div className="status-field-border project__images">
+        {project.images?.map((image, index) => (
+          <Image
+            key={index}
+            src={image}
+            alt={`${project.name} screenshot ${index + 1}`}
+            width={400}
+            height={300}
+          />
         ))}
-      </ul>
-      {project.link && (
-        <a href={project.link} target="_blank" rel="noopener noreferrer">
-          {project.link}
-        </a>
-      )}
+      </div>
+      <div className="status-field-border project__description">
+        <p>{project.description}</p>
+      </div>
+      <div className="status-field-border project__technologies">
+        <h4>Technologies Used:</h4>
+        <ul>
+          {project.technologies.map((tech) => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="status-field-border project__link">
+        {project?.link?.length ? (
+          <a href={project.link} target="_blank" rel="noopener noreferrer">
+            {project.link}
+          </a>
+        ) : null}
+      </div>
     </div>
   )
 }
