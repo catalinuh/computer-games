@@ -66,6 +66,22 @@ export const skills: skillsType[] = [
       'Adobe Illustrator',
     ],
   },
+  {
+    'Soft Skills': [
+      'Attention to Detail',
+      'Communication',
+      'Teamwork',
+      'Problem Solving',
+      'Conflict Resolution',
+      'Adaptability',
+      'Critical Thinking',
+      'Creativity',
+      'Work Ethic',
+      'Empathy',
+      'Leadership',
+      'Project Management',
+    ],
+  },
 ]
 
 export const skillsTypeMenuOpen: skillsTypeMenuOpen = {
@@ -75,4 +91,5 @@ export const skillsTypeMenuOpen: skillsTypeMenuOpen = {
   Testing: true,
   'Misc.': true,
   Other: true,
+  'Soft Skills': true,
 }
