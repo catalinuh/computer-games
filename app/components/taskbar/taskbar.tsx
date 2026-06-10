@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
+import Image from 'next/image'
 
 import { StartMenu } from '../../components'
 import useMinuteTimer from '../../hooks/useMinuteTimer'
@@ -73,6 +74,15 @@ export default function Taskbar({
           )}
         </div>
         <div className="taskbar__time">
+          <span>
+            <Image
+              alt="Sound"
+              height={16}
+              src="/assets/icons/sound.png"
+              width={16}
+              loading="eager"
+            />
+          </span>
           <span>{currentTime.format('hh:mm A')}</span>
         </div>
       </div>
