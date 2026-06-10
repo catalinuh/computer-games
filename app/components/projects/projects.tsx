@@ -6,16 +6,16 @@ import { ProjectType, projectsList } from './data/projects'
 import './projects.scss'
 
 interface ProjectsProps {
-  activeIcon: WindowType | ProjectNames
-  setActiveIcon: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  activeIcons: (WindowType | ProjectNames)[]
+  setActiveIcons: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
   setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
 }
 
 export default function Projects({
-  activeIcon,
-  setActiveIcon,
+  activeIcons,
+  setActiveIcons,
   setActiveWindow,
   setMinimizedWindows,
   setOpenWindows,
@@ -27,9 +27,9 @@ export default function Projects({
           <DesktopIcon
             key={project.name}
             icon={<img src={project.icon} alt={project.name} />}
-            isSelected={activeIcon === project.name}
+            isSelected={activeIcons.includes(project.name)}
             name={project.name}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}

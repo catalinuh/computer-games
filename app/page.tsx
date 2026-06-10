@@ -56,7 +56,9 @@ export default function Home() {
   const [openWindows, setOpenWindows] = useState<(WindowType | ProjectNames)[]>(
     []
   )
-  const [activeIcon, setActiveIcon] = useState<WindowType | ProjectNames>('')
+  const [activeIcons, setActiveIcons] = useState<(WindowType | ProjectNames)[]>(
+    []
+  )
   const [activeWindow, setActiveWindow] = useState<WindowType | ProjectNames>(
     ''
   )
@@ -84,7 +86,7 @@ export default function Home() {
     // TODO: Fix this any ^
     setActiveWindow('')
     if ((e.target as HTMLDivElement).className === 'desktop__icons') {
-      setActiveIcon('')
+      setActiveIcons([])
     }
   }
 
@@ -104,9 +106,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'About Me'}
+            isSelected={activeIcons.includes('About Me')}
             name={'About Me'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -124,9 +126,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Skills'}
+            isSelected={activeIcons.includes('Skills')}
             name={'Skills'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -144,9 +146,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Experience'}
+            isSelected={activeIcons.includes('Experience')}
             name={'Experience'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -164,9 +166,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Projects'}
+            isSelected={activeIcons.includes('Projects')}
             name={'Projects'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -184,9 +186,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Contact'}
+            isSelected={activeIcons.includes('Contact')}
             name={'Contact'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -228,7 +230,7 @@ export default function Home() {
               width={16}
             />
           }
-          setActiveIcon={setActiveIcon}
+          setActiveIcons={setActiveIcons}
           setActiveWindow={setActiveWindow}
           setMinimizedWindows={setMinimizedWindows}
           setOpenWindows={setOpenWindows}
@@ -240,8 +242,8 @@ export default function Home() {
           {window === 'Projects' ? (
             <Folder>
               <Projects
-                activeIcon={activeIcon}
-                setActiveIcon={setActiveIcon}
+                activeIcons={activeIcons}
+                setActiveIcons={setActiveIcons}
                 setActiveWindow={setActiveWindow}
                 setMinimizedWindows={setMinimizedWindows}
                 setOpenWindows={setOpenWindows}
