@@ -240,6 +240,7 @@ export default function Home() {
           {window === 'Projects' ? (
             <Folder>
               <Projects
+                activeIcon={activeIcon}
                 setActiveIcon={setActiveIcon}
                 setActiveWindow={setActiveWindow}
                 setMinimizedWindows={setMinimizedWindows}
