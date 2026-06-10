@@ -53,7 +53,12 @@ export default function DesktopIcon({
   return (
     // TODO: Fix bounds={false} to prevent dragging outside of the desktop
     <Draggable nodeRef={nodeRef} bounds={false}>
-      <div ref={nodeRef}>
+      <div
+        ref={nodeRef}
+        onPointerDown={(e) => {
+          e.stopPropagation() // stops container from seeing the click
+        }}
+      >
         <div
           className={`desktop-icon${className?.length ? ` ${className}` : ''}`}
           onClick={handleClick}
