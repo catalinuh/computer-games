@@ -8,4 +8,8 @@
   .desktop-icon > .desktop-icon__name {
     color: #000;
   }
+
+  .desktop-icon.active > .desktop-icon__name {
+    color: #fff;
+  }
 }

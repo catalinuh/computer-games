@@ -103,9 +103,15 @@
       inset 1px 1px #7e7e7e;
     padding: 5px;
     display: flex;
-    // TODO: If adding more icons, change to justify-content: space-between
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-end;
     white-space: nowrap;
+    gap: 8px;
+
+    span {
+      height: min-content;
+      display: flex;
+      align-items: center;
+    }
   }
 }

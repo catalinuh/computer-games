@@ -10,7 +10,7 @@ interface DesktopIconProps {
   icon: ReactNode
   isSelected: boolean
   name: WindowType | ProjectNames
-  setActiveIcon: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setActiveIcons: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
   setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
@@ -20,7 +20,7 @@ export default function DesktopIcon({
   icon,
   isSelected,
   name,
-  setActiveIcon,
+  setActiveIcons,
   setActiveWindow,
   setMinimizedWindows,
   setOpenWindows,
@@ -29,7 +29,7 @@ export default function DesktopIcon({
   const className = isSelected ? 'active' : ''
 
   const handleDoubleClick = () => {
-    setActiveIcon('')
+    setActiveIcons([])
     setActiveWindow(name)
     setMinimizedWindows((prevMinimizedWins: (WindowType | ProjectNames)[]) =>
       prevMinimizedWins.filter((window) => window !== name)
@@ -41,11 +41,11 @@ export default function DesktopIcon({
   }
 
   const handleClick = () => {
-    setActiveIcon(name)
+    setActiveIcons([name])
   }
 
   const handleOutsideClick = () => {
-    setActiveIcon('')
+    setActiveIcons([])
   }
 
   const outsideRef = useOutsideClick(handleOutsideClick)
@@ -53,7 +53,12 @@ export default function DesktopIcon({
   return (
     // TODO: Fix bounds={false} to prevent dragging outside of the desktop
     <Draggable nodeRef={nodeRef} bounds={false}>
-      <div ref={nodeRef}>
+      <div
+        ref={nodeRef}
+        onPointerDown={(e) => {
+          e.stopPropagation() // stops container from seeing the click
+        }}
+      >
         <div
           className={`desktop-icon${className?.length ? ` ${className}` : ''}`}
           onClick={handleClick}

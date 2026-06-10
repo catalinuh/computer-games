@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import Image from 'next/image'
 
 import {
@@ -56,13 +56,33 @@ export default function Home() {
   const [openWindows, setOpenWindows] = useState<(WindowType | ProjectNames)[]>(
     []
   )
-  const [activeIcon, setActiveIcon] = useState<WindowType | ProjectNames>('')
+  const [activeIcons, setActiveIcons] = useState<(WindowType | ProjectNames)[]>(
+    []
+  )
   const [activeWindow, setActiveWindow] = useState<WindowType | ProjectNames>(
     ''
   )
   const [minimizedWindows, setMinimizedWindows] = useState<
     (WindowType | ProjectNames)[]
   >([])
+
+  // state and ref for selection rectangle
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [startY, setStartY] = useState(0)
+  const [currentX, setCurrentX] = useState(0)
+  const [currentY, setCurrentY] = useState(0)
+
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const wasDraggingRef = useRef(false)
+
+  const getSelectionBounds = () => ({
+    left: Math.min(startX, currentX),
+    top: Math.min(startY, currentY),
+    width: Math.abs(startX - currentX),
+    height: Math.abs(startY - currentY),
+  })
+
   const filteredOpenWindows = openWindows.filter(
     (window) => !minimizedWindows.includes(window)
   )
@@ -79,19 +99,120 @@ export default function Home() {
     />
   ))
 
+  const checkOverlap = (
+    rect1: { left: number; top: number; width: number; height: number },
+    rect2: { left: number; top: number; width: number; height: number }
+  ) => {
+    return (
+      rect1.left < rect2.left + rect2.width &&
+      rect1.left + rect1.width > rect2.left &&
+      rect1.top < rect2.top + rect2.height &&
+      rect1.top + rect1.height > rect2.top
+    )
+  }
+
+  const checkCollisions = (selectionBounds: {
+    left: number
+    top: number
+    width: number
+    height: number
+  }) => {
+    if (!containerRef.current) return
+
+    const containerRect = containerRef.current.getBoundingClientRect()
+    const newlySelected: (WindowType | ProjectNames)[] = []
+
+    // Find all elements with the class 'desktop-icon'
+    const iconElements = containerRef.current.querySelectorAll('.desktop-icon')
+
+    iconElements.forEach((element) => {
+      const iconRect = element.getBoundingClientRect()
+      const iconName = element.textContent as WindowType | ProjectNames
+
+      // Convert icon coordinates to be relative to the desktop container
+      const relativeIconBounds = {
+        left: iconRect.left - containerRect.left,
+        top: iconRect.top - containerRect.top,
+        width: iconRect.width,
+        height: iconRect.height,
+      }
+
+      // Check if the selection box overlaps this icon
+      if (checkOverlap(selectionBounds, relativeIconBounds)) {
+        newlySelected.push(iconName)
+      }
+    })
+
+    setActiveIcons(newlySelected)
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDesktopClick = (e: any) => {
     // TODO: Fix this any ^
+    // If they were dragging a box, do not clear the selection!
+    if (wasDraggingRef.current) {
+      wasDraggingRef.current = false
+      return
+    }
+
     setActiveWindow('')
     if ((e.target as HTMLDivElement).className === 'desktop__icons') {
-      setActiveIcon('')
+      setActiveIcons([])
     }
+  }
+
+  const handlePointerDown = (e: any) => {
+    if (e.button !== 0) return // Only left click
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
+
+    setStartX(e.clientX - rect.left)
+    setStartY(e.clientY - rect.top)
+    setCurrentX(e.clientX - rect.left)
+    setCurrentY(e.clientY - rect.top)
+
+    wasDraggingRef.current = false // Reset on new click
+    setIsDragging(true)
+  }
+
+  const handlePointerMove = (e: any) => {
+    if (!isDragging) return
+    wasDraggingRef.current = true // Mark that user actually dragged
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
+
+    setCurrentX(e.clientX - rect.left)
+    setCurrentY(e.clientY - rect.top)
+
+    const currentBounds = getSelectionBounds()
+    checkCollisions(currentBounds)
+  }
+
+  const handlePointerUp = () => {
+    if (!isDragging) return
+    setIsDragging(false)
   }
 
   return (
     <div className="desktop">
-      <div className="desktop__icons" onClick={handleDesktopClick}>
+      <div
+        className="desktop__icons"
+        onClick={handleDesktopClick}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        ref={containerRef}
+      >
         <div className="desktop__icons--container">
+          {isDragging && (
+            <div
+              className="desktop__icons--selection-rectangle"
+              style={{
+                position: 'absolute',
+                ...getSelectionBounds(), // Injects left, top, width, height dynamically
+              }}
+            />
+          )}
           <DesktopIcon
             icon={
               <Image
@@ -104,9 +225,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'About Me'}
+            isSelected={activeIcons.includes('About Me')}
             name={'About Me'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -124,9 +245,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Skills'}
+            isSelected={activeIcons.includes('Skills')}
             name={'Skills'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -144,9 +265,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Experience'}
+            isSelected={activeIcons.includes('Experience')}
             name={'Experience'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -164,9 +285,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Projects'}
+            isSelected={activeIcons.includes('Projects')}
             name={'Projects'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -184,9 +305,9 @@ export default function Home() {
                 loading="eager"
               />
             }
-            isSelected={activeIcon === 'Contact'}
+            isSelected={activeIcons.includes('Contact')}
             name={'Contact'}
-            setActiveIcon={setActiveIcon}
+            setActiveIcons={setActiveIcons}
             setActiveWindow={setActiveWindow}
             setMinimizedWindows={setMinimizedWindows}
             setOpenWindows={setOpenWindows}
@@ -228,7 +349,7 @@ export default function Home() {
               width={16}
             />
           }
-          setActiveIcon={setActiveIcon}
+          setActiveIcons={setActiveIcons}
           setActiveWindow={setActiveWindow}
           setMinimizedWindows={setMinimizedWindows}
           setOpenWindows={setOpenWindows}
@@ -240,7 +361,8 @@ export default function Home() {
           {window === 'Projects' ? (
             <Folder>
               <Projects
-                setActiveIcon={setActiveIcon}
+                activeIcons={activeIcons}
+                setActiveIcons={setActiveIcons}
                 setActiveWindow={setActiveWindow}
                 setMinimizedWindows={setMinimizedWindows}
                 setOpenWindows={setOpenWindows}

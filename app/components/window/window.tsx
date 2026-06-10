@@ -9,7 +9,7 @@ interface WindowProps {
   children?: ReactNode
   className?: string
   icon: ReactNode
-  setActiveIcon: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setActiveIcons: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
   setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
@@ -21,7 +21,7 @@ export default function Window({
   children,
   className,
   icon,
-  setActiveIcon,
+  setActiveIcons,
   setActiveWindow,
   setMinimizedWindows,
   setOpenWindows,
@@ -39,7 +39,7 @@ export default function Window({
   const handleClickDown = (e: MouseEvent) => {
     // bring the window to the front when clicked
     setActiveWindow(title)
-    setActiveIcon('')
+    setActiveIcons([])
     // TODO: Change this to if mouse is in text area of window, don't drag
     if ((e.target as HTMLElement).className === 'text-file')
       setIsClickingText(true)

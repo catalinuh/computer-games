@@ -34,7 +34,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #008282;
+  background: radial-gradient(
+    circle at 0% 100%,
+    rgb(169, 39, 255),
+    rgb(62, 175, 255) 100%
+  );
   box-sizing: border-box;
   overflow: hidden;
 
@@ -58,6 +62,16 @@ body {
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
+      }
+
+      &--selection-rectangle {
+        border: 1px dotted #ffffff;
+        box-sizing: border-box;
+        mix-blend-mode: exclusion;
+        /* TODO: fallback for browsers that don't support mix-blend-mode (something like #FF7F7F)... Edge doesn't support @supports either :/ */
+        // TODO: Figure out what above ^ means??
+        z-index: 1;
+        pointer-events: none;
       }
     }
   }
