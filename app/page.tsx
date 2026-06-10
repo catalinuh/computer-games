@@ -94,6 +94,7 @@ export default function Home() {
     <div className="desktop">
       <div className="desktop__icons" onClick={handleDesktopClick}>
         <div className="desktop__icons--container">
+          <div className="desktop__icons--selection-rectangle" />
           <DesktopIcon
             icon={
               <Image
