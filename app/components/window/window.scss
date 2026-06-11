@@ -10,6 +10,10 @@ $window-bg: #c0c0c0;
     padding-top: 2px;
     padding-bottom: 2px;
     background: linear-gradient(90deg, rgb(169, 39, 255), rgb(62, 175, 255));
+
+    &.inactive {
+      background: linear-gradient(90deg, gray, #b5b5b5);
+    }
   }
 
   .title-bar-text {
