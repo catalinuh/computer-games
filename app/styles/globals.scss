@@ -44,7 +44,9 @@ body {
 
   div.desktop {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
+    position: relative; // makes Rnd's bounds="parent" work correctly
+    overflow: clip;
     display: flex;
     flex-direction: column;
 
@@ -53,7 +55,7 @@ body {
       box-sizing: border-box;
       padding: $desktop-padding;
       padding-bottom: 0;
-      height: 100%;
+      height: 100dvh;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;

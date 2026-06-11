@@ -30,7 +30,11 @@ export default function Window({
   const [isClickingText, setIsClickingText] = useState(false)
 
   const vw = window.innerWidth
-  const vh = window.innerHeight
+  const vh = window.visualViewport?.height || window.innerHeight
+
+  const defaultX = vw < 768 ? 10 : 50
+  const defaultY = vw < 768 ? 20 : 100
+  const defaultWidth = vw < 768 ? Math.min(vw - 20, 400) : 400
 
   const handleClose = () => {
     setOpenWindows((prevOpenWindows) =>
@@ -55,7 +59,12 @@ export default function Window({
 
   return (
     <Rnd
-      default={{ x: 50, y: 100, width: 400, height: 'auto' }}
+      default={{
+        x: defaultX,
+        y: defaultY,
+        width: defaultWidth,
+        height: 'auto',
+      }}
       minWidth={title === 'Contact' && vw > 900 ? 625 : 400}
       minHeight={title === 'Projects' ? 100 : 300}
       bounds="parent"
