@@ -201,6 +201,10 @@ export default function Home() {
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        // for mobile device
+        onTouchEnd={handlePointerUp}
+        onTouchMove={handlePointerMove}
+        onTouchStart={handlePointerDown}
         ref={containerRef}
       >
         <div className="desktop__icons--container">
