@@ -57,7 +57,7 @@ body {
       align-items: flex-start;
       gap: 20px;
       overflow: hidden;
-      touch-action: none; // prevents default touch behaviors like scrolling, zooming, etc. on mobile devices
+      // touch-action: none; // prevents default touch behaviors like scrolling, zooming, etc. on mobile devices
 
       &--container {
         display: flex;
