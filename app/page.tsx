@@ -161,15 +161,30 @@ export default function Home() {
     }
   }
 
+  const getCoords = (e: any) => {
+    if (e.touches && e.touches.length > 0) {
+      return { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY }
+    }
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      // touchend has no active touches, only changedTouches
+      return {
+        clientX: e.changedTouches[0].clientX,
+        clientY: e.changedTouches[0].clientY,
+      }
+    }
+    return { clientX: e.clientX, clientY: e.clientY }
+  }
+
   const handlePointerDown = (e: any) => {
-    if (e.button !== 0) return // Only left click
+    if (e.button !== undefined && e.button !== 0) return
+    const { clientX, clientY } = getCoords(e)
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
 
-    setStartX(e.clientX - rect.left)
-    setStartY(e.clientY - rect.top)
-    setCurrentX(e.clientX - rect.left)
-    setCurrentY(e.clientY - rect.top)
+    setStartX(clientX - rect.left)
+    setStartY(clientY - rect.top)
+    setCurrentX(clientX - rect.left)
+    setCurrentY(clientY - rect.top)
 
     wasDraggingRef.current = false // Reset on new click
     setIsDragging(true)
@@ -178,11 +193,12 @@ export default function Home() {
   const handlePointerMove = (e: any) => {
     if (!isDragging) return
     wasDraggingRef.current = true // Mark that user actually dragged
+    const { clientX, clientY } = getCoords(e)
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
 
-    setCurrentX(e.clientX - rect.left)
-    setCurrentY(e.clientY - rect.top)
+    setCurrentX(clientX - rect.left)
+    setCurrentY(clientY - rect.top)
 
     const currentBounds = getSelectionBounds()
     checkCollisions(currentBounds)
