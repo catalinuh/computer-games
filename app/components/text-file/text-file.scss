@@ -15,4 +15,6 @@ div.text-file {
   margin: 0;
   padding: 4px;
   user-select: text;
+  height: 100%;
+  box-sizing: border-box;
 }

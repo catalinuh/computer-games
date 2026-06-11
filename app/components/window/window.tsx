@@ -63,10 +63,16 @@ export default function Window({
         x: defaultX,
         y: defaultY,
         width: defaultWidth,
-        height: 'auto',
+        height: title === 'Skills' ? '75dvh' : 'auto',
       }}
-      minWidth={title === 'Contact' && vw > 900 ? 625 : 400}
-      minHeight={title === 'Projects' ? 100 : 300}
+      minWidth={
+        title === 'Contact' && vw > 900
+          ? 625
+          : title === 'About Me' && vw > 900
+            ? 500
+            : 350
+      }
+      minHeight={title === 'Projects' ? 150 : 400}
       bounds="parent"
       dragHandleClassName="title-bar"
       disableDragging={isClickingText}

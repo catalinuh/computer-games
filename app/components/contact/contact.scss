@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 32px;
+  margin: 8px;
 
   /* only applies if screen is 900px wide or less */
   @media screen and (max-width: 900px) {
