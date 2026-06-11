@@ -65,6 +65,9 @@ export default function DesktopIcon({
           onDoubleClick={handleDoubleClick}
           // for mobile device
           onTouchEndCapture={handleDoubleClick}
+          onTouchStart={(e) => {
+            e.stopPropagation() // stops container from seeing the click
+          }}
           ref={outsideRef}
         >
           {icon}

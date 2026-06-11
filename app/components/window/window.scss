@@ -3,18 +3,20 @@
 $window-bg: #c0c0c0;
 
 .window-popup {
-  box-sizing: border-box;
-  width: fit-content;
-  min-width: 350px;
-  max-width: 600px;
-  position: absolute;
-  top: 15vh;
-  left: 5vw;
+  // TODO: Fix this so I don't need all these importants
+  box-sizing: border-box !important;
+  max-width: 600px !important;
+  display: flex !important;
+  flex-direction: column !important;
 
   .title-bar {
     padding-top: 2px;
     padding-bottom: 2px;
     background: linear-gradient(90deg, rgb(169, 39, 255), rgb(62, 175, 255));
+
+    &.inactive {
+      background: linear-gradient(90deg, gray, #b5b5b5);
+    }
   }
 
   .title-bar-text {
@@ -48,8 +50,10 @@ $window-bg: #c0c0c0;
 
   > .window-body {
     // TODO: Change this when maximize functionality is implemented
-    max-height: 75vh;
-    overflow-y: auto;
+    // max-height: 75dvh;
+    flex: 1 1 0;
+    min-height: 0; // critical — without this, flex children won't shrink below content size
+    overflow-y: auto; // keep scrolling within the body
   }
 
   .window-body.notepad-container {
@@ -67,7 +71,8 @@ $window-bg: #c0c0c0;
   .window-body.wanderlist-container,
   .window-body.regex-spaceship-container,
   .window-body.blog-container,
-  .window-body.forgotten-forest-container {
+  .window-body.forgotten-forest-container,
+  .window-body.phone-container {
     margin: 0;
   }
 }
