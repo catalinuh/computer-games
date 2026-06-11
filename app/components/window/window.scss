@@ -4,12 +4,7 @@ $window-bg: #c0c0c0;
 
 .window-popup {
   box-sizing: border-box;
-  width: fit-content;
-  min-width: 350px;
   max-width: 600px;
-  position: absolute;
-  top: 15vh;
-  left: 5vw;
 
   .title-bar {
     padding-top: 2px;

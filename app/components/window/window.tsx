@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
-import Draggable from 'react-draggable'
+import { Rnd } from 'react-rnd'
 
 import { ProjectNames, WindowType } from '../../page'
 import './window.scss'
@@ -27,8 +27,10 @@ export default function Window({
   setOpenWindows,
   title,
 }: WindowProps) {
-  const nodeRef = useRef(null)
   const [isClickingText, setIsClickingText] = useState(false)
+
+  const vw = window.innerWidth
+  const vh = window.innerHeight
 
   const handleClose = () => {
     setOpenWindows((prevOpenWindows) =>
@@ -52,73 +54,69 @@ export default function Window({
   }
 
   return (
-    <Draggable
-      nodeRef={nodeRef}
-      bounds={'parent'}
-      disabled={isClickingText}
+    <Rnd
+      default={{ x: 50, y: 100, width: 400, height: 'auto' }}
+      minWidth={title === 'Contact' && vw > 900 ? 625 : 400}
+      minHeight={title === 'Projects' ? 100 : 300}
+      bounds="parent"
+      dragHandleClassName="title-bar"
+      disableDragging={isClickingText}
       onMouseDown={handleClickDown}
-      handle=".title-bar"
+      className={`window window-popup${activeWindow === title ? ' active' : ''}`}
     >
-      <div
-        className={`window window-popup${activeWindow === title ? ' active' : ''}`}
-        ref={nodeRef}
-      >
-        <div
-          className={`title-bar ${activeWindow !== title ? 'inactive' : ''}`}
-        >
-          <div className="title-bar-text">
-            {icon}
-            {title}
+      <div className={`title-bar ${activeWindow !== title ? 'inactive' : ''}`}>
+        <div className="title-bar-text">
+          {icon}
+          {title}
+        </div>
+        <div className="title-bar-controls">
+          <button
+            aria-label="Minimize"
+            onClick={handleMinimize}
+            // for mobile devices
+            onTouchEndCapture={handleMinimize}
+          />
+          {/* TODO: Enable when maximize functionality is implemented */}
+          <button aria-label="Maximize" disabled />
+          <button
+            aria-label="Close"
+            onClick={handleClose}
+            // for mobile devices
+            onTouchEndCapture={handleClose}
+          />
+        </div>
+      </div>
+
+      {className === 'notepad' ||
+      className === 'folder' ||
+      className === 'skills' ? (
+        <div className="menus" role="menubar" style={{ touchAction: 'none' }}>
+          <div className="menu-button file-menu-button" role="menuitem">
+            <span>
+              <span className="menu-hotkey">F</span>ile
+            </span>
           </div>
-          <div className="title-bar-controls">
-            <button
-              aria-label="Minimize"
-              onClick={handleMinimize}
-              // for mobile devices
-              onTouchEndCapture={handleMinimize}
-            />
-            {/* TODO: Enable when maximize functionality is implemented */}
-            <button aria-label="Maximize" disabled />
-            <button
-              aria-label="Close"
-              onClick={handleClose}
-              // for mobile devices
-              onTouchEndCapture={handleClose}
-            />
+          <div className="menu-button edit-menu-button" role="menuitem">
+            <span>
+              <span className="menu-hotkey">E</span>dit
+            </span>
+          </div>
+          <div className="menu-button search-menu-button" role="menuitem">
+            <span>
+              <span className="menu-hotkey">S</span>earch
+            </span>
+          </div>
+          <div className="menu-button help-menu-button" role="menuitem">
+            <span>
+              <span className="menu-hotkey">H</span>elp
+            </span>
           </div>
         </div>
+      ) : (
+        <></>
+      )}
 
-        {className === 'notepad' ||
-        className === 'folder' ||
-        className === 'skills' ? (
-          <div className="menus" role="menubar" style={{ touchAction: 'none' }}>
-            <div className="menu-button file-menu-button" role="menuitem">
-              <span>
-                <span className="menu-hotkey">F</span>ile
-              </span>
-            </div>
-            <div className="menu-button edit-menu-button" role="menuitem">
-              <span>
-                <span className="menu-hotkey">E</span>dit
-              </span>
-            </div>
-            <div className="menu-button search-menu-button" role="menuitem">
-              <span>
-                <span className="menu-hotkey">S</span>earch
-              </span>
-            </div>
-            <div className="menu-button help-menu-button" role="menuitem">
-              <span>
-                <span className="menu-hotkey">H</span>elp
-              </span>
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
-
-        <div className={`window-body ${className}-container`}>{children}</div>
-      </div>
-    </Draggable>
+      <div className={`window-body ${className}-container`}>{children}</div>
+    </Rnd>
   )
 }
