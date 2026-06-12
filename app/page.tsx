@@ -73,6 +73,7 @@ export default function Home() {
   const [minimizedWindows, setMinimizedWindows] = useState<
     (WindowType | ProjectNames)[]
   >([])
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
 
   // state and ref for selection rectangle
   const [isDragging, setIsDragging] = useState(false)
@@ -167,6 +168,7 @@ export default function Home() {
     if ((e.target as HTMLDivElement).className === 'desktop__icons') {
       setActiveIcons([])
     }
+    setMenuIsOpen(false)
   }
 
   const getCoords = (e: any) => {
@@ -343,8 +345,10 @@ export default function Home() {
       <Taskbar
         activeWindow={activeWindow}
         icons={icons}
+        menuIsOpen={menuIsOpen}
         openWindows={openWindows}
         setActiveWindow={setActiveWindow}
+        setMenuIsOpen={setMenuIsOpen}
         setMinimizedWindows={setMinimizedWindows}
         setOpenWindows={setOpenWindows}
       />

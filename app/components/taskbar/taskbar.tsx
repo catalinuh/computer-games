@@ -9,8 +9,10 @@ import './taskbar.scss'
 interface TaskbarProps {
   activeWindow: WindowType | ProjectNames
   icons: React.ReactNode[]
+  menuIsOpen: boolean
   openWindows: (WindowType | ProjectNames)[]
   setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setMenuIsOpen: Dispatch<SetStateAction<boolean>>
   setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
   setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
 }
@@ -18,13 +20,13 @@ interface TaskbarProps {
 export default function Taskbar({
   activeWindow,
   icons,
+  menuIsOpen,
   openWindows,
   setActiveWindow,
+  setMenuIsOpen,
   setMinimizedWindows,
   setOpenWindows,
 }: TaskbarProps) {
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
-
   const className = menuIsOpen ? 'active' : ''
   const currentTime = useMinuteTimer()
 

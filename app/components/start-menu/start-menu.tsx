@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import Image from 'next/image'
 
 import { desktopIcons, imageMap, ProjectNames, WindowType } from '../../page'
+import { projectsList } from '../projects/data/projects'
 
 import './start-menu.scss'
-import { projectsList } from '../projects/data/projects'
 
 interface StartMenuProps {
   setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
