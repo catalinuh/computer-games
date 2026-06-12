@@ -22,6 +22,7 @@ export default function StartMenu({
   const [hoveredMenuItem, setHoveredMenuItem] = useState<
     WindowType | ProjectNames | null
   >(null)
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
 
   const handleProgramClick = (
     _e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
@@ -36,13 +37,33 @@ export default function StartMenu({
       return windowAlreadyOpen ? prevOpenWindows : [...prevOpenWindows, name]
     })
     setMenuIsOpen(false)
+    setHoveredMenuItem(null)
   }
 
-  const handleMouseOver = (
+  const handleMouseEnter = (
     _e: React.MouseEvent<HTMLDivElement>,
-    name: WindowType | ProjectNames
+    name?: WindowType | ProjectNames
   ) => {
-    setHoveredMenuItem(name)
+    // sub menu doesn't pass name into handleMouseEnter so if there is name, we're in first menu
+    if (name) {
+      setHoveredMenuItem(name)
+      if (name === 'Projects') setIsSubMenuOpen(true)
+      else setIsSubMenuOpen(false)
+      // entering menu with no name i.e. project sub-menu
+    } else {
+      setHoveredMenuItem('Projects')
+      setIsSubMenuOpen(true)
+    }
+  }
+
+  const handleMouseLeave = (
+    _e: React.MouseEvent<HTMLDivElement>,
+    name?: WindowType | ProjectNames
+  ) => {
+    if (!name) {
+      setHoveredMenuItem(null)
+      setIsSubMenuOpen(false)
+    }
   }
 
   return (
@@ -58,15 +79,13 @@ export default function StartMenu({
             {desktopIcons.map((icon) => (
               <div
                 key={icon}
-                className="start-menu__programs--program"
+                className={`start-menu__programs--program${hoveredMenuItem === icon ? ' active' : ''}`}
+                // className={`start-menu__programs--program`}
                 onClick={(e) => handleProgramClick(e, icon)}
                 // for mobile device
                 onTouchEndCapture={(e) => handleProgramClick(e, icon)}
-                onMouseOver={
-                  imageMap[icon] === 'folder'
-                    ? (e) => handleMouseOver(e, icon)
-                    : undefined
-                }
+                onMouseEnter={(e) => handleMouseEnter(e, icon)}
+                onMouseLeave={(e) => handleMouseLeave(e, icon)}
               >
                 <div className={`start-menu__programs--icon-and-name`}>
                   <Image
@@ -88,8 +107,13 @@ export default function StartMenu({
           </div>
         </div>
       </div>
-      {hoveredMenuItem === 'Projects' ? (
-        <div className="window start-menu__hovered-menu">
+
+      {isSubMenuOpen ? (
+        <div
+          className="window start-menu__hovered-menu"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={(e) => handleMouseLeave(e)}
+        >
           <div className="start-menu__hovered-menu--programs">
             {projectsList.map(({ name }) => (
               <div
@@ -98,11 +122,6 @@ export default function StartMenu({
                 onClick={(e) => handleProgramClick(e, name)}
                 // for mobile device
                 onTouchEndCapture={(e) => handleProgramClick(e, name)}
-                onMouseOver={
-                  imageMap[name] === 'folder'
-                    ? (e) => handleMouseOver(e, name)
-                    : undefined
-                }
               >
                 <div
                   className={`start-menu__hovered-menu--programs--icon-and-name`}

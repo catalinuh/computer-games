@@ -198,6 +198,7 @@ export default function Home() {
 
     wasDraggingRef.current = false // Reset on new click
     setIsDragging(true)
+    setMenuIsOpen(false)
   }
 
   const handlePointerMove = (e: any) => {
