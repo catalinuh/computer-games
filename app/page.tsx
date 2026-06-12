@@ -33,7 +33,7 @@ export type ProjectNames =
   | 'My Blog'
   | 'Forgotten Forest'
 
-const imageMap: {
+export const imageMap: {
   [K in WindowType | ProjectNames]: string
 } = {
   'About Me': 'notepad',
@@ -51,6 +51,14 @@ const imageMap: {
   '': '',
 }
 
+export const desktopIcons: WindowType[] = [
+  'About Me',
+  'Skills',
+  'Experience',
+  'Projects',
+  'Contact',
+  // 'Theme',
+]
 // desktop
 export default function Home() {
   const [openWindows, setOpenWindows] = useState<(WindowType | ProjectNames)[]>(
@@ -65,6 +73,7 @@ export default function Home() {
   const [minimizedWindows, setMinimizedWindows] = useState<
     (WindowType | ProjectNames)[]
   >([])
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
 
   // state and ref for selection rectangle
   const [isDragging, setIsDragging] = useState(false)
@@ -159,6 +168,7 @@ export default function Home() {
     if ((e.target as HTMLDivElement).className === 'desktop__icons') {
       setActiveIcons([])
     }
+    setMenuIsOpen(false)
   }
 
   const getCoords = (e: any) => {
@@ -188,6 +198,7 @@ export default function Home() {
 
     wasDraggingRef.current = false // Reset on new click
     setIsDragging(true)
+    setMenuIsOpen(false)
   }
 
   const handlePointerMove = (e: any) => {
@@ -233,105 +244,28 @@ export default function Home() {
               }}
             />
           )}
-          <DesktopIcon
-            icon={
-              <Image
-                alt="notepad"
-                draggable={false}
-                height={64}
-                src="/assets/icons/notepad.png"
-                unoptimized
-                width={64}
-                loading="eager"
-              />
-            }
-            isSelected={activeIcons.includes('About Me')}
-            name={'About Me'}
-            setActiveIcons={setActiveIcons}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          />
-
-          <DesktopIcon
-            icon={
-              <Image
-                alt="skills"
-                draggable={false}
-                height={64}
-                src="/assets/icons/skills.png"
-                unoptimized
-                width={64}
-                loading="eager"
-              />
-            }
-            isSelected={activeIcons.includes('Skills')}
-            name={'Skills'}
-            setActiveIcons={setActiveIcons}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          />
-
-          <DesktopIcon
-            icon={
-              <Image
-                alt="experience"
-                draggable={false}
-                height={64}
-                src="/assets/icons/briefcase.png"
-                unoptimized
-                width={64}
-                loading="eager"
-              />
-            }
-            isSelected={activeIcons.includes('Experience')}
-            name={'Experience'}
-            setActiveIcons={setActiveIcons}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          />
-
-          <DesktopIcon
-            icon={
-              <Image
-                alt="folder"
-                draggable={false}
-                height={64}
-                src="/assets/icons/folder.png"
-                unoptimized
-                width={64}
-                loading="eager"
-              />
-            }
-            isSelected={activeIcons.includes('Projects')}
-            name={'Projects'}
-            setActiveIcons={setActiveIcons}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          />
-
-          <DesktopIcon
-            icon={
-              <Image
-                alt="contact-me"
-                draggable={false}
-                height={64}
-                src="/assets/icons/phone.png"
-                unoptimized
-                width={64}
-                loading="eager"
-              />
-            }
-            isSelected={activeIcons.includes('Contact')}
-            name={'Contact'}
-            setActiveIcons={setActiveIcons}
-            setActiveWindow={setActiveWindow}
-            setMinimizedWindows={setMinimizedWindows}
-            setOpenWindows={setOpenWindows}
-          />
+          {desktopIcons.map((icon) => (
+            <DesktopIcon
+              key={icon}
+              icon={
+                <Image
+                  alt={icon}
+                  draggable={false}
+                  height={64}
+                  src={`/assets/icons/${imageMap[icon]}.png`}
+                  unoptimized
+                  width={64}
+                  loading="eager"
+                />
+              }
+              isSelected={activeIcons.includes(icon)}
+              name={icon}
+              setActiveIcons={setActiveIcons}
+              setActiveWindow={setActiveWindow}
+              setMinimizedWindows={setMinimizedWindows}
+              setOpenWindows={setOpenWindows}
+            />
+          ))}
         </div>
 
         {/* <DesktopIcon
@@ -412,9 +346,12 @@ export default function Home() {
       <Taskbar
         activeWindow={activeWindow}
         icons={icons}
+        menuIsOpen={menuIsOpen}
         openWindows={openWindows}
         setActiveWindow={setActiveWindow}
+        setMenuIsOpen={setMenuIsOpen}
         setMinimizedWindows={setMinimizedWindows}
+        setOpenWindows={setOpenWindows}
       />
     </div>
   )

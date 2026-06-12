@@ -9,19 +9,24 @@ import './taskbar.scss'
 interface TaskbarProps {
   activeWindow: WindowType | ProjectNames
   icons: React.ReactNode[]
+  menuIsOpen: boolean
   openWindows: (WindowType | ProjectNames)[]
   setActiveWindow: Dispatch<SetStateAction<WindowType | ProjectNames>>
+  setMenuIsOpen: Dispatch<SetStateAction<boolean>>
   setMinimizedWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
+  setOpenWindows: Dispatch<SetStateAction<(WindowType | ProjectNames)[]>>
 }
 
 export default function Taskbar({
   activeWindow,
   icons,
+  menuIsOpen,
   openWindows,
   setActiveWindow,
+  setMenuIsOpen,
   setMinimizedWindows,
+  setOpenWindows,
 }: TaskbarProps) {
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
   const className = menuIsOpen ? 'active' : ''
   const currentTime = useMinuteTimer()
 
@@ -46,7 +51,14 @@ export default function Taskbar({
 
   return (
     <div className="taskbar__container">
-      {menuIsOpen ? <StartMenu /> : null}
+      {menuIsOpen ? (
+        <StartMenu
+          setActiveWindow={setActiveWindow}
+          setMenuIsOpen={setMenuIsOpen}
+          setMinimizedWindows={setMinimizedWindows}
+          setOpenWindows={setOpenWindows}
+        />
+      ) : null}
       <div className="taskbar">
         <div className="taskbar__start-btn-and-windows">
           <button
