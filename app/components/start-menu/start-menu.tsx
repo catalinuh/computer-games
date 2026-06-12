@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import Image from 'next/image'
 
 import { desktopIcons, imageMap, ProjectNames, WindowType } from '../../page'
@@ -41,7 +41,7 @@ export default function StartMenu({
   }
 
   const handleMouseEnter = (
-    _e: React.MouseEvent<HTMLDivElement>,
+    _e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
     name?: WindowType | ProjectNames
   ) => {
     // sub menu doesn't pass name into handleMouseEnter so if there is name, we're in first menu
@@ -56,7 +56,9 @@ export default function StartMenu({
     }
   }
 
-  const handleMouseLeave = (_e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = (
+    _e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
+  ) => {
     setHoveredMenuItem(null)
     setIsSubMenuOpen(false)
   }
@@ -66,6 +68,8 @@ export default function StartMenu({
     <div
       className="start-menu__container"
       onMouseLeave={(e) => handleMouseLeave(e)}
+      // for mobile device
+      onTouchEnd={(e) => handleMouseLeave(e)}
     >
       <div className="window start-menu">
         <div className="window-body start-menu__body">
@@ -81,6 +85,7 @@ export default function StartMenu({
                 onClick={(e) => handleProgramClick(e, icon)}
                 onMouseEnter={(e) => handleMouseEnter(e, icon)}
                 // for mobile device
+                onTouchStart={(e) => handleMouseEnter(e, icon)}
                 onTouchEndCapture={(e) => handleProgramClick(e, icon)}
               >
                 <div className={`start-menu__programs--icon-and-name`}>
@@ -109,6 +114,9 @@ export default function StartMenu({
           className="window start-menu__hovered-menu"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={(e) => handleMouseLeave(e)}
+          // for mobile device
+          onTouchStart={handleMouseEnter}
+          onTouchEnd={(e) => handleMouseLeave(e)}
         >
           <div className="start-menu__hovered-menu--programs">
             {projectsList.map(({ name }) => (
