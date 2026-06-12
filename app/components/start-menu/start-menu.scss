@@ -1,7 +1,7 @@
 @use '../../styles/globals.scss' as *;
 
 .start-menu {
-  width: fit-content;
+  width: 250px;
   padding: 2px;
 
   &__body {
@@ -22,6 +22,20 @@
   }
 
   &__programs {
-    padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &--program {
+      flex: 1; // each item grows equally to fill available height
+      padding: 5px;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        color: #ffffff;
+        background-color: #000080;
+      }
+    }
   }
 }
