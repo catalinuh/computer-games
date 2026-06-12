@@ -51,7 +51,7 @@ const imageMap: {
   '': '',
 }
 
-const desktopIcons: WindowType[] = [
+export const desktopIcons: WindowType[] = [
   'About Me',
   'Skills',
   'Experience',
@@ -346,6 +346,7 @@ export default function Home() {
         openWindows={openWindows}
         setActiveWindow={setActiveWindow}
         setMinimizedWindows={setMinimizedWindows}
+        setOpenWindows={setOpenWindows}
       />
     </div>
   )
