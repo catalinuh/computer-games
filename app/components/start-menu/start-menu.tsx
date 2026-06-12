@@ -56,19 +56,17 @@ export default function StartMenu({
     }
   }
 
-  const handleMouseLeave = (
-    _e: React.MouseEvent<HTMLDivElement>,
-    name?: WindowType | ProjectNames
-  ) => {
-    if (!name) {
-      setHoveredMenuItem(null)
-      setIsSubMenuOpen(false)
-    }
+  const handleMouseLeave = (_e: React.MouseEvent<HTMLDivElement>) => {
+    setHoveredMenuItem(null)
+    setIsSubMenuOpen(false)
   }
 
   return (
     // window and window-body classes are for 98.css styling
-    <div className="start-menu__container">
+    <div
+      className="start-menu__container"
+      onMouseLeave={(e) => handleMouseLeave(e)}
+    >
       <div className="window start-menu">
         <div className="window-body start-menu__body">
           <div className="start-menu__banner">
@@ -85,7 +83,6 @@ export default function StartMenu({
                 // for mobile device
                 onTouchEndCapture={(e) => handleProgramClick(e, icon)}
                 onMouseEnter={(e) => handleMouseEnter(e, icon)}
-                onMouseLeave={(e) => handleMouseLeave(e, icon)}
               >
                 <div className={`start-menu__programs--icon-and-name`}>
                   <Image
