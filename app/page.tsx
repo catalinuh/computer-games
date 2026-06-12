@@ -33,7 +33,7 @@ export type ProjectNames =
   | 'My Blog'
   | 'Forgotten Forest'
 
-const imageMap: {
+export const imageMap: {
   [K in WindowType | ProjectNames]: string
 } = {
   'About Me': 'notepad',
