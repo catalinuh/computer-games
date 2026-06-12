@@ -63,6 +63,7 @@ export default function StartMenu({
     setIsSubMenuOpen(false)
   }
 
+  // TODO: Make sub-menu opening and closing work better on mobile
   return (
     // window and window-body classes are for 98.css styling
     <div
