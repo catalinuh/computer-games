@@ -34,11 +34,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: radial-gradient(
-    circle at 0% 100%,
-    rgb(169, 39, 255),
-    rgb(62, 175, 255) 100%
-  );
+  background: radial-gradient(circle at 0% 100%, #a927ff, #3eafff 100%);
   box-sizing: border-box;
   overflow: clip;
 
