@@ -78,11 +78,10 @@ export default function StartMenu({
               <div
                 key={icon}
                 className={`start-menu__programs--program${hoveredMenuItem === icon ? ' active' : ''}`}
-                // className={`start-menu__programs--program`}
                 onClick={(e) => handleProgramClick(e, icon)}
+                onMouseEnter={(e) => handleMouseEnter(e, icon)}
                 // for mobile device
                 onTouchEndCapture={(e) => handleProgramClick(e, icon)}
-                onMouseEnter={(e) => handleMouseEnter(e, icon)}
               >
                 <div className={`start-menu__programs--icon-and-name`}>
                   <Image
