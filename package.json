@@ -16,6 +16,7 @@
     "@mui/icons-material": "^9.0.1",
     "@mui/material": "^9.0.1",
     "@mui/material-nextjs": "^9.0.1",
+    "clippyjs": "0.1.0",
     "dayjs": "^1.11.21",
     "next": "16.2.7",
     "react": "19.2.7",
