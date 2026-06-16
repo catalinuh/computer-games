@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import Image from 'next/image'
 
-import { StartMenu } from '../../components'
+import { Clippy, StartMenu } from '../../components'
 import useMinuteTimer from '../../hooks/useMinuteTimer'
 import { ProjectNames, WindowType } from '../../page'
+
 import './taskbar.scss'
 
 interface TaskbarProps {
@@ -51,14 +52,20 @@ export default function Taskbar({
 
   return (
     <div className="taskbar__container">
-      {menuIsOpen ? (
-        <StartMenu
-          setActiveWindow={setActiveWindow}
-          setMenuIsOpen={setMenuIsOpen}
-          setMinimizedWindows={setMinimizedWindows}
-          setOpenWindows={setOpenWindows}
-        />
-      ) : null}
+      <div className="taskbar__start-menu-clippy-container">
+        {menuIsOpen ? (
+          <StartMenu
+            setActiveWindow={setActiveWindow}
+            setMenuIsOpen={setMenuIsOpen}
+            setMinimizedWindows={setMinimizedWindows}
+            setOpenWindows={setOpenWindows}
+          />
+        ) : null}
+        <div>
+          {/* TODO: Figure out why Clippy isn't appearing??? */}
+          <Clippy />
+        </div>
+      </div>
       <div className="taskbar">
         <div className="taskbar__start-btn-and-windows">
           <button

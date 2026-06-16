@@ -1,3 +1,4 @@
+import Clippy from './clippy/clippy'
 import Contact from './contact/contact'
 import DesktopIcon from './desktop-icon/desktop-icon'
 import Experience from './experience/experience'
@@ -10,6 +11,7 @@ import TextFile from './text-file/text-file'
 import Window from './window/window'
 
 export {
+  Clippy,
   Contact,
   DesktopIcon,
   Experience,
